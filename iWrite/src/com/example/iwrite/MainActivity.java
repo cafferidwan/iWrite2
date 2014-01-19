@@ -6,6 +6,7 @@ import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
@@ -40,8 +41,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	
 	public static BitmapTextureAtlas [] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion [] mTextureRegionNumber = new ITextureRegion[25];
-	public static NumberSprites[] numberSprites= new NumberSprites[25];
-	public static DrawImage [] whiteChalk = new DrawImage[5000];
+	public static Sprite[] numberSprites= new Sprite[25];
+	public static Sprite[] whiteChalk = new Sprite[5000];
 	
 	public static Sprite backGround, blackBoard, moOutLine;
 	
@@ -51,6 +52,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static String DEBUG_TAG = MainActivity.class.getSimpleName();
 	public static int aCounter = 0, serialCounter = 1, totalLoadNumberPic = 15, totalNumberSprite;
 	public static int animation ;
+	static int spriteCounter;
+	static int a = 0, b = 0;
+	static Rectangle rect ; 
 	
 	@Override
 	public EngineOptions onCreateEngineOptions() 
@@ -141,6 +145,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		sCounter = 0;
 		wCounter = 0;
 		animation = 0;
+		b = 0;
+		spriteCounter = 1;
 
 		backGround = new Sprite(0, 0, mbackGroundTextureRegion,
 				getVertexBufferObjectManager());
@@ -161,86 +167,33 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				getVertexBufferObjectManager());
 		mScene.attachChild(moOutLine);
 		
-		for(int i=1; i<=4; i++)
-		{	
-			numberSprites[i] = new NumberSprites(moOutLineX+70*i - 100, moOutLineY -50, 
-				mTextureRegionNumber[i], getVertexBufferObjectManager());
 		
-			mScene.attachChild(numberSprites[i]);
-			mScene.registerTouchArea(numberSprites[i]);
-			numberSprites[i].setScale((float) 0.3); 
-			numberSprites[i].setVisible(false);
-		
-		}
-		
-		for(int l=5; l<=7; l++)
-		{
-			numberSprites[l] = new NumberSprites(moOutLineX+30*l - 150 , moOutLineY+60*l - 350, 
-				mTextureRegionNumber[l], getVertexBufferObjectManager());
-		
-			mScene.attachChild(numberSprites[l]);
-			mScene.registerTouchArea(numberSprites[l]);
-			numberSprites[l].setScale((float) 0.3);
-			numberSprites[l].setVisible(false);
-		} 
-		
-		for(int m=8; m<=9; m++)
-		{ 
-			numberSprites[m] = new NumberSprites(moOutLineX-50*m +410 , moOutLineY-30*m + 340 , 
-				mTextureRegionNumber[m], getVertexBufferObjectManager());
-			
-			mScene.attachChild(numberSprites[m]);
-			mScene.registerTouchArea(numberSprites[m]);
-			numberSprites[m].setScale((float) 0.3);
-			numberSprites[m].setVisible(false);
-		}
-		
-		for(int n=10; n<=12; n++)
-		{
-			numberSprites[n] = new NumberSprites(moOutLineX+40*n -345 , moOutLineY+50*n-430 , 
-				mTextureRegionNumber[n], getVertexBufferObjectManager());
-			
-			mScene.attachChild(numberSprites[n]);
-			mScene.registerTouchArea(numberSprites[n]);
-			numberSprites[n].setScale((float) 0.3);
-			numberSprites[n].setVisible(false);
-		}
-		
-		for(int o=13; o<=15; o++)
-		{
-			numberSprites[o] = new NumberSprites(moOutLineX+120 , moOutLineY-70*o+1000, 
-				mTextureRegionNumber[o], getVertexBufferObjectManager());
-			
-			mScene.attachChild(numberSprites[o]);
-			mScene.registerTouchArea(numberSprites[o]);
-			numberSprites[o].setScale((float) 0.3);
-			numberSprites[o].setVisible(false);
-		}
-		
-		MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)1, new ITimerCallback() 
+		MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)2, new ITimerCallback() 
 		{
 			 
 			@Override
 			public void onTimePassed(TimerHandler pTimerHandler) 
 			{
 				// TODO Auto-generated method stub
-				iCounter=1;
-				jCounter=4;
-				Animation.scale( numberSprites[1]);
+				Animation.scale(moOutLineX+70 - 100, moOutLineY -50);
 				//Animation.shake(1, numberSprites[1], 10);
 			} 
 		}));
 		
-		MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)0.07, true, new ITimerCallback() 
-		{
-			
-			@Override
-			public void onTimePassed(TimerHandler pTimerHandler) 
-			{
-				// TODO Auto-generated method stub
-				
-			} 
-		}));
+		rect = new Rectangle(0, 0, 40, 40, vertexBufferObjectManager);
+		mScene.attachChild(rect);
+		rect.setColor(Color.RED);
+		
+//		MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)0.07, true, new ITimerCallback() 
+//		{
+//			
+//			@Override
+//			public void onTimePassed(TimerHandler pTimerHandler) 
+//			{
+//				// TODO Auto-generated method stub
+//				
+//			} 
+//		}));
 		
 		return mScene;
 	}
@@ -258,84 +211,64 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		if(pSceneTouchEvent.isActionMove())
 		{
-			if(animation == 0)
-			{
-			aCounter++;
-			whiteChalk[aCounter] = new DrawImage(pSceneTouchEvent.getX() -25, pSceneTouchEvent.getY()-30, mWhiteChalkTextureRegion, getVertexBufferObjectManager());
-			mScene.attachChild(MainActivity.whiteChalk[aCounter]);
-			whiteChalk[aCounter].setScale((float) 0.6);
-			Debug.d("I:"+aCounter); 
+			rect.setPosition(pSceneTouchEvent.getX()-rect.getWidth()/2, pSceneTouchEvent.getY()-rect.getHeight()/2);
 			
-			if(whiteChalk[aCounter].collidesWith(numberSprites[serialCounter]))
+			if(rect.collidesWith(numberSprites[1]))
 			{
-				//numberSprites[serialCounter].setVisible(false);
-				mScene.detachChild(numberSprites[serialCounter]); 
-				serialCounter++;
-				//Debug.d("serial:"+serialCounter);
-				
-				if(serialCounter>4 && sCounter == 0)
-				{
-					aCounter= 0;
-					//wCounter = aCounter;
-					Debug.d("wCounter:"+wCounter);
-					sCounter++;
-					iCounter=5;
-					jCounter=7;
-					Animation.scale( numberSprites[5]);
-					
-				}
-				if(serialCounter>7 && sCounter == 1)
-				{	
-					aCounter= 0;
-					wCounter = aCounter;
-					Debug.d("wCounter:"+wCounter);  
-					sCounter++;
-					iCounter=8;
-					jCounter=9;
-					Animation.scale( numberSprites[8]);
-				
-				}
-				if(serialCounter>9 && sCounter == 2)
-				{	 
-					aCounter= 0;
-					wCounter = aCounter;
-					Debug.d("wCounter:"+wCounter);
-					sCounter++;
-					iCounter=10;
-					jCounter=12;
-					Animation.scale( numberSprites[10]);
-				
-				}
-				if(serialCounter>12 && sCounter == 3)
-				{	 
-					aCounter= 0;
-					wCounter = aCounter;
-					Debug.d("wCounter:"+wCounter);
-					sCounter++;
-					iCounter=13;
-					jCounter=15;
-					Animation.scale( numberSprites[13]);
-				
-				}
+				b=1;
 			}
 			
-			if(numberSprites[serialCounter]!= null && whiteChalk[aCounter]!= null)
-			{ 
-				if(distance(whiteChalk[aCounter], numberSprites[serialCounter])==true)
+			if(b==1)
+			{
+				aCounter++;
+				whiteChalk[aCounter] = new Sprite(pSceneTouchEvent.getX() -25, pSceneTouchEvent.getY()-30, mWhiteChalkTextureRegion, getVertexBufferObjectManager());
+				mScene.attachChild(MainActivity.whiteChalk[aCounter]);
+				whiteChalk[aCounter].setScale((float) 0.6);
+				Debug.d("I:"+aCounter); 
+				
+				if(whiteChalk[aCounter].getX() - numberSprites[1].getX()>150)
 				{
-					for(int k=wCounter; k<aCounter; k++)
-					{
-						mScene.detachChild(whiteChalk[k]);
-					}
+					Debug.d("baire");
+					for(int k=0; k<aCounter; k++)
+						{
+							mScene.detachChild(whiteChalk[k]);
+						}
+				}else if(whiteChalk[aCounter].collidesWith(numberSprites[2]))
+				{
+					Debug.d("baire naa");
+//					for(int k=0; k<aCounter; k++)
+//						{
+//							mScene.detachChild(whiteChalk[k]);
+//						}
 				}
+//				else
+//				{
+//					for(int k=0; k<aCounter; k++)
+//					{
+//						mScene.detachChild(whiteChalk[k]);
+//					}
+//				}
 			}
-			}
+			
+			NumberSprites.createNumberSprites();
+			
+//			if(numberSprites[serialCounter]!= null && whiteChalk[aCounter]!= null)
+//			{ 
+//				if(b==0 && !whiteChalk[aCounter].collidesWith(numberSprites[1]))
+//				{
+//					for(int k=0; k<aCounter; k++)
+//					{
+//						mScene.detachChild(whiteChalk[k]);
+//					}
+//				}
+//			}
 			return true;
 		}
 		
 		if(pSceneTouchEvent.isActionUp())
 		{
 			//Debug.d("action up");
+			a=0;
 			return true;
 		}
 		
@@ -346,7 +279,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	{
 		double dist = Math.sqrt(Math.pow((b.getX() - a.getX()), 2) + Math.pow((b.getY() - a.getY()), 2));
 		
-		if(dist>80)
+		Debug.d("dist:"+dist);
+		if(dist<70)
 		{
 			return true;
 		}

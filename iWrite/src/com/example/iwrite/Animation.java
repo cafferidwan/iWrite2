@@ -13,44 +13,46 @@ import org.andengine.util.modifier.IModifier;
 
 public class Animation 
 {
-
 	
-	public static void scale(final Sprite sp)
+	public static int spriteCounter;
+	
+	public static void scale(float x, float y)
 	{
-		MainActivity.animation = 1;
-		if(MainActivity.iCounter <= MainActivity.jCounter)
-		{
-			sp.setVisible(true);
+			spriteCounter = MainActivity.spriteCounter;
+			
+			MainActivity.numberSprites[spriteCounter] = new Sprite(x, y, 
+					MainActivity.mTextureRegionNumber[spriteCounter], MainActivity.vertexBufferObjectManager);
+		
+			MainActivity.mScene.attachChild(MainActivity.numberSprites[spriteCounter]);
+			MainActivity.mScene.registerTouchArea(MainActivity.numberSprites[spriteCounter]);
+		
+			//sp.setVisible(true);
 			ScaleModifier scaleModifier = new ScaleModifier(1, 0.1f, 0.3f);
-			LoopEntityModifier loopRotateMod = new LoopEntityModifier( new RotationModifier(8, 0, 360));
-			DelayModifier delayMod = new DelayModifier((float) 0.1 , new IEntityModifierListener()
+			LoopEntityModifier loopRotateMod = new LoopEntityModifier( new RotationModifier(4, 0, 360));
+			DelayModifier delayMod = new DelayModifier((float) 0.05 , new IEntityModifierListener()
 			{
 
 						@Override
 						public void onModifierStarted(IModifier<IEntity> arg0,
 								IEntity arg1) 
 						{
-							//sp.setVisible(true);
+
 						}
 
 						@Override
 						public void onModifierFinished(IModifier<IEntity> arg0,
 								IEntity arg1)
 						{
-							MainActivity.iCounter++;
-							scale( MainActivity.numberSprites[MainActivity.iCounter]); 
-							MainActivity.animation = 0;
+							MainActivity.a=0;
 						}
 					});
 			
 			SequenceEntityModifier sequenceMod = new SequenceEntityModifier(scaleModifier,delayMod, loopRotateMod);
-			sp.registerEntityModifier(sequenceMod);
-		}
+			MainActivity.numberSprites[spriteCounter].registerEntityModifier(sequenceMod);
 	}
 
 	public static void shake(int a, final Sprite sp, float x)
 	{
-		
 		if(a<5) 
 		{
 		MoveModifier moveMod = new MoveModifier((float)0.08, sp.getX(), sp.getX()+x, sp.getY(), sp.getY());
