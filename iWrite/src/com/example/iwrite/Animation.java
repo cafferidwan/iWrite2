@@ -1,5 +1,7 @@
 package com.example.iwrite;
 
+import org.andengine.engine.handler.timer.ITimerCallback;
+import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.DelayModifier;
 import org.andengine.entity.modifier.LoopEntityModifier;
@@ -13,21 +15,18 @@ import org.andengine.util.modifier.IModifier;
 
 public class Animation 
 {
-	
-	public static int spriteCounter;
-	
 	public static void scale(float x, float y, int c)
 	{
-			spriteCounter = MainActivity.spriteCounter;
 			
 			if(c<=MainActivity.spriteCounterLimit)
 			{
+			MainActivity.animationStart = 1;
 			
-			MainActivity.numberSprites[spriteCounter] = new Sprite(x, y, 
-					MainActivity.mTextureRegionNumber[spriteCounter], MainActivity.vertexBufferObjectManager);
-			MainActivity.numberSprites[spriteCounter].setScale((float)0.1);
-			MainActivity.mScene.attachChild(MainActivity.numberSprites[spriteCounter]);
-			MainActivity.mScene.registerTouchArea(MainActivity.numberSprites[spriteCounter]);
+			MainActivity.numberSprites[MainActivity.spriteCounter] = new Sprite(x, y, 
+					MainActivity.mTextureRegionNumber[MainActivity.spriteCounter], MainActivity.vertexBufferObjectManager);
+			MainActivity.numberSprites[MainActivity.spriteCounter].setScale((float)0.1);
+			MainActivity.mScene.attachChild(MainActivity.numberSprites[MainActivity.spriteCounter]);
+			MainActivity.mScene.registerTouchArea(MainActivity.numberSprites[MainActivity.spriteCounter]);
 		
 			//sp.setVisible(true);
 			ScaleModifier scaleModifier = new ScaleModifier(1, 0.1f, 0.3f);
@@ -46,6 +45,7 @@ public class Animation
 						public void onModifierFinished(IModifier<IEntity> arg0,
 								IEntity arg1)
 						{
+							
 							if(MainActivity.spriteCounterLimit == 4)
 							{
 								MainActivity.spriteCounter++;
@@ -66,22 +66,45 @@ public class Animation
 								MainActivity.spriteCounter++;
 								MainActivity.a=0;
 								scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +410 ,
-										MainActivity.moOutLineY-30*spriteCounter + 340,
+										MainActivity.moOutLineY-30*MainActivity.spriteCounter + 340,
 										MainActivity.spriteCounter);
 							}
-							else if(MainActivity.spriteCounterLimit == 12)
+							else if(MainActivity.spriteCounterLimit == 13)
 							{
 								MainActivity.spriteCounter++;
 								MainActivity.a=0;
-								scale(MainActivity.moOutLineX+40*MainActivity.spriteCounter -345 ,
-										MainActivity.moOutLineY+50*MainActivity.spriteCounter-430,
+								scale(MainActivity.moOutLineX+40*MainActivity.spriteCounter -385 ,
+										MainActivity.moOutLineY+50*MainActivity.spriteCounter-480,
 										MainActivity.spriteCounter);
 							}
+							else if(MainActivity.spriteCounterLimit == 16)
+							{
+								MainActivity.spriteCounter++;
+								MainActivity.a=0;
+								scale(MainActivity.moOutLineX+120 , 
+										70+MainActivity.moOutLineY-70*MainActivity.spriteCounter+1000,
+										MainActivity.spriteCounter);
+							}
+							
+//							MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)0.2, true, new ITimerCallback() {
+//								
+//								@Override
+//								public void onTimePassed(TimerHandler pTimerHandler) {
+//									// TODO Auto-generated method stub
+//									
+//								}
+//							}));
+
+							MainActivity.animationStart = 0;
 						}
 					});
 			
 			SequenceEntityModifier sequenceMod = new SequenceEntityModifier(scaleModifier,delayMod, loopRotateMod);
-			MainActivity.numberSprites[spriteCounter].registerEntityModifier(sequenceMod);
+			MainActivity.numberSprites[MainActivity.spriteCounter].registerEntityModifier(sequenceMod);
+			}
+			else
+			{
+				MainActivity.animationStart = 0;
 			}
 	}
 

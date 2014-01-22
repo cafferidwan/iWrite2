@@ -50,12 +50,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	
 	public static int iCounter, jCounter, j=0, sCounter, wCounter;
 	public static String DEBUG_TAG = MainActivity.class.getSimpleName();
-	public static int aCounter = 0, serialCounter = 1, totalLoadNumberPic = 15, totalNumberSprite;
-	public static int animation ;
+	public static int aCounter = 0, serialCounter = 1, totalLoadNumberPic = 18, totalNumberSprite;
+	static int animationStart;
+	int lineCounter1 ;
 	static int spriteCounter, spriteCounterLimit;
 	static int a = 0, b = 0;
 	static Rectangle rect ; 
 	static float posX, posY;
+	static int[] lineCounter = new int[50];
 	
 	@Override
 	public EngineOptions onCreateEngineOptions() 
@@ -145,12 +147,25 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		totalNumberSprite = 4;
 		sCounter = 0;
 		wCounter = 0;
-		animation = 0;
+		animationStart = 0;
 		b = 0;
 		spriteCounter = 1;
 		spriteCounterLimit = 0;
 		posX = 0;
 		posY = 0;
+		lineCounter1 = 0;
+		lineCounter[0]=0;
+		lineCounter[1]=0;
+		lineCounter[2]=0;
+		lineCounter[3]=0;
+		lineCounter[4]=0;
+		lineCounter[5]=0;
+		lineCounter[6]=0;
+		lineCounter[7]=0;
+		lineCounter[8]=0;
+		lineCounter[9]=0;
+		lineCounter[10]=0;
+		
 
 		backGround = new Sprite(0, 0, mbackGroundTextureRegion,
 				getVertexBufferObjectManager());
@@ -161,7 +176,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		moOutLineX = CAMERA_WIDTH / 2 - 130;
 		moOutLineY = CAMERA_HEIGHT / 2 - 130;
 		
-		blackBoard = new Sprite(moOutLineX-160, moOutLineY-85, mBlackBoardTextureRegion,
+		blackBoard = new Sprite(moOutLineX-160, moOutLineY-85, mBlackBoardTextureRegion, 
 				getVertexBufferObjectManager());
 		blackBoard.setHeight((float) (blackBoard.getHeight()*1.7));
 		blackBoard.setWidth((float) (blackBoard.getWidth()*1.5));
@@ -179,8 +194,6 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			public void onTimePassed(TimerHandler pTimerHandler) 
 			{
 				// TODO Auto-generated method stub
-				posX = moOutLineX+70 - 100;
-				posY = moOutLineY -50;
 				
 				spriteCounterLimit = 4;
 				Animation.scale(moOutLineX+70 - 100, moOutLineY -50, 1);
@@ -210,24 +223,32 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		if(pSceneTouchEvent.isActionMove())
 		{
+			Debug.d("animation:"+animationStart);
+			if(animationStart == 0)
+			{
 			rect.setPosition(pSceneTouchEvent.getX()-rect.getWidth()/2, pSceneTouchEvent.getY()-rect.getHeight()/2);
 			Debug.d("spriteCounter:"+MainActivity.spriteCounter);
-			
+			Debug.d("State:"+b);
 			if(rect.collidesWith(numberSprites[1]))
 			{
-				b=1;
+				lineCounter[1]++;
+				if(lineCounter[1]==1)
+				{
+					b=1;
+				}
 			}
 			
 			if(b==1)
 			{
 				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY()); 
 				
-				remove(2, 1,2);
+				posX = numberSprites[1].getX()+numberSprites[1].getWidth()/2-20;
+				posY = numberSprites[1].getY()+numberSprites[1].getHeight()/2-20;
 				
-				if(
-					   whiteChalk[aCounter].getX() - posX< -20 
-					|| whiteChalk[aCounter].getY() - posY>100 
-					|| whiteChalk[aCounter].getY() - posY<0
+				if( 
+					   whiteChalk[aCounter].getX() - posX< -55 
+					|| whiteChalk[aCounter].getY() - posY>30 
+					|| whiteChalk[aCounter].getY() - posY<-55 
 					|| whiteChalk[aCounter].collidesWith(numberSprites[3]) 
 					|| whiteChalk[aCounter].collidesWith(numberSprites[4])
 						)
@@ -237,22 +258,24 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 						mScene.detachChild(whiteChalk[a]);
 					}
 					
-				} 
+				}
+				else 
+				{
+					remove(2, 1,2);
+				}
 				
 			}  
 			else if(b==2)
 			{
 				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 				
-				posX = moOutLineX+140 - 100;
-				posY = moOutLineY - 50;
+				posX = numberSprites[2].getX()+numberSprites[2].getWidth()/2-20;
+				posY = numberSprites[2].getY()+numberSprites[2].getHeight()/2-20;
 				
-				remove(3,2,3);
-				 
 				if(
-						whiteChalk[aCounter].getX() - posX< -20 
-					|| whiteChalk[aCounter].getY() - posY>100
-					|| whiteChalk[aCounter].getY() - posY<0
+						 whiteChalk[aCounter].getX() - posX< -55 
+					|| whiteChalk[aCounter].getY() - posY>30 
+					|| whiteChalk[aCounter].getY() - posY<-55 
 					|| whiteChalk[aCounter].collidesWith(numberSprites[4]) 
 						)
 				{
@@ -262,21 +285,25 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 					}
 					
 				} 
+				else
+				{
+					remove(3,2,3);
+				}
 			}
 			else if(b==3)
 			{
 				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 				
-				posX = moOutLineX+210 - 100;
-				posY = moOutLineY - 50;
+				posX = numberSprites[3].getX()+numberSprites[3].getWidth()/2-20;
+				posY = numberSprites[3].getY()+numberSprites[3].getHeight()/2-20;
 				
-				remove(4,3,4);
+				//rect(posX, posY);
 				
 				if(
-						whiteChalk[aCounter].getX() - posX< -20 
-					|| whiteChalk[aCounter].getY() - posY>100
-					|| whiteChalk[aCounter].getY() - posY<0
-						)
+						 whiteChalk[aCounter].getX() - posX< -55 
+					|| whiteChalk[aCounter].getY() - posY>30 
+					|| whiteChalk[aCounter].getY() - posY<-55 
+					)
 				{
 					for(int a=wCounter; a<=aCounter; a++)
 					{
@@ -284,28 +311,35 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 					}
 					
 				} 
+				else
+				{
+					remove(4,3,4);
+				}
 			}
 			else if(b==4)
 			{
+				//creating new line of numbers
 				spriteCounterLimit=7;
 				Animation.scale(MainActivity.moOutLineX ,
-						MainActivity.moOutLineY+300 - 350, 5); 
+						MainActivity.moOutLineY+300 - 350, spriteCounter); 
 				b=5;
+//				}
 			}
 			else if(b==5)
 			{
 				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 				
-				posX = moOutLineX+180 - 150;
-				posY = moOutLineY+300 - 350;
+				posX = numberSprites[5].getX()+numberSprites[5].getWidth()/2-20; 
+				posY = numberSprites[5].getY()+numberSprites[5].getHeight()/2-20;
 				
-				remove(5,4,6);
-					//b=4;
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
 				
 				if(
-						whiteChalk[aCounter].getX() - posX< -20 
-					|| whiteChalk[aCounter].getY() - posY>130
-					|| whiteChalk[aCounter].getY() - posY<0
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>50 
+							|| whiteChalk[aCounter].getY() - posY<-55 
 						)
 				{
 					for(int a=wCounter; a<=aCounter; a++)
@@ -314,21 +348,26 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 					}
 					
 				} 
+				else
+				{
+					remove(6,5,6);
+				}
 			}
 			else if(b==6)
 			{
 				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 				
-//				posX = numberSprites[6].getX();
-//				posY = numberSprites[6].getY();
+				posX = numberSprites[6].getX()+numberSprites[6].getWidth()/2-20; 
+				posY = numberSprites[6].getY()+numberSprites[6].getHeight()/2-20;
 				
-				remove(6,5,7);
-					//b=4;
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
 				
 				if(
-						whiteChalk[aCounter].getX() - posX< -20 
-					|| whiteChalk[aCounter].getY() - posY>130
-					|| whiteChalk[aCounter].getY() - posY<0
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>50 
+							|| whiteChalk[aCounter].getY() - posY<-55 
 						)
 				{
 					for(int a=wCounter; a<=aCounter; a++)
@@ -336,52 +375,63 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 						mScene.detachChild(whiteChalk[a]);
 					}
 					
-				} 
-			}
+				}
+				else 
+				{
+					remove(7,6,7); 
+				}
+			}  
 			else if(b==7)
+			{
+				spriteCounterLimit=9;
+				Animation.scale(moOutLineX-50*MainActivity.spriteCounter +410 ,
+						MainActivity.moOutLineY-30*spriteCounter + 340, spriteCounter); 
+				b=8;
+			}
+			else if(b==8)
 			{
 				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 				
-//				posX = numberSprites[7].getX();
-//				posY = numberSprites[7].getY();
+				posX = numberSprites[7].getX()+numberSprites[7].getWidth()/2-20; 
+				posY = numberSprites[7].getY()+numberSprites[7].getHeight()/2-20;
 				
-				remove(7,6,8);
-					//b=4;
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
 				
 				if(
-						whiteChalk[aCounter].getX() - posX< -20 
-					|| whiteChalk[aCounter].getY() - posY>130
-					|| whiteChalk[aCounter].getY() - posY<0
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>50 
+							|| whiteChalk[aCounter].getY() - posY<-35  
 						)
 				{
 					for(int a=wCounter; a<=aCounter; a++)
 					{
 						mScene.detachChild(whiteChalk[a]);
 					} 
-					
-				} 
-			}
-			else if(b==8)
-			{
-				spriteCounterLimit=9;
-				Animation.scale(moOutLineX-50*MainActivity.spriteCounter +410 ,
-						MainActivity.moOutLineY-30*spriteCounter + 340, spriteCounter); 
-				b=9;
+				}
+				else
+				{
+					remove(8,7,9);
+				}
 			}
 			else if(b==9)
 			{
 				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
 				
-//				posX = numberSprites[8].getX();
-//				posY = numberSprites[8].getY();
+				posX = numberSprites[8].getX()+numberSprites[8].getWidth()/2-20; 
+				posY = numberSprites[8].getY()+numberSprites[8].getHeight()/2-20;
 				
-				remove(8,7,10);
-					//b=4;
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
 				
+				//rect(posX, posY);
+				 
 				if(
-						whiteChalk[aCounter].getX() - posX< -20 
-					|| whiteChalk[aCounter].getY() - posY>130
-					|| whiteChalk[aCounter].getY() - posY<0
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>30 
+							|| whiteChalk[aCounter].getY() - posY<-35 
 						)
 				{
 					for(int a=wCounter; a<=aCounter; a++)
@@ -390,16 +440,269 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 					} 
 					
 				} 
+				else
+				{
+					remove(9,8,10);
+				} 
 			}
 			else if(b==10)
 			{
-				spriteCounterLimit=12;
-				Animation.scale(MainActivity.moOutLineX+40*MainActivity.spriteCounter -345 ,
-						MainActivity.moOutLineY+50*MainActivity.spriteCounter-430, spriteCounter); 
+				spriteCounterLimit=13;
+				Animation.scale(MainActivity.moOutLineX+40*MainActivity.spriteCounter -385 ,
+						MainActivity.moOutLineY+50*MainActivity.spriteCounter-450, spriteCounter); 
 				b=11;
-			}
-			 
+			} 
 			
+			
+			else if(b==11)
+			{
+				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+				
+				posX = numberSprites[9].getX()+numberSprites[9].getWidth()/2-20; 
+				posY = numberSprites[9].getY()+numberSprites[9].getHeight()/2-20;
+				
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
+				
+				//rect(posX, posY);
+				
+				if(
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>30 
+							|| whiteChalk[aCounter].getY() - posY<-35 
+						)
+				{
+					for(int a=wCounter; a<=aCounter; a++)
+					{
+						mScene.detachChild(whiteChalk[a]);
+					} 
+					
+				} 
+				else
+				{
+					remove(10,9,12);
+				}
+			}
+			else if(b==12)
+			{
+				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+				
+				posX = numberSprites[10].getX()+numberSprites[10].getWidth()/2-20; 
+				posY = numberSprites[10].getY()+numberSprites[10].getHeight()/2-20;
+				
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
+				
+				//rect(posX, posY);
+				
+				if(
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>30 
+							|| whiteChalk[aCounter].getY() - posY<-35 
+						)
+				{
+					for(int a=wCounter; a<=aCounter; a++)
+					{
+						mScene.detachChild(whiteChalk[a]);
+					} 
+					
+				} 
+				else
+				{
+					remove(11,10,13);
+				}
+			}
+			else if(b==13)
+			{
+				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+				
+				posX = numberSprites[11].getX()+numberSprites[11].getWidth()/2-20; 
+				posY = numberSprites[11].getY()+numberSprites[11].getHeight()/2-20;
+				
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
+				
+				//rect(posX, posY);
+				
+				if(
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>30 
+							|| whiteChalk[aCounter].getY() - posY<-35 
+						)
+				{
+					for(int a=wCounter; a<=aCounter; a++)
+					{
+						mScene.detachChild(whiteChalk[a]);
+					} 
+					
+				} 
+				else
+				{
+					remove(12,11,14);
+				}
+			}
+			
+			else if(b==14)
+			{
+				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+				
+				posX = numberSprites[12].getX()+numberSprites[12].getWidth()/2-20; 
+				posY = numberSprites[12].getY()+numberSprites[12].getHeight()/2-20;
+				
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
+				
+				//rect(posX, posY);
+				
+				if(
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>30 
+							|| whiteChalk[aCounter].getY() - posY<-35 
+						)
+				{
+					for(int a=wCounter; a<=aCounter; a++)
+					{
+						mScene.detachChild(whiteChalk[a]);
+					} 
+					
+				} 
+				else
+				{
+					remove(13,12,16);
+				}
+			}
+			else if(b==16)
+			{
+				spriteCounterLimit=16;
+				Animation.scale(MainActivity.moOutLineX+120 , 
+						80+MainActivity.moOutLineY-70*MainActivity.spriteCounter+1000, spriteCounter); 
+				b=17; 
+			}
+			else if(b==17)
+			{
+				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+				
+				posX = numberSprites[13].getX()+numberSprites[13].getWidth()/2-20; 
+				posY = numberSprites[13].getY()+numberSprites[13].getHeight()/2-20;
+				
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
+				
+				//rect(posX, posY);
+				
+				if(
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>30 
+							|| whiteChalk[aCounter].getY() - posY<-35 
+						)
+				{
+					for(int a=wCounter; a<=aCounter; a++)
+					{
+						mScene.detachChild(whiteChalk[a]);
+					} 
+					
+				} 
+				else
+				{
+					remove(14,13,18);
+				}
+			} 
+			else if(b==18)
+			{
+				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+				
+				posX = numberSprites[14].getX()+numberSprites[14].getWidth()/2-20; 
+				posY = numberSprites[14].getY()+numberSprites[14].getHeight()/2-20;
+				
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
+				
+				//rect(posX, posY);
+				
+				if(
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>30 
+							|| whiteChalk[aCounter].getY() - posY<-55 
+						)
+				{
+					for(int a=wCounter; a<=aCounter; a++)
+					{
+						mScene.detachChild(whiteChalk[a]);
+					} 
+					
+				} 
+				else
+				{
+					remove(15,14,19); 
+				}
+			} 
+			else if(b==19)
+			{
+				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+				
+				posX = numberSprites[15].getX()+numberSprites[15].getWidth()/2-20; 
+				posY = numberSprites[15].getY()+numberSprites[15].getHeight()/2-20;
+				
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
+				
+				//rect(posX, posY);
+				
+				if(
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>30 
+							|| whiteChalk[aCounter].getY() - posY<-55 
+						)
+				{
+					for(int a=wCounter; a<=aCounter; a++)
+					{
+						mScene.detachChild(whiteChalk[a]);
+					} 
+					
+				} 
+				else
+				{
+					remove(16,15,20); 
+				}
+			}
+			else if(b==20)
+			{
+				Draw(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+				
+				posX = numberSprites[16].getX()+numberSprites[16].getWidth()/2-20; 
+				posY = numberSprites[16].getY()+numberSprites[16].getHeight()/2-20;
+				
+				Debug.d("dist.x:"+(whiteChalk[aCounter].getX() - posX));
+				Debug.d("dist.y:"+(whiteChalk[aCounter].getY() - posY));
+				
+				//rect(posX, posY);
+				
+				if(
+						 whiteChalk[aCounter].getX() - posX< -55 
+						 	|| whiteChalk[aCounter].getX() - posX>30 
+							|| whiteChalk[aCounter].getY() - posY>30 
+							|| whiteChalk[aCounter].getY() - posY<-55 
+						)
+				{
+					for(int a=wCounter; a<=aCounter; a++)
+					{
+						mScene.detachChild(whiteChalk[a]);
+					} 
+					
+				} 
+				else
+				{
+					remove(17,16,20); 
+				}
+			}
+			}
 			return true;
 		}
 		
@@ -413,10 +716,21 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		return true;
 	}
 	
+	public static void rect(float x, float y)
+	{
+		Rectangle rect = new Rectangle(x, y, 30, 30, vertexBufferObjectManager);
+		mScene.attachChild(rect);
+		rect.setColor(Color.RED);
+	}
+	
 	public static void remove(int collisionSprite, int removeSpriteNumber, int stateNUmber)
 	{
 		if(whiteChalk[aCounter].collidesWith(numberSprites[collisionSprite]))
 		{
+			if(collisionSprite == 4)
+			{
+				mScene.detachChild(numberSprites[4]);
+			}
 			mScene.detachChild(numberSprites[removeSpriteNumber]);
 			numberSprites[removeSpriteNumber].setY(CAMERA_HEIGHT+500);
 			wCounter = aCounter;
