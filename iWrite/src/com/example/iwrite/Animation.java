@@ -1,7 +1,5 @@
 package com.example.iwrite;
 
-import org.andengine.engine.handler.timer.ITimerCallback;
-import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.DelayModifier;
 import org.andengine.entity.modifier.LoopEntityModifier;
@@ -20,7 +18,7 @@ public class Animation
 			
 			if(c<=MainActivity.spriteCounterLimit)
 			{
-			MainActivity.animationStart = 1;
+			//MainActivity.animationStart = 1;
 			
 			MainActivity.numberSprites[MainActivity.spriteCounter] = new Sprite(x, y, 
 					MainActivity.mTextureRegionNumber[MainActivity.spriteCounter], MainActivity.vertexBufferObjectManager);
@@ -29,9 +27,9 @@ public class Animation
 			MainActivity.mScene.registerTouchArea(MainActivity.numberSprites[MainActivity.spriteCounter]);
 		
 			//sp.setVisible(true);
-			ScaleModifier scaleModifier = new ScaleModifier(1, 0.1f, 0.3f);
+			ScaleModifier scaleModifier = new ScaleModifier((float) 0.1, 0.1f, 0.3f);
 			LoopEntityModifier loopRotateMod = new LoopEntityModifier( new RotationModifier(4, 0, 360));
-			DelayModifier delayMod = new DelayModifier((float) 0.05 , new IEntityModifierListener()
+			DelayModifier delayMod = new DelayModifier((float) 0.01, new IEntityModifierListener()
 			{ 
 
 						@Override
@@ -49,14 +47,12 @@ public class Animation
 							if(MainActivity.spriteCounterLimit == 4)
 							{
 								MainActivity.spriteCounter++;
-								MainActivity.a=0;
 								scale(MainActivity.moOutLineX+70*MainActivity.spriteCounter - 100, 
 										MainActivity.moOutLineY -50, MainActivity.spriteCounter);
 							}
 							else if(MainActivity.spriteCounterLimit == 7)
 							{
 								MainActivity.spriteCounter++;
-								MainActivity.a=0;
 								scale(MainActivity.moOutLineX+30*MainActivity.spriteCounter - 150 ,
 										MainActivity.moOutLineY+60*MainActivity.spriteCounter - 350,
 										MainActivity.spriteCounter);
@@ -64,7 +60,6 @@ public class Animation
 							else if(MainActivity.spriteCounterLimit == 9)
 							{
 								MainActivity.spriteCounter++;
-								MainActivity.a=0;
 								scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +410 ,
 										MainActivity.moOutLineY-30*MainActivity.spriteCounter + 340,
 										MainActivity.spriteCounter);
@@ -72,7 +67,6 @@ public class Animation
 							else if(MainActivity.spriteCounterLimit == 13)
 							{
 								MainActivity.spriteCounter++;
-								MainActivity.a=0;
 								scale(MainActivity.moOutLineX+40*MainActivity.spriteCounter -385 ,
 										MainActivity.moOutLineY+50*MainActivity.spriteCounter-480,
 										MainActivity.spriteCounter);
@@ -80,22 +74,11 @@ public class Animation
 							else if(MainActivity.spriteCounterLimit == 16)
 							{
 								MainActivity.spriteCounter++;
-								MainActivity.a=0;
 								scale(MainActivity.moOutLineX+120 , 
 										70+MainActivity.moOutLineY-70*MainActivity.spriteCounter+1000,
 										MainActivity.spriteCounter);
 							}
 							
-//							MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)0.2, true, new ITimerCallback() {
-//								
-//								@Override
-//								public void onTimePassed(TimerHandler pTimerHandler) {
-//									// TODO Auto-generated method stub
-//									
-//								}
-//							}));
-
-							MainActivity.animationStart = 0;
 						}
 					});
 			
@@ -104,7 +87,7 @@ public class Animation
 			}
 			else
 			{
-				MainActivity.animationStart = 0;
+				//MainActivity.animationStart = 0;
 			}
 	}
 
@@ -127,9 +110,9 @@ public class Animation
 					public void onModifierFinished(IModifier<IEntity> arg0,
 							IEntity arg1)
 					{
-						MainActivity.j++;
+						MainActivity.shakeCounter++;
 						sp.setPosition(sp.getX()-20, sp.getY());
-						shake(MainActivity.j,sp, 20);
+						shake(MainActivity.shakeCounter,sp, 20);
 					} 
 				});
 		
@@ -139,7 +122,7 @@ public class Animation
 		if(a==5)
 		{
 			sp.setPosition(sp.getX()+10, sp.getY());
-			MainActivity.j=0;
+			MainActivity.shakeCounter=0;
 		}
 	}
 }
