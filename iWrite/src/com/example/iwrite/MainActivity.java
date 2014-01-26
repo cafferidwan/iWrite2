@@ -59,6 +59,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	static Rectangle rect;
 	static float posX, posY;
 	public static boolean isShaking;
+	public static int touch;
 
 	@Override
 	public EngineOptions onCreateEngineOptions()
@@ -123,11 +124,39 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 						"star.png", 0, 0, 1, 1);
 
 		// All the numbers
-		for (int i = 1; i <= totalLoadNumberPic; i++) 
+		for (int i = 1; i <= 4; i++) 
 		{
 			mTextureRegionNumber[i] = BitmapTextureAtlasTextureRegionFactory
 					.createTiledFromAsset(mBitmapTextureAtlasNumber[i], this,
 							"Number" + i + ".png", 0, 0, 1, 1);
+		}
+		
+		for (int i = 5; i <= 7; i++) 
+		{
+			mTextureRegionNumber[i] = BitmapTextureAtlasTextureRegionFactory
+					.createTiledFromAsset(mBitmapTextureAtlasNumber[i], this,
+							"Number" + (i-4) + ".png", 0, 0, 1, 1);
+		}
+		
+		for (int i = 8; i <= 9; i++) 
+		{
+			mTextureRegionNumber[i] = BitmapTextureAtlasTextureRegionFactory
+					.createTiledFromAsset(mBitmapTextureAtlasNumber[i], this,
+							"Number" + (i-7) + ".png", 0, 0, 1, 1);
+		}
+		
+		for (int i = 10; i <= 13; i++) 
+		{
+			mTextureRegionNumber[i] = BitmapTextureAtlasTextureRegionFactory
+					.createTiledFromAsset(mBitmapTextureAtlasNumber[i], this,
+							"Number" + (i-9) + ".png", 0, 0, 1, 1);
+		}
+		
+		for (int i = 14; i <= 16; i++) 
+		{
+			mTextureRegionNumber[i] = BitmapTextureAtlasTextureRegionFactory
+					.createTiledFromAsset(mBitmapTextureAtlasNumber[i], this,
+							"Number" + (i-13) + ".png", 0, 0, 1, 1);
 		}
 
 		mBitmapTextureAtlasBackGround.load();
@@ -166,6 +195,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		posX = 0;
 		posY = 0;
 		isShaking = false;
+		touch = 0;
 
 		backGround = new Sprite(0, 0, mbackGroundTextureRegion,
 				getVertexBufferObjectManager());
@@ -215,19 +245,20 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 		if (pSceneTouchEvent.isActionDown()) 
 		{
-			// Debug.d("action down");
+			touch = 1;
 			return true;
 		}
-
-		if (pSceneTouchEvent.isActionMove())
+		else if (pSceneTouchEvent.isActionMove())
 		{
 			Debug.d("animation:" + animationStart);
-			if (animationStart == 0) 
+			touch++; 
+			
+			//enabling only by moving, disabling the tap
+			if (touch>8)
 			{
 				rect.setPosition(pSceneTouchEvent.getX() - rect.getWidth() / 2,
 						pSceneTouchEvent.getY() - rect.getHeight() / 2);
-				
-				Debug.d("spriteCounter:" + MainActivity.spriteCounter);
+				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
 				Debug.d("State:" + state);
 				
 				//enabling drawing from the first number sprite
@@ -240,12 +271,13 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 						pSceneTouchEvent.getY());
 
 			}
+			
 			return true;
 		}
 
-		if (pSceneTouchEvent.isActionUp()) 
+		else if (pSceneTouchEvent.isActionUp()) 
 		{
-			// Debug.d("action up");
+			touch = 0;
 			return true;
 		}
 
