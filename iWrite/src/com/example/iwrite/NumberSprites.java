@@ -9,26 +9,16 @@ import org.andengine.util.debug.Debug;
 
 public class NumberSprites 
 {
-
-	public static void createNumberSprites()
-	{
-		for(int y=1; y<16; y++)
-		{
-			if(MainActivity.whiteChalk[MainActivity.aCounter]!= null && MainActivity.whiteChalk[MainActivity.aCounter].collidesWith(MainActivity.numberSprites[y]))
-			{
-				MainActivity.numberSprites[y].setY(MainActivity.CAMERA_HEIGHT+1000);
-				MainActivity.mScene.detachChild(MainActivity.numberSprites[y]);
-			}
-		}
-	}
 	
 	public static void getStructure(float x, float y)
 	{
 		
 		if(MainActivity.state==1)
 		{
+			//Drawing the chalk
 			Draw(x, y); 
 			
+			//setting the position of posX, posY
 			MainActivity.posX = MainActivity.numberSprites[1].getX()+MainActivity.numberSprites[1].getWidth()/2-20;
 			MainActivity.posY = MainActivity.numberSprites[1].getY()+MainActivity.numberSprites[1].getHeight()/2-20;
 			
@@ -40,13 +30,21 @@ public class NumberSprites
 				|| MainActivity.whiteChalk[MainActivity.aCounter].collidesWith(MainActivity.numberSprites[4])
 					)
 			{
-				Animation.shake(1, MainActivity.moOutLine, 10);
+				//if wrong and not shaking the shake as wrong signal
+				if(MainActivity.isShaking == false)
+				{
+					Animation.shake(1, MainActivity.moOutLine, 10);
+				}
+				//if out of the area the remove white chalks
 				for(int a=0; a<=MainActivity.aCounter; a++)
 				{
 					MainActivity.mScene.detachChild(MainActivity.whiteChalk[a]);
+					MainActivity.aCounter = 0;
 				}
 				
 			}
+			//if in the area and collides the right number sprite then remove and pass to the
+			//next number sprite
 			else 
 			{
 				remove(2, 1,2);
@@ -67,7 +65,10 @@ public class NumberSprites
 				|| MainActivity.whiteChalk[MainActivity.aCounter].collidesWith(MainActivity.numberSprites[4]) 
 					)
 			{
-				Animation.shake(1, MainActivity.moOutLine, 10);
+				if(MainActivity.isShaking == false)
+				{
+					Animation.shake(1, MainActivity.moOutLine, 10);
+				}
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
 					MainActivity.mScene.detachChild(MainActivity.whiteChalk[a]);
@@ -94,7 +95,10 @@ public class NumberSprites
 				|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 				)
 			{
-				Animation.shake(1, MainActivity.moOutLine, 10);
+				if(MainActivity.isShaking == false)
+				{
+					Animation.shake(1, MainActivity.moOutLine, 10);
+				}
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
 					MainActivity.mScene.detachChild(MainActivity.whiteChalk[a]);
@@ -131,7 +135,10 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
 			{
-				Animation.shake(1, MainActivity.moOutLine, 10);
+				if(MainActivity.isShaking == false)
+				{
+					Animation.shake(1, MainActivity.moOutLine, 10);
+				}
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
 					MainActivity.mScene.detachChild(MainActivity.whiteChalk[a]);

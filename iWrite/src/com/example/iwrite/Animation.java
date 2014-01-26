@@ -95,6 +95,8 @@ public class Animation
 	{
 		if(a<5) 
 		{
+		
+		MainActivity.isShaking = true;
 		MoveModifier moveMod = new MoveModifier((float)0.08, sp.getX(), sp.getX()+x, sp.getY(), sp.getY());
 		DelayModifier delayMod = new DelayModifier((float) 0.01 , new IEntityModifierListener()
 		{
@@ -119,10 +121,11 @@ public class Animation
 		SequenceEntityModifier sequenceMod = new SequenceEntityModifier(moveMod, delayMod);
 		sp.registerEntityModifier(sequenceMod);
 		}
-		if(a==5)
+		else if(a==5)
 		{
 			sp.setPosition(sp.getX()+10, sp.getY());
 			MainActivity.shakeCounter=0;
+			MainActivity.isShaking = false;
 		}
 	}
 }

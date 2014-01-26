@@ -58,6 +58,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	static int  state = 0;
 	static Rectangle rect;
 	static float posX, posY;
+	public static boolean isShaking;
 
 	@Override
 	public EngineOptions onCreateEngineOptions()
@@ -164,6 +165,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		spriteCounterLimit = 0;
 		posX = 0;
 		posY = 0;
+		isShaking = false;
 
 		backGround = new Sprite(0, 0, mbackGroundTextureRegion,
 				getVertexBufferObjectManager());
@@ -194,7 +196,6 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 						//creating the first line of numbers
 						spriteCounterLimit = 4;
 						Animation.scale(moOutLineX + 70 - 100, moOutLineY - 50, 1);
-						Animation.shake(1, MainActivity.moOutLine, 10);
 					}
 				}));
 
