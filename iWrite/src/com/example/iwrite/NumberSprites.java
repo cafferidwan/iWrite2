@@ -4,8 +4,9 @@ import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.color.Color;
 import org.andengine.util.debug.Debug;
+import android.media.MediaPlayer;
 
-
+ 
 public class NumberSprites 
 {
 	
@@ -20,7 +21,7 @@ public class NumberSprites
 			//setting the position of posX, posY
 			MainActivity.posX = MainActivity.numberSprites[1].getX()+MainActivity.numberSprites[1].getWidth()/2-20;
 			MainActivity.posY = MainActivity.numberSprites[1].getY()+MainActivity.numberSprites[1].getHeight()/2-20;
-			
+
 			if( 
 				   MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
 				|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>30 
@@ -29,6 +30,11 @@ public class NumberSprites
 				|| MainActivity.whiteChalk[MainActivity.aCounter].collidesWith(MainActivity.numberSprites[4])
 					)
 			{
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[1].getX()+50,
+						MainActivity.numberSprites[1].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
 				//if out of the area the remove white chalks
 				for(int a=0; a<=MainActivity.aCounter; a++)
 				{
@@ -45,6 +51,8 @@ public class NumberSprites
 			//next number sprite
 			else 
 			{
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
 				remove(2, 1,2);
 			}
 			
@@ -63,6 +71,12 @@ public class NumberSprites
 				|| MainActivity.whiteChalk[MainActivity.aCounter].collidesWith(MainActivity.numberSprites[4]) 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[2].getX()+50,
+						MainActivity.numberSprites[2].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -71,12 +85,17 @@ public class NumberSprites
 					if(MainActivity.isShaking == false)
 					{
 						Animation.shake(1, MainActivity.moOutLine, 10);
+						
 					}
 				}
 				
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(3,2,3);
 			}
 		}
@@ -88,13 +107,17 @@ public class NumberSprites
 			MainActivity.posY = MainActivity.numberSprites[3].getY()+MainActivity.numberSprites[3].getHeight()/2-20;
 			
 			//rect(MainActivity.posX, MainActivity.posY);
-			
 			if(
 					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
 				|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>30 
 				|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 				)
 			{
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[3].getX()+50,
+						MainActivity.numberSprites[3].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -107,6 +130,7 @@ public class NumberSprites
 						if(MainActivity.isShaking == false)
 						{
 							Animation.shake(1, MainActivity.moOutLine, 10);
+
 						}
 					}
 				}
@@ -114,6 +138,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(4,3,4);
 			}
 		}
@@ -134,11 +162,6 @@ public class NumberSprites
 			
 			Debug.d("dist.x:"+(MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX));
 			Debug.d("dist.y:"+(MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY));
-
-//			Rectangle r = new Rectangle(MainActivity.posX-55, MainActivity.posY-55, MainActivity.posX,
-//					MainActivity.posY, MainActivity.vertexBufferObjectManager);
-//			MainActivity.mScene.attachChild(r);
-//			r.setColor(Color.GREEN);
 			
 			if(
 					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
@@ -147,6 +170,10 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
 			{
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[5].getX()+50,
+						MainActivity.numberSprites[5].getY()+50);
+				MainActivity.mScene.sortChildren();
 				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
@@ -162,6 +189,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(6,5,6);
 			}
 		}
@@ -182,6 +213,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[6].getX()+50,
+						MainActivity.numberSprites[6].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -196,6 +234,10 @@ public class NumberSprites
 			}
 			else 
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(7,6,7); 
 			}
 		}  
@@ -223,6 +265,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35  
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[7].getX()+50,
+						MainActivity.numberSprites[7].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -236,6 +285,10 @@ public class NumberSprites
 			}
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(8,7,9);
 			}
 		}
@@ -258,6 +311,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[8].getX()+50,
+						MainActivity.numberSprites[8].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -272,6 +332,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(9,8,10);
 			} 
 		}
@@ -303,6 +367,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[9].getX()+50,
+						MainActivity.numberSprites[9].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -317,6 +388,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(10,9,12);
 			}
 		}
@@ -339,6 +414,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[10].getX()+50,
+						MainActivity.numberSprites[10].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -353,6 +435,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(11,10,13);
 			}
 		}
@@ -375,6 +461,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[11].getX()+50,
+						MainActivity.numberSprites[11].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -389,6 +482,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(12,11,14);
 			}
 		}
@@ -412,6 +509,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[12].getX()+50,
+						MainActivity.numberSprites[12].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -426,6 +530,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(13,12,16);
 			}
 		}
@@ -455,6 +563,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[13].getX()+50,
+						MainActivity.numberSprites[13].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -469,6 +584,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(14,13,18);
 			}
 		} 
@@ -491,6 +610,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[14].getX()+50,
+						MainActivity.numberSprites[14].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -505,6 +631,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(15,14,19); 
 			}
 		} 
@@ -527,6 +657,13 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
 			{
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[15].getX()+50,
+						MainActivity.numberSprites[15].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -541,6 +678,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(16,15,20); 
 			}
 		}
@@ -563,6 +704,14 @@ public class NumberSprites
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
 			{
+
+				
+				//set the cursor to the last collided number sprite
+				MainActivity.cursor.setPosition(MainActivity.numberSprites[16].getX()+50,
+						MainActivity.numberSprites[16].getY()+50);
+				MainActivity.mScene.sortChildren();
+				
+				
 				//if out of the area the remove white chalks
 				for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
 				{
@@ -577,6 +726,10 @@ public class NumberSprites
 			} 
 			else
 			{
+				//Move the cursor with touch
+				MainActivity.cursor.setPosition(x - MainActivity.cursor.getWidth()/2,
+						y-MainActivity.cursor.getHeight()/2);
+				
 				remove(17,16,20); 
 			}
 		}
@@ -584,6 +737,10 @@ public class NumberSprites
 
 	public static void remove(int collisionSprite, int removeSpriteNumber, int stateNUmber)
 	{
+		if(MainActivity.whiteChalk[MainActivity.aCounter].getX()> MainActivity.numberSprites[collisionSprite].getX()+50)
+		{
+			//Debug.d(pMessage)
+		}
 		if(MainActivity.whiteChalk[MainActivity.aCounter].collidesWith(MainActivity.numberSprites[collisionSprite]))
 		{
 			if(collisionSprite == 4)
@@ -597,8 +754,13 @@ public class NumberSprites
 			}
 			MainActivity.mScene.detachChild(MainActivity.numberSprites[removeSpriteNumber]);
 			MainActivity.numberSprites[removeSpriteNumber].setY(MainActivity.CAMERA_HEIGHT+500);
-			MainActivity.wCounter =MainActivity. aCounter;
+			MainActivity.wCounter =MainActivity. aCounter+2;
 			MainActivity.state = stateNUmber;
+			
+			//play sound
+			MainActivity.audioPlay = true;
+			playAudio(R.raw.star);
+			
 		}
 	}
 	
@@ -627,5 +789,25 @@ public class NumberSprites
 		MainActivity.mScene.attachChild(MainActivity.whiteChalk[MainActivity.aCounter]);
 		MainActivity.whiteChalk[MainActivity.aCounter].setScale((float) 0.6);
 		Debug.d("I:"+MainActivity.aCounter); 
+	}
+	
+	//Audio play Function
+	public static void playAudio(int val)
+	{
+		if(MainActivity.audioPlay)
+		{
+			MainActivity.mediaPlayer = MediaPlayer.create(MainActivity.MainActivityInstace.getBaseContext(), val);
+			try 
+			{
+				MainActivity.mediaPlayer.start();
+				MainActivity.mediaPlayer.setLooping(false);
+			} 
+			catch (IllegalStateException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			MainActivity.audioPlay = true;
+		}
 	}
 }

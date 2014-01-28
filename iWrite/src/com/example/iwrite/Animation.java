@@ -23,6 +23,7 @@ public class Animation
 			MainActivity.numberSprites[MainActivity.spriteCounter] = new Sprite(x, y, 
 					MainActivity.mTextureRegionNumber[MainActivity.spriteCounter], MainActivity.vertexBufferObjectManager);
 			MainActivity.numberSprites[MainActivity.spriteCounter].setScale((float)0.1);
+			MainActivity.numberSprites[MainActivity.spriteCounter].setZIndex(0);
 			MainActivity.mScene.attachChild(MainActivity.numberSprites[MainActivity.spriteCounter]);
 			MainActivity.mScene.registerTouchArea(MainActivity.numberSprites[MainActivity.spriteCounter]);
 		
@@ -106,6 +107,7 @@ public class Animation
 							IEntity arg1) 
 					{
 						//sp.setVisible(true);
+						
 					}
 
 					@Override

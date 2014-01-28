@@ -6,6 +6,8 @@ import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.entity.Entity;
+import org.andengine.entity.IEntity;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
@@ -20,6 +22,8 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.color.Color;
+
+import android.media.MediaPlayer;
 import android.view.Display;
 
 public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouchListener 
@@ -34,18 +38,20 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 	public static BitmapTextureAtlas mBitmapTextureAtlasBlackBoard,
 			mBitmapTextureAtlasMoOutLine, mBitmapTextureAtlasBackGround,
-			mBitmapTextureAtlasWhiteChalk, mBitmapTextureAtlasStar;
+			mBitmapTextureAtlasWhiteChalk, mBitmapTextureAtlasStar,
+			mBitmapTextureAtlasCursor;
 
 	public static ITextureRegion mbackGroundTextureRegion,
 			mBlackBoardTextureRegion, mMoOutLineTextureRegion,
-			mWhiteChalkTextureRegion, mStarTextureRegion;
+			mWhiteChalkTextureRegion, mStarTextureRegion,
+			mCursorTextureRegion;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
 	public static Sprite[] numberSprites = new Sprite[25];
 	public static Sprite[] whiteChalk = new Sprite[5000];
 
-	public static Sprite backGround, blackBoard, moOutLine;
+	public static Sprite backGround, blackBoard, moOutLine, cursor;
 
 	public static float moOutLineX, moOutLineY;
 
@@ -60,7 +66,10 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	static float posX, posY;
 	public static boolean isShaking;
 	public static int touch;
-
+	
+	static Boolean audioPlay = false;
+	static MediaPlayer mediaPlayer = new MediaPlayer();
+	
 	@Override
 	public EngineOptions onCreateEngineOptions()
 	{
@@ -167,7 +176,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasWhiteChalk.load();
 
 		// All the numbers
-		for (int i = 1; i <= totalLoadNumberPic; i++) {
+		for (int i = 1; i <= totalLoadNumberPic; i++) 
+		{
 			mBitmapTextureAtlasNumber[i].load();
 		}
 
@@ -177,7 +187,6 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	protected Scene onCreateScene()
 	{
 		// TODO Auto-generated method stub
-
 		mScene = new Scene();
 		mScene.setBackground(new Background(Color.WHITE));
 
@@ -215,7 +224,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		moOutLine = new Sprite(moOutLineX, moOutLineY, mMoOutLineTextureRegion,
 				getVertexBufferObjectManager());
 		mScene.attachChild(moOutLine);
-
+		
 		MainActivity.mScene.registerUpdateHandler(new TimerHandler((float) 2, new ITimerCallback() 
 		{
 					@Override
@@ -234,6 +243,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mScene.attachChild(rect);
 		rect.setColor(Color.RED);
 		rect.setVisible(false);
+		
+		cursor = new Sprite(moOutLineX + 70 - 100, moOutLineY - 50, mStarTextureRegion,
+				getVertexBufferObjectManager());
+		cursor.setZIndex(1);
+		mScene.attachChild(cursor);
 
 		return mScene;
 	}
@@ -254,7 +268,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			touch++; 
 			
 			//enabling only by moving, disabling the tap
-			if (touch>8)
+			if (touch>2)
 			{
 				rect.setPosition(pSceneTouchEvent.getX() - rect.getWidth() / 2,
 						pSceneTouchEvent.getY() - rect.getHeight() / 2);
@@ -264,6 +278,10 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				//enabling drawing from the first number sprite
 				if (rect.collidesWith(numberSprites[1])) 
 				{
+//					//play sound
+//					MainActivity.audioPlay = true;
+//					NumberSprites.playAudio(R.raw.star);
+					
 					state = 1;
 				}
 				
