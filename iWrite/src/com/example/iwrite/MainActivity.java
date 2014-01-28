@@ -6,15 +6,12 @@ import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
-import org.andengine.entity.Entity;
-import org.andengine.entity.IEntity;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
-import org.andengine.util.debug.Debug;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -66,7 +63,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	static float posX, posY;
 	public static boolean isShaking;
 	public static int touch;
-	
+	int soundCounter;
 	static Boolean audioPlay = false;
 	static MediaPlayer mediaPlayer = new MediaPlayer();
 	
@@ -130,7 +127,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 		mStarTextureRegion = BitmapTextureAtlasTextureRegionFactory
 				.createTiledFromAsset(mBitmapTextureAtlasStar, this,
-						"star.png", 0, 0, 1, 1);
+						"round1.png", 0, 0, 1, 1);
 
 		// All the numbers
 		for (int i = 1; i <= 4; i++) 
@@ -205,6 +202,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		posY = 0;
 		isShaking = false;
 		touch = 0;
+		soundCounter=0;
 
 		backGround = new Sprite(0, 0, mbackGroundTextureRegion,
 				getVertexBufferObjectManager());
@@ -235,6 +233,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 						//creating the first line of numbers
 						spriteCounterLimit = 4;
 						Animation.scale(moOutLineX + 70 - 100, moOutLineY - 50, 1);
+						
+						//setting the cursor to top of first number sprite
+						MainActivity.cursor.setPosition(MainActivity.numberSprites[1].getX()+50,
+								MainActivity.numberSprites[1].getY()+50);
+						MainActivity.mScene.sortChildren();
 					}
 				}));
 
@@ -244,9 +247,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		rect.setColor(Color.RED);
 		rect.setVisible(false);
 		
-		cursor = new Sprite(moOutLineX + 70 - 100, moOutLineY - 50, mStarTextureRegion,
+		cursor = new Sprite(moOutLineX, moOutLineY , mStarTextureRegion,
 				getVertexBufferObjectManager());
-		cursor.setZIndex(1);
+		cursor.setZIndex(2);
 		mScene.attachChild(cursor);
 
 		return mScene;
@@ -264,24 +267,30 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		}
 		else if (pSceneTouchEvent.isActionMove())
 		{
-			Debug.d("animation:" + animationStart);
-			touch++; 
+			touch++;
+			
+			//sorting the scene child
+			MainActivity.mScene.sortChildren();
 			
 			//enabling only by moving, disabling the tap
 			if (touch>2)
 			{
+				//positioning the invisible rectangle according to the touch point 
 				rect.setPosition(pSceneTouchEvent.getX() - rect.getWidth() / 2,
 						pSceneTouchEvent.getY() - rect.getHeight() / 2);
-				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
-				Debug.d("State:" + state);
+//				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
+//				Debug.d("State:" + state);
 				
 				//enabling drawing from the first number sprite
 				if (rect.collidesWith(numberSprites[1])) 
 				{
-//					//play sound
-//					MainActivity.audioPlay = true;
-//					NumberSprites.playAudio(R.raw.star);
-					
+					soundCounter++;
+					if(soundCounter==1)
+					{
+						//play sound
+						MainActivity.audioPlay = true;
+						NumberSprites.playAudio(R.raw.star);
+					}
 					state = 1;
 				}
 				
