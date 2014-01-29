@@ -10,16 +10,22 @@ import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
+import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.atlas.bitmap.BuildableBitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSource;
+import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtlasBuilder;
+import org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder.TextureAtlasBuilderException;
 import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.color.Color;
-
+import org.andengine.util.debug.Debug;
 import android.media.MediaPlayer;
 import android.view.Display;
 
@@ -42,21 +48,29 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			mBlackBoardTextureRegion, mMoOutLineTextureRegion,
 			mWhiteChalkTextureRegion, mStarTextureRegion,
 			mCursorTextureRegion;
+	
+	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
+							mAnimatedMonkeyBitmapTextureAtlas;
+	public TiledTextureRegion mFishTextureRegion,
+							mMonkeyTextureRegion;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
 	public static Sprite[] numberSprites = new Sprite[25];
 	public static Sprite[] whiteChalk = new Sprite[5000];
-
-	public static Sprite backGround, blackBoard, moOutLine, cursor;
-
+	public static Sprite[] tutorialWhiteChalk = new Sprite[5000];
+	
+	public static Sprite backGround, blackBoard, moOutLine;
+	public static AnimatedSprite cursor;
+	public static MonkeyTutorial monkeyTutorial;
+	public static Rectangle rectangle;
 	public static float moOutLineX, moOutLineY;
 
 	public static int iCounter, jCounter, shakeCounter = 0, sCounter, wCounter;
 	public static String DEBUG_TAG = MainActivity.class.getSimpleName();
-	public static int aCounter = 0, serialCounter = 1, totalLoadNumberPic = 18,
+	public static int aCounter = 0, bCounter, serialCounter = 1, totalLoadNumberPic = 18,
 			totalNumberSprite;
-	static int animationStart;
+	static int monkeyTutorialStart;
 	static int spriteCounter, spriteCounterLimit;
 	static int  state = 0;
 	static Rectangle rect;
@@ -66,6 +80,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	int soundCounter;
 	static Boolean audioPlay = false;
 	static MediaPlayer mediaPlayer = new MediaPlayer();
+	public TimerHandler timer1;
 	
 	@Override
 	public EngineOptions onCreateEngineOptions()
@@ -83,7 +98,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	}
 
 	@Override
-	protected void onCreateResources() {
+	protected void onCreateResources() 
+	{
 		// TODO Auto-generated method stub
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("iWriteGFX/");
 
@@ -127,7 +143,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 		mStarTextureRegion = BitmapTextureAtlasTextureRegionFactory
 				.createTiledFromAsset(mBitmapTextureAtlasStar, this,
-						"round1.png", 0, 0, 1, 1);
+						"star.png", 0, 0, 1, 1);
 
 		// All the numbers
 		for (int i = 1; i <= 4; i++) 
@@ -178,6 +194,34 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			mBitmapTextureAtlasNumber[i].load();
 		}
 
+		mAnimatedBitmapTextureAtlas = new BuildableBitmapTextureAtlas(this.getTextureManager(), 614, 104, TextureOptions.NEAREST);
+		mFishTextureRegion = BitmapTextureAtlasTextureRegionFactory.
+				createTiledFromAsset(this.mAnimatedBitmapTextureAtlas, this, "fish.png", 6, 1);
+		
+		try 
+		{
+			this.mAnimatedBitmapTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 0, 0));
+			this.mAnimatedBitmapTextureAtlas.load();
+		} 
+		catch (TextureAtlasBuilderException e) 
+		{
+			Debug.e(e);
+		}
+		
+		mAnimatedMonkeyBitmapTextureAtlas = new BuildableBitmapTextureAtlas(this.getTextureManager(), 2000, 267, TextureOptions.NEAREST);
+		mMonkeyTextureRegion = BitmapTextureAtlasTextureRegionFactory.
+				createTiledFromAsset(this.mAnimatedMonkeyBitmapTextureAtlas, this, "monkeyTutorial.png", 10, 1);
+		
+		try 
+		{
+			this.mAnimatedMonkeyBitmapTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 0, 0));
+			this.mAnimatedMonkeyBitmapTextureAtlas.load();
+		} 
+		catch (TextureAtlasBuilderException e) 
+		{
+			Debug.e(e);
+		}
+		
 	}
 
 	@Override
@@ -194,7 +238,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		totalNumberSprite = 4;
 		sCounter = 0;
 		wCounter = 0;
-		animationStart = 0;
+		monkeyTutorialStart = 0;
 		state = 0;
 		spriteCounter = 1;
 		spriteCounterLimit = 0;
@@ -203,6 +247,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		isShaking = false;
 		touch = 0;
 		soundCounter=0;
+		bCounter = 0;
 
 		backGround = new Sprite(0, 0, mbackGroundTextureRegion,
 				getVertexBufferObjectManager());
@@ -223,6 +268,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				getVertexBufferObjectManager());
 		mScene.attachChild(moOutLine);
 		
+		
+		rectangle = new Rectangle(10, 10, 40, 40, MainActivity.vertexBufferObjectManager);
+		MainActivity.mScene.attachChild(rectangle);
+		rectangle.setVisible(false);
+		
 		MainActivity.mScene.registerUpdateHandler(new TimerHandler((float) 2, new ITimerCallback() 
 		{
 					@Override
@@ -235,11 +285,28 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 						Animation.scale(moOutLineX + 70 - 100, moOutLineY - 50, 1);
 						
 						//setting the cursor to top of first number sprite
-						MainActivity.cursor.setPosition(MainActivity.numberSprites[1].getX()+50,
-								MainActivity.numberSprites[1].getY()+50);
+						NumberSprites.setCursorPosition(numberSprites[1]);
 						MainActivity.mScene.sortChildren();
 					}
-				}));
+		}));
+		
+		timer1 = new TimerHandler((float) 1.0f/120,true, new ITimerCallback() 
+		{
+			@Override
+			public void onTimePassed(TimerHandler pTimerHandler) 
+			{
+				// TODO Auto-generated method stub 
+				
+				//drawing the first line with monkey tutorial
+				if(monkeyTutorialStart == 1 )
+				{
+					NumberSprites.monkeyTutorialAnimationDraw(rectangle.getX()+20 ,
+							rectangle.getY() +20);
+				}
+				
+			}
+		});
+		mScene.registerUpdateHandler(timer1);
 
 		//invisible rectangle for better collision detection
 		rect = new Rectangle(0, 0, 40, 40, vertexBufferObjectManager);
@@ -247,10 +314,18 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		rect.setColor(Color.RED);
 		rect.setVisible(false);
 		
-		cursor = new Sprite(moOutLineX, moOutLineY , mStarTextureRegion,
-				getVertexBufferObjectManager());
-		cursor.setZIndex(2);
+		cursor = new AnimatedSprite(moOutLineX, moOutLineY, mFishTextureRegion, getVertexBufferObjectManager());
+		cursor.animate(new long[]{100, 100, 100, 100, 100, 100}, 0, 5, true);
+		cursor.setZIndex(3);
 		mScene.attachChild(cursor);
+		
+		monkeyTutorial = new MonkeyTutorial(100, -400, mMonkeyTextureRegion,
+				getVertexBufferObjectManager());
+		monkeyTutorial.animate(new long[]{1000, 1000, 1000, 100, 100, 4000, 1000, 1000, 100, 100}, 0, 9, true);
+		mScene.registerTouchArea(monkeyTutorial);
+		mScene.attachChild(monkeyTutorial);
+		
+		MonkeyTutorial.monkeyTutorialstart();
 
 		return mScene;
 	}
@@ -280,7 +355,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 						pSceneTouchEvent.getY() - rect.getHeight() / 2);
 //				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
 //				Debug.d("State:" + state);
-				
+
 				//enabling drawing from the first number sprite
 				if (rect.collidesWith(numberSprites[1])) 
 				{
