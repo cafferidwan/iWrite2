@@ -1,14 +1,20 @@
-package com.example.iwrite;
+package Animation;
 
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.PathModifier;
 import org.andengine.entity.modifier.PathModifier.IPathModifierListener;
 import org.andengine.entity.modifier.PathModifier.Path;
 import org.andengine.entity.sprite.AnimatedSprite;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.ease.EaseBounceOut;
+
+import Popup.PopUp;
+
+import com.example.iwrite.MainActivity;
 
 public class MonkeyTutorial extends AnimatedSprite
 {
@@ -28,11 +34,7 @@ public class MonkeyTutorial extends AnimatedSprite
 		{
 		case TouchEvent.ACTION_DOWN:
 			{
-				AnimationTutorial.animatedChalk1(
-						MainActivity.numberSprites[1].getX(), 
-						MainActivity.numberSprites[1].getY()+20, 
-						MainActivity.numberSprites[4].getX()+20, 
-						MainActivity.numberSprites[4].getY()+20);
+
 			}
 		break;
 		
@@ -74,7 +76,40 @@ public class MonkeyTutorial extends AnimatedSprite
 			public void onPathFinished(final PathModifier pPathModifier, final IEntity pEntity) 
 			{ 
 				
+//				PopUp.createBookIcon();
+				
+				//draw the animation tutorial
+				AnimationTutorial.animatedChalk1(
+						MainActivity.moOutLineX-10, 
+						MainActivity.moOutLineY-20, 
+						MainActivity.moOutLineX+180, 
+						MainActivity.moOutLineY-20);
 			}
 		} , EaseBounceOut.getInstance()));
+	}
+	
+	//monkey tutorial animation draw
+	public static void monkeyTutorialAnimationDraw(float x, float y)
+	{
+		MainActivity.bCounter++;
+		MainActivity.tutorialWhiteChalk[MainActivity.bCounter] = new Sprite(x, y, 
+				MainActivity.mWhiteChalkTextureRegion, MainActivity.vertexBufferObjectManager);
+		MainActivity.tutorialWhiteChalk[MainActivity.bCounter].setZIndex(2);
+		MainActivity.mScene.attachChild(MainActivity.tutorialWhiteChalk[MainActivity.bCounter]);
+		MainActivity.tutorialWhiteChalk[MainActivity.bCounter].setScale((float) 0.6);
+		MainActivity.mScene.sortChildren();
+		Debug.d("bCounter:"+MainActivity.bCounter); 
+			
+		//removing number sprite during the tutorial
+		for(int a=1; a<4; a++)
+		{
+			if(MainActivity.numberSprites[a]!=null)
+			{
+				if(MainActivity.tutorialWhiteChalk[MainActivity.bCounter].getX()>MainActivity.numberSprites[a].getX()+60)
+				{
+					MainActivity.mScene.detachChild(MainActivity.numberSprites[a]);
+				} 
+			}
+		}
 	}
 }

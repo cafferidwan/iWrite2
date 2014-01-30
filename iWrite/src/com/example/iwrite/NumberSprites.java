@@ -5,6 +5,9 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.color.Color;
 import org.andengine.util.debug.Debug;
 
+import Animation.Animation;
+import Popup.PopUp;
+import ScreenShoot.ScreenShot;
 import android.media.MediaPlayer;
 
  
@@ -17,7 +20,7 @@ public class NumberSprites
 		if(MainActivity.state==1)
 		{
 			//Drawing the chalk
-			Draw(x, y); 
+			Animation.Draw(x, y); 
 			
 			//setting the position of posX, posY
 			MainActivity.posX = MainActivity.numberSprites[1].getX()+MainActivity.numberSprites[1].getWidth()/2-20;
@@ -59,7 +62,7 @@ public class NumberSprites
 		}  
 		else if(MainActivity.state==2)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[2].getX()+MainActivity.numberSprites[2].getWidth()/2-20;
 			MainActivity.posY = MainActivity.numberSprites[2].getY()+MainActivity.numberSprites[2].getHeight()/2-20;
@@ -98,7 +101,7 @@ public class NumberSprites
 		}
 		else if(MainActivity.state==3)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[3].getX()+MainActivity.numberSprites[3].getWidth()/2-20;
 			MainActivity.posY = MainActivity.numberSprites[3].getY()+MainActivity.numberSprites[3].getHeight()/2-20;
@@ -150,7 +153,7 @@ public class NumberSprites
 		}
 		else if(MainActivity.state==5)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[5].getX()+MainActivity.numberSprites[5].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[5].getY()+MainActivity.numberSprites[5].getHeight()/2-20;
@@ -190,7 +193,7 @@ public class NumberSprites
 		}
 		else if(MainActivity.state==6)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[6].getX()+MainActivity.numberSprites[6].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[6].getY()+MainActivity.numberSprites[6].getHeight()/2-20;
@@ -238,7 +241,7 @@ public class NumberSprites
 		}
 		else if(MainActivity.state==8)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[7].getX()+MainActivity.numberSprites[7].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[7].getY()+MainActivity.numberSprites[7].getHeight()/2-20;
@@ -279,7 +282,7 @@ public class NumberSprites
 		}
 		else if(MainActivity.state==9)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[8].getX()+MainActivity.numberSprites[8].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[8].getY()+MainActivity.numberSprites[8].getHeight()/2-20;
@@ -331,7 +334,7 @@ public class NumberSprites
 		
 		else if(MainActivity.state==11)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[9].getX()+MainActivity.numberSprites[9].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[9].getY()+MainActivity.numberSprites[9].getHeight()/2-20;
@@ -374,7 +377,7 @@ public class NumberSprites
 		}
 		else if(MainActivity.state==12)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[10].getX()+MainActivity.numberSprites[10].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[10].getY()+MainActivity.numberSprites[10].getHeight()/2-20;
@@ -417,7 +420,7 @@ public class NumberSprites
 		}
 		else if(MainActivity.state==13)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[11].getX()+MainActivity.numberSprites[11].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[11].getY()+MainActivity.numberSprites[11].getHeight()/2-20;
@@ -458,7 +461,7 @@ public class NumberSprites
 		
 		else if(MainActivity.state==14)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[12].getX()+MainActivity.numberSprites[12].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[12].getY()+MainActivity.numberSprites[12].getHeight()/2-20;
@@ -505,7 +508,7 @@ public class NumberSprites
 		}
 		else if(MainActivity.state==17)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[13].getX()+MainActivity.numberSprites[13].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[13].getY()+MainActivity.numberSprites[13].getHeight()/2-20;
@@ -545,7 +548,7 @@ public class NumberSprites
 		} 
 		else if(MainActivity.state==18)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[14].getX()+MainActivity.numberSprites[14].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[14].getY()+MainActivity.numberSprites[14].getHeight()/2-20;
@@ -585,7 +588,7 @@ public class NumberSprites
 		} 
 		else if(MainActivity.state==19)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[15].getX()+MainActivity.numberSprites[15].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[15].getY()+MainActivity.numberSprites[15].getHeight()/2-20;
@@ -625,7 +628,7 @@ public class NumberSprites
 		}
 		else if(MainActivity.state==20)
 		{
-			Draw(x, y);
+			Animation.Draw(x, y);
 			
 			MainActivity.posX = MainActivity.numberSprites[16].getX()+MainActivity.numberSprites[16].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[16].getY()+MainActivity.numberSprites[16].getHeight()/2-20;
@@ -661,9 +664,10 @@ public class NumberSprites
 				//Move the cursor with touch
 				setCursorRotation(x, y);
 	                
-				remove(17,16,20); 
+				remove(17,16,21); 
 			}
 		}
+		
 	}
 
 	public static void remove(int collisionSprite, int removeSpriteNumber, int stateNUmber)
@@ -679,6 +683,13 @@ public class NumberSprites
 			if(collisionSprite == 16)
 			{ 
 				MainActivity.mScene.detachChild(MainActivity.numberSprites[16]);
+				
+				MainActivity.jCounter = 5;
+				//create book icon
+				PopUp.createBookIcon();
+				
+				//ScreenShot.takeScreenShot();
+
 			}
 			MainActivity.mScene.detachChild(MainActivity.numberSprites[removeSpriteNumber]);
 			MainActivity.numberSprites[removeSpriteNumber].setY(MainActivity.CAMERA_HEIGHT+500);
@@ -692,6 +703,7 @@ public class NumberSprites
 		}
 	}
 	
+	
 	public static void rect(float x, float y)
 	{
 		Rectangle rect = new Rectangle(x, y, 30, 30, MainActivity.vertexBufferObjectManager);
@@ -699,35 +711,11 @@ public class NumberSprites
 		rect.setColor(Color.RED);
 	}
 	
-	public static void Draw(float x, float y)
-	{
-		MainActivity.aCounter++;
-		MainActivity.whiteChalk[MainActivity.aCounter] = new Sprite(x -25, y-30, 
-				MainActivity.mWhiteChalkTextureRegion, MainActivity.vertexBufferObjectManager);
-		MainActivity.whiteChalk[MainActivity.aCounter].setZIndex(1);
-		MainActivity.mScene.attachChild(MainActivity.whiteChalk[MainActivity.aCounter]);
-		MainActivity.whiteChalk[MainActivity.aCounter].setScale((float) 0.6);
-		MainActivity.mScene.sortChildren();
-		//Debug.d("I:"+MainActivity.aCounter); 
-	}
-	
-	//monkey tutorial animation draw
-	public static void monkeyTutorialAnimationDraw(float x, float y)
-	{
-		MainActivity.bCounter++;
-		MainActivity.tutorialWhiteChalk[MainActivity.bCounter] = new Sprite(x, y, 
-				MainActivity.mWhiteChalkTextureRegion, MainActivity.vertexBufferObjectManager);
-		MainActivity.tutorialWhiteChalk[MainActivity.bCounter].setZIndex(2);
-		MainActivity.mScene.attachChild(MainActivity.tutorialWhiteChalk[MainActivity.bCounter]);
-		MainActivity.tutorialWhiteChalk[MainActivity.bCounter].setScale((float) 0.6);
-		MainActivity.mScene.sortChildren();
-		Debug.d("bCounter:"+MainActivity.bCounter); 
-	}
-	
 	//set cursor position
 	public static void setCursorPosition(Sprite x)
 	{
 		MainActivity.cursor.setPosition(x.getX()+10, x.getY()+10);
+		MainActivity.mScene.sortChildren();
 	}
 	
 	//set cursor rotation

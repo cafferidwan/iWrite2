@@ -12,6 +12,7 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.entity.util.ScreenCapture;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
@@ -21,19 +22,22 @@ import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSourc
 import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtlasBuilder;
 import org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder.TextureAtlasBuilderException;
 import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.color.Color;
 import org.andengine.util.debug.Debug;
+import Animation.MonkeyTutorial;
+import ScreenShoot.BitmapTextureAtlasSource;
+import ScreenShoot.ScreenShot;
 import android.media.MediaPlayer;
 import android.view.Display;
 
 public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouchListener 
 	{
 
-	static int CAMERA_WIDTH;
-	static int CAMERA_HEIGHT;
+	public static int CAMERA_WIDTH, CAMERA_HEIGHT;
 	public Camera mCamera;
 	public static Scene mScene;
 	public static VertexBufferObjectManager vertexBufferObjectManager;
@@ -49,10 +53,21 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			mWhiteChalkTextureRegion, mStarTextureRegion,
 			mCursorTextureRegion;
 	
+	public static ITextureRegion mPopUpBlackBoardTextureRegion,
+			mBookIconRegion, mCreatePopUpRegion,
+			mCorrectLetterRegion, mHandTutorialTextureRegion,
+			mCrossRegion, mDusterTextureRegion;
+	
 	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
 							mAnimatedMonkeyBitmapTextureAtlas;
-	public TiledTextureRegion mFishTextureRegion,
+	public static TiledTextureRegion mFishTextureRegion,
 							mMonkeyTextureRegion;
+	
+	public static BitmapTextureAtlas mBitmapTextureAtlasPieceChalk,
+	 mBitmapTextureAtlasBookIcon, mBitmapTextureAtlasHandWirtingBook,
+	 mBitmapTextureAtlasBoard, mBitmapTextureAtlasHandCross, 
+	 mBitmapTextureAtlasDuster, mBitmapTextureAtlasMonkeyBrush,
+	 mBitmapTextureAtlasHandTutorial;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -61,6 +76,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Sprite[] tutorialWhiteChalk = new Sprite[5000];
 	
 	public static Sprite backGround, blackBoard, moOutLine;
+	public static Sprite bookIcon;
+	public static Sprite createPopUp, correctLetter, drawnPicture, cross, board;
 	public static AnimatedSprite cursor;
 	public static MonkeyTutorial monkeyTutorial;
 	public static Rectangle rectangle;
@@ -70,17 +87,27 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static String DEBUG_TAG = MainActivity.class.getSimpleName();
 	public static int aCounter = 0, bCounter, serialCounter = 1, totalLoadNumberPic = 18,
 			totalNumberSprite;
-	static int monkeyTutorialStart;
-	static int spriteCounter, spriteCounterLimit;
-	static int  state = 0;
+	public static int monkeyTutorialStart;
+	public static int spriteCounter;
+	public static int spriteCounterLimit;
+	public static int  state = 0;
 	static Rectangle rect;
 	static float posX, posY;
 	public static boolean isShaking;
-	public static int touch;
+	public static int touch, popUpValue;
 	int soundCounter;
 	static Boolean audioPlay = false;
 	static MediaPlayer mediaPlayer = new MediaPlayer();
 	public TimerHandler timer1;
+	
+	//Screen Shot texture
+	public static ScreenCapture screenCapture;
+	public static TextureRegion textureRegion;
+	public static BitmapTextureAtlas texture;
+	public static BitmapTextureAtlasSource source;
+	public static int changeTexture = 0;
+	public static boolean screenShot = false;
+	public static int viewWidth, viewHeight;
 	
 	@Override
 	public EngineOptions onCreateEngineOptions()
@@ -117,6 +144,40 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 		mBitmapTextureAtlasStar = new BitmapTextureAtlas(
 				this.getTextureManager(), 50, 50, TextureOptions.BILINEAR);
+		
+		//popup
+		mBitmapTextureAtlasBookIcon = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		 
+		mBitmapTextureAtlasHandWirtingBook = new BitmapTextureAtlas(this.getTextureManager(), 1600, 800, TextureOptions.BILINEAR);
+		 
+		mBitmapTextureAtlasBoard = new BitmapTextureAtlas(this.getTextureManager(), 600, 600, TextureOptions.BILINEAR);
+		 
+		mBitmapTextureAtlasHandCross = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasDuster = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasMonkeyBrush = new BitmapTextureAtlas(this.getTextureManager(), 1300, 600, TextureOptions.BILINEAR);
+
+		mBitmapTextureAtlasHandTutorial = new BitmapTextureAtlas(this.getTextureManager(), 100, 100, TextureOptions.BILINEAR);
+		
+		//popup
+		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
+				"bookIcon.png", 0, 0,  1, 1);
+				
+		mCreatePopUpRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHandWirtingBook, this,
+				"handwritingbook.png", 0, 0,  1, 1);
+				
+		mCrossRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHandCross, this,
+				"cross.png", 0, 0,  1, 1);
+		
+		mDusterTextureRegion =  BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasDuster, this,
+				"duster.png", 0, 0,  1, 1);
+				
+		mHandTutorialTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHandTutorial, this,
+				"hand.png", 0, 0,  1, 1);
+		
+		mPopUpBlackBoardTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBoard, this,
+				"board.png", 0, 0,  1, 1); 
 
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -187,6 +248,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasWhiteChalk.load();
 		mBitmapTextureAtlasStar.load();
 		mBitmapTextureAtlasWhiteChalk.load();
+		
+		mBitmapTextureAtlasBookIcon.load();
+		mBitmapTextureAtlasHandWirtingBook.load();
+		mBitmapTextureAtlasBoard.load();
+		mBitmapTextureAtlasHandCross.load();
+		mBitmapTextureAtlasDuster.load();
+		mBitmapTextureAtlasMonkeyBrush.load();
+		mBitmapTextureAtlasHandTutorial.load();
 
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -248,7 +317,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		touch = 0;
 		soundCounter=0;
 		bCounter = 0;
+		changeTexture = 0;
+		jCounter = 0;
 
+		//getting the renderView width and height for taking the screen shot
+		viewWidth = MainActivity.MainActivityInstace.mRenderSurfaceView.getWidth() - 525;
+		viewHeight = MainActivity.MainActivityInstace.mRenderSurfaceView.getHeight() - 165;
+		
+		
 		backGround = new Sprite(0, 0, mbackGroundTextureRegion,
 				getVertexBufferObjectManager());
 		backGround.setHeight(CAMERA_HEIGHT);
@@ -273,23 +349,6 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		MainActivity.mScene.attachChild(rectangle);
 		rectangle.setVisible(false);
 		
-		MainActivity.mScene.registerUpdateHandler(new TimerHandler((float) 2, new ITimerCallback() 
-		{
-					@Override
-					public void onTimePassed(TimerHandler pTimerHandler)
-					{
-						// TODO Auto-generated method stub
-						
-						//creating the first line of numbers
-						spriteCounterLimit = 4;
-						Animation.scale(moOutLineX + 70 - 100, moOutLineY - 50, 1);
-						
-						//setting the cursor to top of first number sprite
-						NumberSprites.setCursorPosition(numberSprites[1]);
-						MainActivity.mScene.sortChildren();
-					}
-		}));
-		
 		timer1 = new TimerHandler((float) 1.0f/120,true, new ITimerCallback() 
 		{
 			@Override
@@ -300,8 +359,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				//drawing the first line with monkey tutorial
 				if(monkeyTutorialStart == 1 )
 				{
-					NumberSprites.monkeyTutorialAnimationDraw(rectangle.getX()+20 ,
+					MonkeyTutorial.monkeyTutorialAnimationDraw(rectangle.getX()+20 ,
 							rectangle.getY() +20);
+				}
+				//drawing the second time with removing number sprite
+				else if(monkeyTutorialStart == 2 )
+				{
+					MonkeyTutorial.monkeyTutorialAnimationDraw(cursor.getX()+20 ,
+							cursor.getY()+20);
 				}
 				
 			}
@@ -314,10 +379,6 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		rect.setColor(Color.RED);
 		rect.setVisible(false);
 		
-		cursor = new AnimatedSprite(moOutLineX, moOutLineY, mFishTextureRegion, getVertexBufferObjectManager());
-		cursor.animate(new long[]{100, 100, 100, 100, 100, 100}, 0, 5, true);
-		cursor.setZIndex(3);
-		mScene.attachChild(cursor);
 		
 		monkeyTutorial = new MonkeyTutorial(100, -400, mMonkeyTextureRegion,
 				getVertexBufferObjectManager());
@@ -354,7 +415,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				rect.setPosition(pSceneTouchEvent.getX() - rect.getWidth() / 2,
 						pSceneTouchEvent.getY() - rect.getHeight() / 2);
 //				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
-//				Debug.d("State:" + state);
+				Debug.d("State:" + state);
 
 				//enabling drawing from the first number sprite
 				if (rect.collidesWith(numberSprites[1])) 
@@ -371,6 +432,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				
 				NumberSprites.getStructure(pSceneTouchEvent.getX(),
 						pSceneTouchEvent.getY());
+				
+				if(jCounter == 5)
+				{
+					ScreenShot.takeScreenShot();
+				}
 
 			}
 			
