@@ -9,6 +9,7 @@ import org.andengine.entity.modifier.PathModifier.Path;
 import org.andengine.entity.sprite.AnimatedSprite;
 import com.example.iwrite.MainActivity;
 import com.example.iwrite.NumberSprites;
+import com.example.iwrite.R;
 
 public class AnimationTutorial 
 {
@@ -22,7 +23,7 @@ public class AnimationTutorial
 		.to(x5, y5).to(x6, y6).to(x7, y7).to(x8, y8).to(x9, y9)
 		;
 		
-		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)2.0, chalkPath2, null, new IPathModifierListener()
+		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)5.0, chalkPath2, null, new IPathModifierListener()
 		{
 			@Override
 			public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity) 
@@ -68,7 +69,7 @@ public class AnimationTutorial
 		.to(x1, y1).to(x2, y2);
 		
 		
-		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)1.0, chalkPath, null, new IPathModifierListener()
+		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)2.5, chalkPath, null, new IPathModifierListener()
 		{
 			@Override
 			public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity) 
@@ -120,8 +121,21 @@ public class AnimationTutorial
 		//first time call
 		if(a==1)
 		{
+			//play sound
+			MainActivity.audioPlay = true;
+			NumberSprites.playAudio(R.raw.one);
+			
+			MainActivity.mScene.registerUpdateHandler(new TimerHandler((float) 3, new ITimerCallback() 
+			{
+						@Override
+						public void onTimePassed(TimerHandler pTimerHandler)
+						{
+							// TODO Auto-generated method stub
+							createNumberSpriteAndCursor(1);
+						}
+			}));
 			//go to the second step
-			createNumberSpriteAndCursor(1);
+			//createNumberSpriteAndCursor(1);
 		}
 		//second time call
 		else if(a==2)
@@ -150,7 +164,7 @@ public class AnimationTutorial
 		
 		if(a==1)
 		{
-			//go to the next step
+			//go to the next step or move the animated fish 
 			animatedCursor(MainActivity.moOutLineX-10, 
 					MainActivity.moOutLineY-20, 
 					MainActivity.moOutLineX+180, 
@@ -162,6 +176,7 @@ public class AnimationTutorial
 		}
 	}
 	
+	//moving the cursor with animation
 	public static void animatedCursor(float x1, float y1, float x2, float y2)
 	{
 		Path chalkPath = null;
@@ -193,12 +208,25 @@ public class AnimationTutorial
 			@Override
 			public void onPathFinished(final PathModifier pPathModifier, final IEntity pEntity) 
 			{
-				MainActivity.monkeyTutorialStart = 0;
-				MainActivity.mScene.detachChild(MainActivity.cursor);
-				MainActivity.mScene.detachChild(MainActivity.numberSprites[4]);
+				//play sound
+				MainActivity.audioPlay = true;
+				NumberSprites.playAudio(R.raw.one);
 				
-				MainActivity.spriteCounter = 1;
-				removeTutorialDraw(2);
+				MainActivity.mScene.registerUpdateHandler(new TimerHandler((float) 3, new ITimerCallback() 
+				{
+							@Override
+							public void onTimePassed(TimerHandler pTimerHandler)
+							{
+								// TODO Auto-generated method stub
+								MainActivity.monkeyTutorialStart = 0;
+								MainActivity.mScene.detachChild(MainActivity.cursor);
+								MainActivity.mScene.detachChild(MainActivity.numberSprites[4]);
+								
+								MainActivity.spriteCounter = 1;
+								removeTutorialDraw(2);
+							}
+				}));
+		
 			}
 		}));
 	}

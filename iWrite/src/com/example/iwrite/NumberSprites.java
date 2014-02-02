@@ -6,8 +6,8 @@ import org.andengine.util.color.Color;
 import org.andengine.util.debug.Debug;
 
 import Animation.Animation;
+import Animation.HandTutorial;
 import Popup.PopUp;
-import ScreenShoot.ScreenShot;
 import android.media.MediaPlayer;
 
  
@@ -287,9 +287,6 @@ public class NumberSprites
 			MainActivity.posX = MainActivity.numberSprites[8].getX()+MainActivity.numberSprites[8].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[8].getY()+MainActivity.numberSprites[8].getHeight()/2-20;
 			
-			//Debug.d("dist.x:"+(MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX));
-			//Debug.d("dist.y:"+(MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY));
-			
 			//rect(MainActivity.posX, MainActivity.posY);
 			 
 			if(
@@ -339,9 +336,6 @@ public class NumberSprites
 			MainActivity.posX = MainActivity.numberSprites[9].getX()+MainActivity.numberSprites[9].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[9].getY()+MainActivity.numberSprites[9].getHeight()/2-20;
 			
-			//Debug.d("dist.x:"+(MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX));
-			//Debug.d("dist.y:"+(MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY));
-			
 			//rect(MainActivity.posX, MainActivity.posY);
 			
 			if(
@@ -381,9 +375,6 @@ public class NumberSprites
 			
 			MainActivity.posX = MainActivity.numberSprites[10].getX()+MainActivity.numberSprites[10].getWidth()/2-20; 
 			MainActivity.posY = MainActivity.numberSprites[10].getY()+MainActivity.numberSprites[10].getHeight()/2-20;
-			
-			//Debug.d("dist.x:"+(MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX));
-			//Debug.d("dist.y:"+(MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY));
 			
 			//rect(MainActivity.posX, MainActivity.posY);
 			
@@ -684,12 +675,12 @@ public class NumberSprites
 			{ 
 				MainActivity.mScene.detachChild(MainActivity.numberSprites[16]);
 				
-				MainActivity.jCounter = 5;
+				//trigger for taking screen shot
+				MainActivity.jCounter = 1;
 				//create book icon
 				PopUp.createBookIcon();
+				HandTutorial.handTutorialCreate();
 				
-				//ScreenShot.takeScreenShot();
-
 			}
 			MainActivity.mScene.detachChild(MainActivity.numberSprites[removeSpriteNumber]);
 			MainActivity.numberSprites[removeSpriteNumber].setY(MainActivity.CAMERA_HEIGHT+500);

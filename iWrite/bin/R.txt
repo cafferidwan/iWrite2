@@ -3,7 +3,8 @@ int id menu_settings 0x7f080000
 int layout activity_main 0x7f030000
 int menu activity_main 0x7f070000
 int raw lettercompletesound 0x7f040000
-int raw star 0x7f040001
+int raw one 0x7f040001
+int raw star 0x7f040002
 int string app_name 0x7f050000
 int string hello_world 0x7f050002
 int string menu_settings 0x7f050001

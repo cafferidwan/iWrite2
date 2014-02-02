@@ -76,7 +76,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Sprite[] tutorialWhiteChalk = new Sprite[5000];
 	
 	public static Sprite backGround, blackBoard, moOutLine;
-	public static Sprite bookIcon;
+	public static Sprite bookIcon, handTutorial;
 	public static Sprite createPopUp, correctLetter, drawnPicture, cross, board;
 	public static AnimatedSprite cursor;
 	public static MonkeyTutorial monkeyTutorial;
@@ -93,10 +93,10 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static int  state = 0;
 	static Rectangle rect;
 	static float posX, posY;
-	public static boolean isShaking;
+	public static boolean isShaking, isPopupActive;
 	public static int touch, popUpValue;
 	int soundCounter;
-	static Boolean audioPlay = false;
+	public static Boolean audioPlay = false;
 	static MediaPlayer mediaPlayer = new MediaPlayer();
 	public TimerHandler timer1;
 	
@@ -314,6 +314,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		posX = 0;
 		posY = 0;
 		isShaking = false;
+		isPopupActive  = false;
 		touch = 0;
 		soundCounter=0;
 		bCounter = 0;
@@ -356,7 +357,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			{
 				// TODO Auto-generated method stub 
 				
-				//drawing the first line with monkey tutorial
+				//starting the first step with monkey tutorial
 				if(monkeyTutorialStart == 1 )
 				{
 					MonkeyTutorial.monkeyTutorialAnimationDraw(rectangle.getX()+20 ,
@@ -401,7 +402,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			touch = 1;
 			return true;
 		}
-		else if (pSceneTouchEvent.isActionMove())
+		else if (pSceneTouchEvent.isActionMove() && MainActivity.isPopupActive == false)
 		{
 			touch++;
 			
@@ -414,7 +415,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				//positioning the invisible rectangle according to the touch point 
 				rect.setPosition(pSceneTouchEvent.getX() - rect.getWidth() / 2,
 						pSceneTouchEvent.getY() - rect.getHeight() / 2);
-//				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
+				//Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
 				Debug.d("State:" + state);
 
 				//enabling drawing from the first number sprite
@@ -433,11 +434,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				NumberSprites.getStructure(pSceneTouchEvent.getX(),
 						pSceneTouchEvent.getY());
 				
-				if(jCounter == 5)
+				//take the screenShoot when triggered
+				if(jCounter == 1)
 				{
 					ScreenShot.takeScreenShot();
 				}
-
 			}
 			
 			return true;
@@ -451,4 +452,5 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 		return true;
 	}
+	
 }

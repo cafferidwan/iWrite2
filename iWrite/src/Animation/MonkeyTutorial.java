@@ -1,5 +1,7 @@
 package Animation;
 
+import org.andengine.engine.handler.timer.ITimerCallback;
+import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.PathModifier;
 import org.andengine.entity.modifier.PathModifier.IPathModifierListener;
@@ -11,10 +13,9 @@ import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.ease.EaseBounceOut;
-
-import Popup.PopUp;
-
 import com.example.iwrite.MainActivity;
+import com.example.iwrite.NumberSprites;
+import com.example.iwrite.R;
 
 public class MonkeyTutorial extends AnimatedSprite
 {
@@ -57,7 +58,9 @@ public class MonkeyTutorial extends AnimatedSprite
 			@Override
 			public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity) 
 			{
-
+				//play sound
+				MainActivity.audioPlay = true;
+				NumberSprites.playAudio(R.raw.one);
 			}
 			
 			@Override
@@ -75,15 +78,23 @@ public class MonkeyTutorial extends AnimatedSprite
 			@Override
 			public void onPathFinished(final PathModifier pPathModifier, final IEntity pEntity) 
 			{ 
+				//adding some delay
+				MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)3.0, new ITimerCallback() 
+				{
+					@Override
+					public void onTimePassed(TimerHandler pTimerHandler)
+					{
+						// TODO Auto-generated method stub
+						
+						//draw the animation tutorial
+						AnimationTutorial.animatedChalk1(
+								MainActivity.moOutLineX-10, 
+								MainActivity.moOutLineY-20, 
+								MainActivity.moOutLineX+180, 
+								MainActivity.moOutLineY-20);
+					}
+				}));
 				
-//				PopUp.createBookIcon();
-				
-				//draw the animation tutorial
-				AnimationTutorial.animatedChalk1(
-						MainActivity.moOutLineX-10, 
-						MainActivity.moOutLineY-20, 
-						MainActivity.moOutLineX+180, 
-						MainActivity.moOutLineY-20);
 			}
 		} , EaseBounceOut.getInstance()));
 	}
