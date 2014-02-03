@@ -28,7 +28,11 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.color.Color;
 import org.andengine.util.debug.Debug;
+
+import Animation.HandTutorial;
 import Animation.MonkeyTutorial;
+import Duster.Duster;
+import Popup.PopUp;
 import ScreenShoot.BitmapTextureAtlasSource;
 import ScreenShoot.ScreenShot;
 import android.media.MediaPlayer;
@@ -76,7 +80,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Sprite[] tutorialWhiteChalk = new Sprite[5000];
 	
 	public static Sprite backGround, blackBoard, moOutLine;
-	public static Sprite bookIcon, handTutorial;
+	public static Sprite bookIcon, handTutorial, duster;
 	public static Sprite createPopUp, correctLetter, drawnPicture, cross, board;
 	public static AnimatedSprite cursor;
 	public static MonkeyTutorial monkeyTutorial;
@@ -93,8 +97,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static int  state = 0;
 	static Rectangle rect;
 	static float posX, posY;
-	public static boolean isShaking, isPopupActive;
-	public static int touch, popUpValue;
+	public static boolean isShaking, isPopupActive,
+						  isHandTutorialActive;
+	public static int touch, popUpValue, tutorialCounter;
 	int soundCounter;
 	public static Boolean audioPlay = false;
 	static MediaPlayer mediaPlayer = new MediaPlayer();
@@ -160,6 +165,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 		mBitmapTextureAtlasHandTutorial = new BitmapTextureAtlas(this.getTextureManager(), 100, 100, TextureOptions.BILINEAR);
 		
+		mBitmapTextureAtlasDuster = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		
 		//popup
 		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
 				"bookIcon.png", 0, 0,  1, 1);
@@ -178,6 +185,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mPopUpBlackBoardTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBoard, this,
 				"board.png", 0, 0,  1, 1); 
+		
+		mDusterTextureRegion =  BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasDuster, this,
+				"duster.png", 0, 0,  1, 1);
 
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -315,16 +325,17 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		posY = 0;
 		isShaking = false;
 		isPopupActive  = false;
+		isHandTutorialActive = false;
 		touch = 0;
 		soundCounter=0;
 		bCounter = 0;
 		changeTexture = 0;
 		jCounter = 0;
+		tutorialCounter = 0;
 
 		//getting the renderView width and height for taking the screen shot
 		viewWidth = MainActivity.MainActivityInstace.mRenderSurfaceView.getWidth() - 525;
 		viewHeight = MainActivity.MainActivityInstace.mRenderSurfaceView.getHeight() - 165;
-		
 		
 		backGround = new Sprite(0, 0, mbackGroundTextureRegion,
 				getVertexBufferObjectManager());
@@ -345,6 +356,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				getVertexBufferObjectManager());
 		mScene.attachChild(moOutLine);
 		
+		//creating the duster
+		Duster.createDuster();
 		
 		rectangle = new Rectangle(10, 10, 40, 40, MainActivity.vertexBufferObjectManager);
 		MainActivity.mScene.attachChild(rectangle);
@@ -388,6 +401,10 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mScene.attachChild(monkeyTutorial);
 		
 		MonkeyTutorial.monkeyTutorialstart();
+		
+		//create book icon
+//		PopUp.createBookIcon();
+//		HandTutorial.handTutorialCreate();
 
 		return mScene;
 	}

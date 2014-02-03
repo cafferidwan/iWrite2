@@ -2,12 +2,15 @@ package Popup;
 
 import org.andengine.entity.Entity;
 import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.PathModifier;
 import org.andengine.entity.modifier.PathModifier.IPathModifierListener;
 import org.andengine.entity.modifier.PathModifier.Path;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.modifier.ease.EaseBounceOut;
+
+import Animation.HandTutorial;
 
 import com.example.iwrite.MainActivity;
 
@@ -19,8 +22,7 @@ public class PopUp
 	{
 		// create book icon
 		MainActivity.bookIcon = new Sprite(30, MainActivity.CAMERA_HEIGHT - 200, 
-				MainActivity.mBookIconRegion,
-				MainActivity.vertexBufferObjectManager) 
+				MainActivity.mBookIconRegion, MainActivity.vertexBufferObjectManager) 
 		{
 			@Override
 			public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, final float pTouchAreaLocalX, 
@@ -30,6 +32,12 @@ public class PopUp
 				{
 				case TouchEvent.ACTION_DOWN:
 
+					//if the hand tutorial is active, then stopping it
+//					if(MainActivity.isHandTutorialActive == true)
+//					{
+						MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod);
+						
+//					}
 					startPopUp(0);
 
 					break;
@@ -97,6 +105,10 @@ public class PopUp
 				{
 				case TouchEvent.ACTION_DOWN:
 
+					//removing the tutorial
+					MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod1);
+					MainActivity.mScene.detachChild(MainActivity.handTutorial);
+					//MainActivity.handTutorial.setY(2000); 
 					startPopUp(1);
 
 					break;
@@ -161,7 +173,7 @@ public class PopUp
 					public void onPathStarted(final PathModifier pPathModifier,
 							final IEntity pEntity)
 					{
-
+						
 					}
 
 					@Override
@@ -186,6 +198,9 @@ public class PopUp
 						{
 							MainActivity.isPopupActive = false;
 						}
+						
+						HandTutorial.handTutorialStart2(MainActivity.handTutorial.getX(), 
+								MainActivity.handTutorial.getY(), 150, 150);
 					}
 				}, EaseBounceOut.getInstance()));
 	}

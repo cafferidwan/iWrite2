@@ -7,6 +7,7 @@ import org.andengine.util.debug.Debug;
 
 import Animation.Animation;
 import Animation.HandTutorial;
+import Duster.Duster;
 import Popup.PopUp;
 import android.media.MediaPlayer;
 
@@ -679,7 +680,16 @@ public class NumberSprites
 				MainActivity.jCounter = 1;
 				//create book icon
 				PopUp.createBookIcon();
-				HandTutorial.handTutorialCreate();
+				
+				//start the hand tutorial 
+//				MainActivity.tutorialCounter++;
+//				if(MainActivity.tutorialCounter==1)
+//				{
+//					HandTutorial.handTutorialCreate();
+//				}
+				
+				//Start the duster
+				Duster.startDuster();
 				
 			}
 			MainActivity.mScene.detachChild(MainActivity.numberSprites[removeSpriteNumber]);
