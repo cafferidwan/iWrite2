@@ -95,12 +95,13 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static int spriteCounter;
 	public static int spriteCounterLimit;
 	public static int  state = 0;
-	static Rectangle rect;
-	static float posX, posY;
+	public static Rectangle rect;
+	public static float posX;
+	public static float posY;
 	public static boolean isShaking, isPopupActive,
 						  isHandTutorialActive;
 	public static int touch, popUpValue, tutorialCounter;
-	int soundCounter;
+	public static int soundCounter;
 	public static Boolean audioPlay = false;
 	static MediaPlayer mediaPlayer = new MediaPlayer();
 	public TimerHandler timer1;
