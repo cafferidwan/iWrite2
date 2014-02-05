@@ -12,6 +12,7 @@ import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.modifier.IModifier;
 
+import Duster.Duster;
 import Popup.PopUp;
 
 import com.example.iwrite.MainActivity;
@@ -22,7 +23,7 @@ public class HandTutorial
 
 	public static void handTutorialCreate()
 	{
-		MainActivity.handTutorial = new Sprite(400, 300, MainActivity.mHandTutorialTextureRegion, 
+		MainActivity.handTutorial = new Sprite(400, MainActivity.CAMERA_HEIGHT, MainActivity.mHandTutorialTextureRegion, 
 				MainActivity.vertexBufferObjectManager);
 		MainActivity.mScene.attachChild(MainActivity.handTutorial);
 		MainActivity.handTutorial.setZIndex(6);
@@ -80,7 +81,7 @@ public class HandTutorial
 					public void onModifierFinished(IModifier<IEntity> arg0,
 							IEntity arg1)
 					{
-						MainActivity.isHandTutorialActive = false;
+						
 					}
 				});
 		
@@ -118,7 +119,7 @@ public class HandTutorial
 								// TODO Auto-generated method stub
 								 handTutorialStart3(MainActivity.handTutorial.getX(),
 										 MainActivity.handTutorial.getY(),
-										 700, 50);
+										 550, 150);
 							}
 						}));
 					}
@@ -131,7 +132,50 @@ public class HandTutorial
 		
 	}
 	 
+	
 	public static void handTutorialStart3(float x1, float y1, float x2, float y2)
+	{
+		MoveModifier moveMod = new MoveModifier(1, x1, x2, y1, y2);
+		DelayModifier delayMod = new DelayModifier((float) 2, new IEntityModifierListener()
+		{  
+
+					@Override
+					public void onModifierStarted(IModifier<IEntity> arg0,
+							IEntity arg1) 
+					{
+						//MainActivity.isHandTutorialActive = true;
+						MainActivity.mScene.sortChildren();
+					}
+
+					@Override
+					public void onModifierFinished(IModifier<IEntity> arg0,
+							IEntity arg1)
+					{
+						//MainActivity.isHandTutorialActive = false;
+
+						MainActivity.mScene.registerUpdateHandler(new TimerHandler(5, new ITimerCallback()
+						{
+							@Override
+							public void onTimePassed(TimerHandler pTimerHandler)
+							{
+								// TODO Auto-generated method stub
+								 handTutorialStart4(MainActivity.handTutorial.getX(),
+										 MainActivity.handTutorial.getY(),
+										 700, 50);
+							}
+						}));
+					}
+				});
+		
+		SequenceEntityModifier sequenceMod = new SequenceEntityModifier(delayMod,moveMod);
+		//LoopEntityModifier loopMod = new LoopEntityModifier(sequenceMod);
+		
+		MainActivity.handTutorial.registerEntityModifier(sequenceMod);
+		
+	}
+	
+	
+	public static void handTutorialStart4(float x1, float y1, float x2, float y2)
 	{
 		MoveModifier moveMod = new MoveModifier(2, x1, x2, y1, y2);
 		DelayModifier delayMod = new DelayModifier((float) 2, new IEntityModifierListener()
@@ -146,9 +190,9 @@ public class HandTutorial
 						if(PopUp.popValue == 2)
 						{
 							//removing the tutorial
-							MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod1);
-							MainActivity.mScene.detachChild(MainActivity.handTutorial);
-							MainActivity.handTutorial.setY(2000); 
+							handTutorialStart5(MainActivity.handTutorial.getX(),
+									 MainActivity.handTutorial.getY(),
+									 600, 250);
 						}
 					}
 
@@ -156,7 +200,7 @@ public class HandTutorial
 					public void onModifierFinished(IModifier<IEntity> arg0,
 							IEntity arg1)
 					{
-						//MainActivity.isHandTutorialActive = false;
+						MainActivity.isHandTutorialActive = false;
 						
 					}
 				});
@@ -168,5 +212,44 @@ public class HandTutorial
 		
 	}
 	
+	public static void handTutorialStart5(float x1, float y1, float x2, float y2)
+	{
+		MoveModifier moveMod = new MoveModifier(2, x1, x2, y1, y2);
+		DelayModifier delayMod = new DelayModifier((float) 2, new IEntityModifierListener()
+		{  
+					@Override
+					public void onModifierStarted(IModifier<IEntity> arg0,
+							IEntity arg1) 
+					{
+						//MainActivity.isHandTutorialActive = true;
+						MainActivity.mScene.sortChildren();
+						
+						//Start the duster
+						Duster.startDuster();
+						
+//						if(PopUp.popValue == 2)
+//						{
+//							//removing the tutorial
+//							MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod1);
+//							MainActivity.mScene.detachChild(MainActivity.handTutorial);
+//							MainActivity.handTutorial.setY(2000);  
+//						}
+					}
+
+					@Override
+					public void onModifierFinished(IModifier<IEntity> arg0,
+							IEntity arg1)
+					{
+						MainActivity.isHandTutorialActive = false;
+						
+					}
+				});
+		
+		SequenceEntityModifier sequenceMod = new SequenceEntityModifier(delayMod,moveMod);
+		loopMod1 = new LoopEntityModifier(sequenceMod);
+		
+		MainActivity.handTutorial.registerEntityModifier(loopMod1);
+		
+	}
 	
 }

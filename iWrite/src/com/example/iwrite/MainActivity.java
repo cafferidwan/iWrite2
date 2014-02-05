@@ -414,11 +414,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mScene.registerTouchArea(monkeyTutorial);
 		mScene.attachChild(monkeyTutorial);
 		
-		MonkeyTutorial.monkeyTutorialstart();
+//		MonkeyTutorial.monkeyTutorialstart();
 		
 		//create book icon
-//		PopUp.createBookIcon();
-//		HandTutorial.handTutorialCreate();
+		PopUp.createBookIcon(); 
+		HandTutorial.handTutorialCreate();
 
 		return mScene;
 	}
@@ -428,12 +428,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	{
 		// TODO Auto-generated method stub
 
+		
 		if (pSceneTouchEvent.isActionDown()) 
 		{
 			touch = 1;
 			return true;
 		}
-		else if (pSceneTouchEvent.isActionMove() && MainActivity.isPopupActive == false)
+		else if (pSceneTouchEvent.isActionMove() && MainActivity.isPopupActive == false
+				&& MainActivity.isHandTutorialActive == false)
 		{
 			touch++;
 			

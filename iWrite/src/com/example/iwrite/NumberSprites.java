@@ -689,7 +689,7 @@ public class NumberSprites
 //				}
 				
 				//Start the duster
-				Duster.startDuster();
+				//Duster.startDuster();
 				
 			}
 			MainActivity.mScene.detachChild(MainActivity.numberSprites[removeSpriteNumber]);

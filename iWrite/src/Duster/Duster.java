@@ -111,7 +111,7 @@ public class Duster
 			MainActivity.slidingScreen = new Sprite(0, -800, MainActivity.mSlidingScreenTextureRegion, MainActivity.vertexBufferObjectManager);
 			MainActivity.mScene.attachChild(MainActivity.slidingScreen);
 			
-			Path finishingPath = new Path(2).to(-1200, 0).to(MainActivity.CAMERA_WIDTH  + 10, 0);
+			Path finishingPath = new Path(2).to(-1200, -50).to(MainActivity.CAMERA_WIDTH  + 10, -50);
 
 			MainActivity.slidingScreen.registerEntityModifier(new PathModifier((float) 1.8, finishingPath, null, new IPathModifierListener()
 					{

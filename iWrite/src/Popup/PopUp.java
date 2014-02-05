@@ -22,7 +22,7 @@ public class PopUp
 	public static void createBookIcon() 
 	{
 		// create book icon
-		MainActivity.bookIcon = new Sprite(30, MainActivity.CAMERA_HEIGHT - 200, 
+		MainActivity.bookIcon = new Sprite(10, MainActivity.CAMERA_HEIGHT - 200, 
 				MainActivity.mBookIconRegion, MainActivity.vertexBufferObjectManager) 
 		{
 			@Override
@@ -107,9 +107,12 @@ public class PopUp
 				{
 				case TouchEvent.ACTION_DOWN:
 
-					popValue = 2;
+					if(MainActivity.isHandTutorialActive == false)
+					{
+						popValue = 2;
 					
-					startPopUp(1);
+						startPopUp(1);
+					}
 
 					break;
 
