@@ -60,7 +60,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static ITextureRegion mPopUpBlackBoardTextureRegion,
 			mBookIconRegion, mCreatePopUpRegion,
 			mCorrectLetterRegion, mHandTutorialTextureRegion,
-			mCrossRegion, mDusterTextureRegion;
+			mCrossRegion, mDusterTextureRegion,
+			mSlidingScreenTextureRegion, mMoExampleTextureRegion;
 	
 	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
 							mAnimatedMonkeyBitmapTextureAtlas;
@@ -71,7 +72,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasBookIcon, mBitmapTextureAtlasHandWirtingBook,
 	 mBitmapTextureAtlasBoard, mBitmapTextureAtlasHandCross, 
 	 mBitmapTextureAtlasDuster, mBitmapTextureAtlasMonkeyBrush,
-	 mBitmapTextureAtlasHandTutorial;
+	 mBitmapTextureAtlasHandTutorial, mBitmapTextureAtlasMoExample;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -80,7 +81,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Sprite[] tutorialWhiteChalk = new Sprite[5000];
 	
 	public static Sprite backGround, blackBoard, moOutLine;
-	public static Sprite bookIcon, handTutorial, duster;
+	public static Sprite bookIcon, handTutorial, duster, slidingScreen;
 	public static Sprite createPopUp, correctLetter, drawnPicture, cross, board;
 	public static AnimatedSprite cursor;
 	public static MonkeyTutorial monkeyTutorial;
@@ -104,7 +105,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static int soundCounter;
 	public static Boolean audioPlay = false;
 	static MediaPlayer mediaPlayer = new MediaPlayer();
-	public TimerHandler timer1;
+	public static TimerHandler timer1;
 	
 	//Screen Shot texture
 	public static ScreenCapture screenCapture;
@@ -151,6 +152,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasStar = new BitmapTextureAtlas(
 				this.getTextureManager(), 50, 50, TextureOptions.BILINEAR);
 		
+		mBitmapTextureAtlasMoExample = new BitmapTextureAtlas(
+				this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
 		//popup
 		mBitmapTextureAtlasBookIcon = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
 		 
@@ -167,6 +171,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasHandTutorial = new BitmapTextureAtlas(this.getTextureManager(), 100, 100, TextureOptions.BILINEAR);
 		
 		mBitmapTextureAtlasDuster = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasMonkeyBrush = new BitmapTextureAtlas(this.getTextureManager(), 1300, 600, TextureOptions.BILINEAR);
 		
 		//popup
 		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
@@ -189,7 +195,13 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mDusterTextureRegion =  BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasDuster, this,
 				"duster.png", 0, 0,  1, 1);
+		
+		mSlidingScreenTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasMonkeyBrush, this,
+				"monkeyBrush3.png", 0, 0,  1, 1);
 
+		mMoExampleTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasMoExample, this,
+				"moExample.png", 0, 0,  1, 1);
+		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
 		{
@@ -267,6 +279,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasDuster.load();
 		mBitmapTextureAtlasMonkeyBrush.load();
 		mBitmapTextureAtlasHandTutorial.load();
+		mBitmapTextureAtlasMoExample.load();
 
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 

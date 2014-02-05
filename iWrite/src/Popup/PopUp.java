@@ -17,6 +17,7 @@ import com.example.iwrite.MainActivity;
 public class PopUp
 {
 	static IEntity popUpArea;
+	public static int popValue = 0;
 
 	public static void createBookIcon() 
 	{
@@ -32,11 +33,12 @@ public class PopUp
 				{
 				case TouchEvent.ACTION_DOWN:
 
+					popValue = 1;
 					//if the hand tutorial is active, then stopping it
 //					if(MainActivity.isHandTutorialActive == true)
 //					{
-						MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod);
-						
+//						MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod);
+//						
 //					}
 					startPopUp(0);
 
@@ -81,9 +83,9 @@ public class PopUp
 		popUpArea.attachChild(MainActivity.board);
 
 		//creating correct letter
-		MainActivity.correctLetter = new Sprite(340, -70, MainActivity.mMoOutLineTextureRegion,
+		MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mMoExampleTextureRegion,
 				MainActivity.vertexBufferObjectManager);
-		MainActivity.correctLetter.setScale((float) 0.6);
+		MainActivity.correctLetter.setScale((float) 0.4);
 		popUpArea.attachChild(MainActivity.correctLetter);
 		
 		//creating another board
@@ -105,10 +107,8 @@ public class PopUp
 				{
 				case TouchEvent.ACTION_DOWN:
 
-					//removing the tutorial
-					MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod1);
-					MainActivity.mScene.detachChild(MainActivity.handTutorial);
-					//MainActivity.handTutorial.setY(2000); 
+					popValue = 2;
+					
 					startPopUp(1);
 
 					break;
@@ -198,9 +198,6 @@ public class PopUp
 						{
 							MainActivity.isPopupActive = false;
 						}
-						
-						HandTutorial.handTutorialStart2(MainActivity.handTutorial.getX(), 
-								MainActivity.handTutorial.getY(), 150, 150);
 					}
 				}, EaseBounceOut.getInstance()));
 	}

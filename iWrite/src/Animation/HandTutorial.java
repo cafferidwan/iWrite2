@@ -12,6 +12,8 @@ import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.modifier.IModifier;
 
+import Popup.PopUp;
+
 import com.example.iwrite.MainActivity;
 
 public class HandTutorial
@@ -64,6 +66,14 @@ public class HandTutorial
 					{
 						MainActivity.isHandTutorialActive = true;
 						MainActivity.mScene.sortChildren();
+						
+						if(PopUp.popValue == 1)
+						{
+							MainActivity.handTutorial.unregisterEntityModifier(loopMod);
+							
+							HandTutorial.handTutorialStart2(MainActivity.handTutorial.getX(), 
+									MainActivity.handTutorial.getY(), 150, 150);
+						}
 					}
 
 					@Override
@@ -82,7 +92,7 @@ public class HandTutorial
 	
 	public static void handTutorialStart2(float x1, float y1, float x2, float y2)
 	{
-		MoveModifier moveMod = new MoveModifier(2, x1, x2, y1, y2);
+		MoveModifier moveMod = new MoveModifier(1, x1, x2, y1, y2);
 		DelayModifier delayMod = new DelayModifier((float) 2, new IEntityModifierListener()
 		{  
 
@@ -100,7 +110,7 @@ public class HandTutorial
 					{
 						//MainActivity.isHandTutorialActive = false;
 
-						MainActivity.mScene.registerUpdateHandler(new TimerHandler(1, new ITimerCallback()
+						MainActivity.mScene.registerUpdateHandler(new TimerHandler(5, new ITimerCallback()
 						{
 							@Override
 							public void onTimePassed(TimerHandler pTimerHandler)
@@ -126,13 +136,20 @@ public class HandTutorial
 		MoveModifier moveMod = new MoveModifier(2, x1, x2, y1, y2);
 		DelayModifier delayMod = new DelayModifier((float) 2, new IEntityModifierListener()
 		{  
-
 					@Override
 					public void onModifierStarted(IModifier<IEntity> arg0,
 							IEntity arg1) 
 					{
 						//MainActivity.isHandTutorialActive = true;
 						MainActivity.mScene.sortChildren();
+						
+						if(PopUp.popValue == 2)
+						{
+							//removing the tutorial
+							MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod1);
+							MainActivity.mScene.detachChild(MainActivity.handTutorial);
+							MainActivity.handTutorial.setY(2000); 
+						}
 					}
 
 					@Override
@@ -140,7 +157,7 @@ public class HandTutorial
 							IEntity arg1)
 					{
 						//MainActivity.isHandTutorialActive = false;
-//						a();
+						
 					}
 				});
 		

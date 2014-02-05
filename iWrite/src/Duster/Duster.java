@@ -1,5 +1,7 @@
 package Duster;
 
+import org.andengine.engine.handler.timer.ITimerCallback;
+import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.PathModifier;
 import org.andengine.entity.modifier.PathModifier.IPathModifierListener;
@@ -10,6 +12,8 @@ import org.andengine.util.modifier.ease.EaseBounceOut;
 
 import Animation.AnimationTutorial;
 import Animation.HandTutorial;
+
+import android.content.Intent;
 
 import com.example.iwrite.MainActivity;
 
@@ -29,7 +33,7 @@ public class Duster
 				{
 				case TouchEvent.ACTION_DOWN:
 					
-					delete();
+					finishDuster();
 					
 					break;
 
@@ -49,7 +53,8 @@ public class Duster
 	
 	public static void startDuster()
 	{
-		Path createDusterPath = new Path(2).to(100, -300).to(MainActivity.CAMERA_WIDTH/2+100,
+		Path createDusterPath = new Path(2).to(MainActivity.CAMERA_WIDTH/2+100, -300)
+				.to(MainActivity.CAMERA_WIDTH/2+100,
 				MainActivity.CAMERA_HEIGHT/2);
 
 	
@@ -98,4 +103,59 @@ public class Duster
 		MainActivity.spriteCounter = 1;
 		AnimationTutorial.createNumberSpriteAndCursor(2);
 	}
+	
+	//Sliding screen
+		public static void finishDuster() 
+		{
+
+			MainActivity.slidingScreen = new Sprite(0, -800, MainActivity.mSlidingScreenTextureRegion, MainActivity.vertexBufferObjectManager);
+			MainActivity.mScene.attachChild(MainActivity.slidingScreen);
+			
+			Path finishingPath = new Path(2).to(-1200, 0).to(MainActivity.CAMERA_WIDTH  + 10, 0);
+
+			MainActivity.slidingScreen.registerEntityModifier(new PathModifier((float) 1.8, finishingPath, null, new IPathModifierListener()
+					{
+						@Override
+						public void onPathStarted(final PathModifier pPathModifier,final IEntity pEntity) 
+						{
+							//Restarting the activity
+							MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)1, new ITimerCallback() {
+								
+								@Override
+								public void onTimePassed(TimerHandler pTimerHandler)
+								{
+									// TODO Auto-generated method stub
+//									MainActivity.mScene.detachChild(MainActivity.pieceChalk);
+									MainActivity.mScene.detachSelf();
+									
+									//Resetting the stars
+									MainActivity.aCounter=0;
+									
+									MainActivity.mScene.unregisterUpdateHandler(MainActivity.timer1);
+									MainActivity.MainActivityInstace.finish();
+									MainActivity.MainActivityInstace.startActivity(new Intent(MainActivity.MainActivityInstace.getBaseContext(),
+											MainActivity.class));
+								}
+							}));
+						}
+	 
+						@Override
+						public void onPathWaypointStarted(final PathModifier pPathModifier,final IEntity pEntity, final int pWaypointIndex) 
+						{
+							
+						}
+
+						@Override
+						public void onPathWaypointFinished(final PathModifier pPathModifier,final IEntity pEntity, final int pWaypointIndex) 
+						{
+
+						}
+
+						@Override
+						public void onPathFinished(final PathModifier pPathModifier,final IEntity pEntity)
+						{
+							
+						}
+					}));
+		}
 }

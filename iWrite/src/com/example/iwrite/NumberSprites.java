@@ -685,7 +685,7 @@ public class NumberSprites
 //				MainActivity.tutorialCounter++;
 //				if(MainActivity.tutorialCounter==1)
 //				{
-//					HandTutorial.handTutorialCreate();
+					HandTutorial.handTutorialCreate();
 //				}
 				
 				//Start the duster
