@@ -215,17 +215,15 @@ public class HandTutorial
 	public static void handTutorialStart5(float x1, float y1, float x2, float y2)
 	{
 		MoveModifier moveMod = new MoveModifier(2, x1, x2, y1, y2);
-		DelayModifier delayMod = new DelayModifier((float) 2, new IEntityModifierListener()
+		DelayModifier delayMod = new DelayModifier((float) 0.5, new IEntityModifierListener()
 		{  
 					@Override
 					public void onModifierStarted(IModifier<IEntity> arg0,
 							IEntity arg1) 
 					{
 						//MainActivity.isHandTutorialActive = true;
+						MainActivity.handTutorial.unregisterEntityModifier(loopMod1);
 						MainActivity.mScene.sortChildren();
-						
-						//Start the duster
-						Duster.startDuster();
 						
 //						if(PopUp.popValue == 2)
 //						{
@@ -240,15 +238,18 @@ public class HandTutorial
 					public void onModifierFinished(IModifier<IEntity> arg0,
 							IEntity arg1)
 					{
+						//Start the duster
+						Duster.startDuster();
+						
 						MainActivity.isHandTutorialActive = false;
 						
 					}
 				});
 		
 		SequenceEntityModifier sequenceMod = new SequenceEntityModifier(delayMod,moveMod);
-		loopMod1 = new LoopEntityModifier(sequenceMod);
+		//loopMod1 = new LoopEntityModifier(sequenceMod);
 		
-		MainActivity.handTutorial.registerEntityModifier(loopMod1);
+		MainActivity.handTutorial.registerEntityModifier(sequenceMod);
 		
 	}
 	

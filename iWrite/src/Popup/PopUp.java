@@ -40,7 +40,11 @@ public class PopUp
 //						MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod);
 //						
 //					}
-					startPopUp(0);
+					
+					if(MainActivity.isPopupActive == false)
+					{
+						startPopUp(0);
+					}
 
 					break;
 
@@ -160,14 +164,6 @@ public class PopUp
 			MainActivity.drawnPicture.setScale((float) 0.6);
 			popUpArea.attachChild(MainActivity.drawnPicture);
 		}
-		// If no screen shot taken, then show normal image
-//		else if (MainActivity.changeTexture == 0)
-//		{
-//			MainActivity.board = new Sprite(-180, -200, MainActivity.mPopUpBlackBoardTextureRegion,
-//					MainActivity.vertexBufferObjectManager);
-//			MainActivity.board.setScale((float) 0.6);
-//			popUpArea.attachChild(MainActivity.board);
-//		}
 
 		popUpArea.registerEntityModifier(new PathModifier((float) 1.3,
 				createPopUpPath, null, new IPathModifierListener() 

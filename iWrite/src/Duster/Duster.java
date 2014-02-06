@@ -20,6 +20,8 @@ import com.example.iwrite.MainActivity;
 public class Duster
 {
 
+	public static int a = 0;
+	
 	public static void createDuster()
 	{
 		MainActivity.duster = new Sprite(MainActivity.CAMERA_WIDTH/2+100, -400, 
@@ -33,7 +35,11 @@ public class Duster
 				{
 				case TouchEvent.ACTION_DOWN:
 					
-					finishDuster();
+					a++;
+					if(a==1)
+					{	
+						finishDuster();
+					}
 					
 					break;
 
@@ -111,7 +117,7 @@ public class Duster
 			MainActivity.slidingScreen = new Sprite(0, -800, MainActivity.mSlidingScreenTextureRegion, MainActivity.vertexBufferObjectManager);
 			MainActivity.mScene.attachChild(MainActivity.slidingScreen);
 			
-			Path finishingPath = new Path(2).to(-1200, -50).to(MainActivity.CAMERA_WIDTH  + 10, -50);
+			Path finishingPath = new Path(2).to(-1200, -200).to(MainActivity.CAMERA_WIDTH  + 10, -200);
 
 			MainActivity.slidingScreen.registerEntityModifier(new PathModifier((float) 1.8, finishingPath, null, new IPathModifierListener()
 					{
@@ -125,7 +131,6 @@ public class Duster
 								public void onTimePassed(TimerHandler pTimerHandler)
 								{
 									// TODO Auto-generated method stub
-//									MainActivity.mScene.detachChild(MainActivity.pieceChalk);
 									MainActivity.mScene.detachSelf();
 									
 									//Resetting the stars
