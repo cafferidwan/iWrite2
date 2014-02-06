@@ -10,9 +10,7 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.modifier.ease.EaseBounceOut;
 
-import Animation.AnimationTutorial;
-import Animation.HandTutorial;
-
+import Animation.AnimationDrawTutorial;
 import android.content.Intent;
 
 import com.example.iwrite.MainActivity;
@@ -20,8 +18,9 @@ import com.example.iwrite.MainActivity;
 public class Duster
 {
 
-	public static int a = 0;
+	public static int dusterCounter = 0;
 	
+	//create duster
 	public static void createDuster()
 	{
 		MainActivity.duster = new Sprite(MainActivity.CAMERA_WIDTH/2+100, -400, 
@@ -35,8 +34,9 @@ public class Duster
 				{
 				case TouchEvent.ACTION_DOWN:
 					
-					a++;
-					if(a==1)
+					//when duster icon pressed start finish duster animation 
+					dusterCounter++;
+					if(dusterCounter==1)
 					{	
 						finishDuster();
 					}
@@ -57,6 +57,7 @@ public class Duster
 		MainActivity.mScene.attachChild(MainActivity.duster);
 	}
 	
+	//start duster animation
 	public static void startDuster()
 	{
 		Path createDusterPath = new Path(2).to(MainActivity.CAMERA_WIDTH/2+100, -300)
@@ -97,6 +98,7 @@ public class Duster
 				}, EaseBounceOut.getInstance()));
 	}
 	
+	//for deleting all the white chalks and fish cursor
 	public static void delete()
 	{
 		for(int i=0; i<=MainActivity.aCounter; i++)
@@ -107,42 +109,42 @@ public class Duster
 		MainActivity.mScene.detachChild(MainActivity.cursor);
 
 		MainActivity.spriteCounter = 1;
-		AnimationTutorial.createNumberSpriteAndCursor(2);
+		AnimationDrawTutorial.createNumberSpriteAndCursor(2);
 	}
 	
-	//Sliding screen
-		public static void finishDuster() 
-		{
+	//Sliding monkey hand animation for restarting the application
+	public static void finishDuster() 
+	{
 
-			MainActivity.slidingScreen = new Sprite(0, -800, MainActivity.mSlidingScreenTextureRegion, MainActivity.vertexBufferObjectManager);
-			MainActivity.mScene.attachChild(MainActivity.slidingScreen);
+		MainActivity.slidingScreen = new Sprite(0, -800, MainActivity.mSlidingScreenTextureRegion, MainActivity.vertexBufferObjectManager);
+		MainActivity.mScene.attachChild(MainActivity.slidingScreen);
 			
-			Path finishingPath = new Path(2).to(-1200, -200).to(MainActivity.CAMERA_WIDTH  + 10, -200);
+		Path finishingPath = new Path(2).to(-1200, -200).to(MainActivity.CAMERA_WIDTH  + 10, -200);
 
-			MainActivity.slidingScreen.registerEntityModifier(new PathModifier((float) 1.8, finishingPath, null, new IPathModifierListener()
-					{
-						@Override
-						public void onPathStarted(final PathModifier pPathModifier,final IEntity pEntity) 
-						{
-							//Restarting the activity
-							MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)1, new ITimerCallback() {
+		MainActivity.slidingScreen.registerEntityModifier(new PathModifier((float) 1.8, finishingPath, null, new IPathModifierListener()
+		{
+				@Override
+				public void onPathStarted(final PathModifier pPathModifier,final IEntity pEntity) 
+				{
+					//Restarting the activity
+					MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)1, new ITimerCallback() {
 								
-								@Override
-								public void onTimePassed(TimerHandler pTimerHandler)
-								{
-									// TODO Auto-generated method stub
-									MainActivity.mScene.detachSelf();
+						@Override
+						public void onTimePassed(TimerHandler pTimerHandler)
+						{
+							// TODO Auto-generated method stub
+							MainActivity.mScene.detachSelf();
 									
-									//Resetting the stars
-									MainActivity.aCounter=0;
+							//Resetting the stars
+							MainActivity.aCounter=0;
 									
-									MainActivity.mScene.unregisterUpdateHandler(MainActivity.timer1);
-									MainActivity.MainActivityInstace.finish();
-									MainActivity.MainActivityInstace.startActivity(new Intent(MainActivity.MainActivityInstace.getBaseContext(),
-											MainActivity.class));
-								}
-							}));
+							MainActivity.mScene.unregisterUpdateHandler(MainActivity.timer1);
+							MainActivity.MainActivityInstace.finish();
+							MainActivity.MainActivityInstace.startActivity(new Intent(MainActivity.MainActivityInstace.getBaseContext(),
+									MainActivity.class));
 						}
+					}));
+				}
 	 
 						@Override
 						public void onPathWaypointStarted(final PathModifier pPathModifier,final IEntity pEntity, final int pWaypointIndex) 

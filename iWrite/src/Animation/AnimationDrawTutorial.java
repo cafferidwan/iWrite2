@@ -10,57 +10,11 @@ import org.andengine.entity.sprite.AnimatedSprite;
 import com.example.iwrite.MainActivity;
 import com.example.iwrite.NumberSprites;
 import com.example.iwrite.R;
+import com.example.iwrite.StructureDrawAnimation;
 
-public class AnimationTutorial 
+public class AnimationDrawTutorial 
 {
-	
-	public static void animatedChalk2(float x1, float y1, float x2, float y2, float x3, float y3
-			, float x4, float y4, float x5, float y5, float x6, float y6, float x7, float y7
-			, float x8, float y8, float x9, float y9)
-	{
-		Path chalkPath2 = new Path(9)
-		.to(x1 , y1 ).to(x2, y2).to(x3, y3).to(x4, y4)
-		.to(x5, y5).to(x6, y6).to(x7, y7).to(x8, y8).to(x9, y9)
-		;
-		
-		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)5.0, chalkPath2, null, new IPathModifierListener()
-		{
-			@Override
-			public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity) 
-			{
-				MainActivity.monkeyTutorialStart = 1;
-			}
-
-			@Override
-			public void onPathWaypointStarted(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex)
-			{
-
-			}
-
-			@Override
-			public void onPathWaypointFinished(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex) 
-			{
-
-			}
-
-			@Override
-			public void onPathFinished(final PathModifier pPathModifier, final IEntity pEntity) 
-			{ 
-				MainActivity.monkeyTutorialStart = 0;
-				
-				MainActivity.mScene.registerUpdateHandler(new TimerHandler((float) 1, new ITimerCallback() 
-				{
-							@Override
-							public void onTimePassed(TimerHandler pTimerHandler)
-							{
-								// TODO Auto-generated method stub
-								removeTutorialDraw(1);
-							}
-				}));
-			}
-		}));
-	}
-	
+	//animation for drawing with chalk during monkey tutorial
 	public static void animatedChalk1(float x1, float y1, float x2, float y2)
 	{
 		Path chalkPath = null;
@@ -95,7 +49,8 @@ public class AnimationTutorial
 				
 				MainActivity.monkeyTutorialStart = 0;
 				
-				AnimationTutorial.animatedChalk2(
+				//move to the next step of drawing with chalk
+				AnimationDrawTutorial.animatedChalk2(
 						MainActivity.moOutLineX+10, MainActivity.moOutLineY-15, 
 						MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
 						MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
@@ -110,6 +65,57 @@ public class AnimationTutorial
 		}));
 	}
 	
+	//animation for drawing with chalk during monkey tutorial
+	public static void animatedChalk2(float x1, float y1, float x2, float y2, float x3, float y3
+			, float x4, float y4, float x5, float y5, float x6, float y6, float x7, float y7
+			, float x8, float y8, float x9, float y9)
+	{
+		Path chalkPath2 = new Path(9)
+		.to(x1 , y1 ).to(x2, y2).to(x3, y3).to(x4, y4)
+		.to(x5, y5).to(x6, y6).to(x7, y7).to(x8, y8).to(x9, y9)
+		;
+		
+		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)5.0, chalkPath2, null, new IPathModifierListener()
+		{
+			@Override
+			public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity) 
+			{
+				MainActivity.monkeyTutorialStart = 1;
+			}
+
+			@Override
+			public void onPathWaypointStarted(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex)
+			{
+
+			}
+
+			@Override
+			public void onPathWaypointFinished(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex) 
+			{
+
+			}
+
+			@Override
+			public void onPathFinished(final PathModifier pPathModifier, final IEntity pEntity) 
+			{ 
+				MainActivity.monkeyTutorialStart = 0;
+				
+				//after finishing the tutorial remove the chalk draw
+				MainActivity.mScene.registerUpdateHandler(new TimerHandler((float) 1, new ITimerCallback() 
+				{
+							@Override
+							public void onTimePassed(TimerHandler pTimerHandler)
+							{
+								// TODO Auto-generated method stub
+								removeTutorialDraw(1);
+							}
+				}));
+			}
+		}));
+	}
+	
+	
+	// remove the chalk draw during monkey tutorial
 	public static void removeTutorialDraw(int a)
 	{
 		for(int i = 0; i<= MainActivity.bCounter; i++)
@@ -147,10 +153,10 @@ public class AnimationTutorial
 	//create numberSprite and cursor
 	public static void createNumberSpriteAndCursor(int a)
 	{
-		//creating the first line of numbers
 		
+		//creating the first line of numbers
 		MainActivity.spriteCounterLimit = 4;
-		Animation.scale(MainActivity.moOutLineX + 70 - 100, MainActivity.moOutLineY - 50, 1);
+		StructureDrawAnimation.scale(MainActivity.moOutLineX + 70 - 100, MainActivity.moOutLineY - 50, 1);
 		
 		//creating the fish cursor
 		MainActivity.cursor = new AnimatedSprite(MainActivity.moOutLineX, MainActivity.moOutLineY, 
@@ -212,6 +218,7 @@ public class AnimationTutorial
 				MainActivity.audioPlay = true;
 				NumberSprites.playAudio(R.raw.one);
 				
+				//after moving the cursor/fish with removing the number sprites
 				MainActivity.mScene.registerUpdateHandler(new TimerHandler((float) 3, new ITimerCallback() 
 				{
 							@Override
@@ -223,11 +230,41 @@ public class AnimationTutorial
 								MainActivity.mScene.detachChild(MainActivity.numberSprites[4]);
 								
 								MainActivity.spriteCounter = 1;
+								//remove the draw
 								removeTutorialDraw(2);
 							}
 				}));
 		
 			}
 		}));
+	}
+	
+	//Timer for drawing during monkey Tutorial
+	public static void animationDrawTimer()
+	{
+		
+		MainActivity.timer1 = new TimerHandler((float) 1.0f/120,true, new ITimerCallback() 
+		{
+			@Override
+			public void onTimePassed(TimerHandler pTimerHandler) 
+			{
+				// TODO Auto-generated method stub 
+				
+				//starting the first step with monkey tutorial
+				if(MainActivity.monkeyTutorialStart == 1 )
+				{
+					//calling for drawing first line of monkey tutorial draw
+					MonkeyTutorial.monkeyTutorialAnimationDraw(MainActivity.rectangle.getX()+20 ,
+							MainActivity.rectangle.getY() +20);
+				}
+				//drawing the second time with removing number sprite
+				else if(MainActivity.monkeyTutorialStart == 2 )
+				{
+					MonkeyTutorial.monkeyTutorialAnimationDraw(MainActivity.cursor.getX()+20 ,
+							MainActivity.cursor.getY()+20);
+				}
+				
+			}
+		});
 	}
 }

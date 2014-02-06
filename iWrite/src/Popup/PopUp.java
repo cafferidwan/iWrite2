@@ -2,27 +2,24 @@ package Popup;
 
 import org.andengine.entity.Entity;
 import org.andengine.entity.IEntity;
-import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.PathModifier;
 import org.andengine.entity.modifier.PathModifier.IPathModifierListener;
 import org.andengine.entity.modifier.PathModifier.Path;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.modifier.ease.EaseBounceOut;
-
-import Animation.HandTutorial;
-
 import com.example.iwrite.MainActivity;
 
 public class PopUp
 {
-	static IEntity popUpArea;
+	public static IEntity popUpArea;
 	public static int popValue = 0;
 
+	//create book icon
 	public static void createBookIcon() 
 	{
 		// create book icon
-		MainActivity.bookIcon = new Sprite(10, MainActivity.CAMERA_HEIGHT - 200, 
+		MainActivity.bookIcon = new Sprite(0, MainActivity.CAMERA_HEIGHT - 200, 
 				MainActivity.mBookIconRegion, MainActivity.vertexBufferObjectManager) 
 		{
 			@Override
@@ -34,13 +31,8 @@ public class PopUp
 				case TouchEvent.ACTION_DOWN:
 
 					popValue = 1;
-					//if the hand tutorial is active, then stopping it
-//					if(MainActivity.isHandTutorialActive == true)
-//					{
-//						MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod);
-//						
-//					}
 					
+					//if the pop up is active, then disabling the book icon from pressing again
 					if(MainActivity.isPopupActive == false)
 					{
 						startPopUp(0);
@@ -66,6 +58,7 @@ public class PopUp
 		
 	}
 	
+	//creating the pop up
 	public static void createPopUp()
 	{
 		
@@ -111,6 +104,7 @@ public class PopUp
 				{
 				case TouchEvent.ACTION_DOWN:
 
+					//when the handtutorial is inactive, then it works
 					if(MainActivity.isHandTutorialActive == false)
 					{
 						popValue = 2;
@@ -134,6 +128,7 @@ public class PopUp
 		popUpArea.attachChild(MainActivity.cross);
 	}
 
+	//pop up function for up and down
 	public static void startPopUp(final int upDown) 
 	{
 

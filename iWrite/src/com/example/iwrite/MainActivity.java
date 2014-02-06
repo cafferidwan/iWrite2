@@ -1,7 +1,6 @@
 package com.example.iwrite;
 
 import org.andengine.engine.camera.Camera;
-import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
@@ -29,12 +28,10 @@ import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.color.Color;
 import org.andengine.util.debug.Debug;
 
-import Animation.HandTutorial;
+import Animation.AnimationDrawTutorial;
 import Animation.MonkeyTutorial;
-import Duster.Duster;
-import Popup.PopUp;
+import Objects.createObjects;
 import ScreenShoot.BitmapTextureAtlasSource;
-import ScreenShoot.ScreenShot;
 import android.media.MediaPlayer;
 import android.view.Display;
 
@@ -49,13 +46,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 	public static BitmapTextureAtlas mBitmapTextureAtlasBlackBoard,
 			mBitmapTextureAtlasMoOutLine, mBitmapTextureAtlasBackGround,
-			mBitmapTextureAtlasWhiteChalk, mBitmapTextureAtlasStar,
-			mBitmapTextureAtlasCursor;
+			mBitmapTextureAtlasWhiteChalk, mBitmapTextureAtlasCursor;
 
 	public static ITextureRegion mbackGroundTextureRegion,
 			mBlackBoardTextureRegion, mMoOutLineTextureRegion,
-			mWhiteChalkTextureRegion, mStarTextureRegion,
-			mCursorTextureRegion;
+			mWhiteChalkTextureRegion, mCursorTextureRegion;
 	
 	public static ITextureRegion mPopUpBlackBoardTextureRegion,
 			mBookIconRegion, mCreatePopUpRegion,
@@ -84,11 +79,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Sprite bookIcon, handTutorial, duster, slidingScreen;
 	public static Sprite createPopUp, correctLetter, drawnPicture, cross, board;
 	public static AnimatedSprite cursor;
-	public static MonkeyTutorial monkeyTutorial;
+	public static AnimatedSprite monkeyTutorial;
 	public static Rectangle rectangle;
 	public static float moOutLineX, moOutLineY;
 
-	public static int iCounter, jCounter, shakeCounter = 0, sCounter, wCounter;
+	public static int iCounter, screenShotCounter, shakeCounter = 0, sCounter, wCounter;
 	public static String DEBUG_TAG = MainActivity.class.getSimpleName();
 	public static int aCounter = 0, bCounter, serialCounter = 1, totalLoadNumberPic = 18,
 			totalNumberSprite;
@@ -137,23 +132,15 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		// TODO Auto-generated method stub
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("iWriteGFX/");
 
-		mBitmapTextureAtlasBackGround = new BitmapTextureAtlas(
-				this.getTextureManager(), 1600, 864, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasBackGround = new BitmapTextureAtlas(this.getTextureManager(), 1600, 864, TextureOptions.BILINEAR);
 
-		mBitmapTextureAtlasBlackBoard = new BitmapTextureAtlas(
-				this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasBlackBoard = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 
-		mBitmapTextureAtlasMoOutLine = new BitmapTextureAtlas(
-				this.getTextureManager(), 254, 262, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasMoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 254, 262, TextureOptions.BILINEAR);
 
-		mBitmapTextureAtlasWhiteChalk = new BitmapTextureAtlas(
-				this.getTextureManager(), 50, 50, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasWhiteChalk = new BitmapTextureAtlas(this.getTextureManager(), 50, 50, TextureOptions.BILINEAR);
 
-		mBitmapTextureAtlasStar = new BitmapTextureAtlas(
-				this.getTextureManager(), 50, 50, TextureOptions.BILINEAR);
-		
-		mBitmapTextureAtlasMoExample = new BitmapTextureAtlas(
-				this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasMoExample = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
 		//popup
 		mBitmapTextureAtlasBookIcon = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
@@ -225,10 +212,6 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				.createTiledFromAsset(mBitmapTextureAtlasWhiteChalk, this,
 						"chalk2.png", 0, 0, 1, 1);
 
-		mStarTextureRegion = BitmapTextureAtlasTextureRegionFactory
-				.createTiledFromAsset(mBitmapTextureAtlasStar, this,
-						"star.png", 0, 0, 1, 1);
-
 		// All the numbers
 		for (int i = 1; i <= 4; i++) 
 		{
@@ -269,7 +252,6 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasBlackBoard.load();
 		mBitmapTextureAtlasMoOutLine.load();
 		mBitmapTextureAtlasWhiteChalk.load();
-		mBitmapTextureAtlasStar.load();
 		mBitmapTextureAtlasWhiteChalk.load();
 		
 		mBitmapTextureAtlasBookIcon.load();
@@ -344,81 +326,34 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		soundCounter=0;
 		bCounter = 0;
 		changeTexture = 0;
-		jCounter = 0;
+		screenShotCounter = 0;
 		tutorialCounter = 0;
 
 		//getting the renderView width and height for taking the screen shot
 		viewWidth = MainActivity.MainActivityInstace.mRenderSurfaceView.getWidth() - 525;
 		viewHeight = MainActivity.MainActivityInstace.mRenderSurfaceView.getHeight() - 165;
 		
-		backGround = new Sprite(0, 0, mbackGroundTextureRegion,
-				getVertexBufferObjectManager());
-		backGround.setHeight(CAMERA_HEIGHT);
-		backGround.setWidth(CAMERA_WIDTH);
-		mScene.attachChild(backGround);
-
 		moOutLineX = CAMERA_WIDTH / 2 - 130;
 		moOutLineY = CAMERA_HEIGHT / 2 - 130;
+		
+		//create objects
+		createObjects.createObject();
 
-		blackBoard = new Sprite(moOutLineX - 160, moOutLineY - 85,
-				mBlackBoardTextureRegion, getVertexBufferObjectManager());
-		blackBoard.setHeight((float) (blackBoard.getHeight() * 1.7));
-		blackBoard.setWidth((float) (blackBoard.getWidth() * 1.5));
-		mScene.attachChild(blackBoard);
-
-		moOutLine = new Sprite(moOutLineX, moOutLineY, mMoOutLineTextureRegion,
-				getVertexBufferObjectManager());
-		mScene.attachChild(moOutLine);
-		
-		//creating the duster
-		Duster.createDuster();
-		
-		rectangle = new Rectangle(10, 10, 40, 40, MainActivity.vertexBufferObjectManager);
-		MainActivity.mScene.attachChild(rectangle);
-		rectangle.setVisible(false);
-		
-		timer1 = new TimerHandler((float) 1.0f/120,true, new ITimerCallback() 
-		{
-			@Override
-			public void onTimePassed(TimerHandler pTimerHandler) 
-			{
-				// TODO Auto-generated method stub 
-				
-				//starting the first step with monkey tutorial
-				if(monkeyTutorialStart == 1 )
-				{
-					MonkeyTutorial.monkeyTutorialAnimationDraw(rectangle.getX()+20 ,
-							rectangle.getY() +20);
-				}
-				//drawing the second time with removing number sprite
-				else if(monkeyTutorialStart == 2 )
-				{
-					MonkeyTutorial.monkeyTutorialAnimationDraw(cursor.getX()+20 ,
-							cursor.getY()+20);
-				}
-				
-			}
-		});
+		//Timer for drawing during monkey Tutorial
+		AnimationDrawTutorial.animationDrawTimer();
 		mScene.registerUpdateHandler(timer1);
 
-		//invisible rectangle for better collision detection
-		rect = new Rectangle(0, 0, 40, 40, vertexBufferObjectManager);
-		mScene.attachChild(rect);
-		rect.setColor(Color.RED);
-		rect.setVisible(false);
-		
-		
-		monkeyTutorial = new MonkeyTutorial(100, -400, mMonkeyTextureRegion,
-				getVertexBufferObjectManager());
-		monkeyTutorial.animate(new long[]{1000, 1000, 1000, 100, 100, 4000, 1000, 1000, 100, 100}, 0, 9, true);
-		mScene.registerTouchArea(monkeyTutorial);
-		mScene.attachChild(monkeyTutorial);
-		
+		//MonkeyTutorial Create
+		MonkeyTutorial.monkeyTutorialCreate();
+		//MonkeyTutorial start
 		MonkeyTutorial.monkeyTutorialstart();
 		
 		//create book icon
 //		PopUp.createBookIcon(); 
 //		HandTutorial.handTutorialCreate();
+		
+		//create number with cursor
+//		AnimationTutorial.createNumberSpriteAndCursor(2);
 
 		return mScene;
 	}
@@ -427,63 +362,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) 
 	{
 		// TODO Auto-generated method stub
-
-		
-		if (pSceneTouchEvent.isActionDown()) 
-		{
-			touch = 1;
-			return true;
-		}
-		else if (pSceneTouchEvent.isActionMove() && MainActivity.isPopupActive == false
-				&& MainActivity.isHandTutorialActive == false)
-		{
-			touch++;
-			
-			//sorting the scene child
-			MainActivity.mScene.sortChildren();
-			
-			//enabling only by moving, disabling the tap
-			if (touch>2)
-			{
-				//positioning the invisible rectangle according to the touch point 
-				rect.setPosition(pSceneTouchEvent.getX() - rect.getWidth() / 2,
-						pSceneTouchEvent.getY() - rect.getHeight() / 2);
-				//Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
-				Debug.d("State:" + state);
-
-				//enabling drawing from the first number sprite
-				if (rect.collidesWith(numberSprites[1])) 
-				{
-					soundCounter++;
-					if(soundCounter==1)
-					{
-						//play sound
-						MainActivity.audioPlay = true;
-						NumberSprites.playAudio(R.raw.star);
-					}
-					state = 1;
-				}
-				
-				NumberSprites.getStructure(pSceneTouchEvent.getX(),
-						pSceneTouchEvent.getY());
-				
-				//take the screenShoot when triggered
-				if(jCounter == 1)
-				{
-					ScreenShot.takeScreenShot();
-				}
-			}
-			
-			return true;
-		}
-
-		else if (pSceneTouchEvent.isActionUp()) 
-		{
-			touch = 0;
-			return true;
-		}
-
-		return true;
+		return Touch.touchEvent(pSceneTouchEvent);
 	}
 	
 }

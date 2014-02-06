@@ -21,6 +21,7 @@ public class HandTutorial
 {
 	public static LoopEntityModifier loopMod, loopMod1;
 
+	//create handtutorial with alpha modifier
 	public static void handTutorialCreate()
 	{
 		MainActivity.handTutorial = new Sprite(400, MainActivity.CAMERA_HEIGHT, MainActivity.mHandTutorialTextureRegion, 
@@ -44,6 +45,7 @@ public class HandTutorial
 					public void onModifierFinished(IModifier<IEntity> arg0,
 							IEntity arg1)
 					{
+						//call the start animation 
 						handTutorialStart(MainActivity.handTutorial.getX(), 
 								MainActivity.handTutorial.getY(),
 								MainActivity.bookIcon.getX()+70, 
@@ -55,6 +57,7 @@ public class HandTutorial
 		MainActivity.handTutorial.registerEntityModifier(sequenceMod);
 	}
 	
+	//handtutorial animation from creating to bookIcon
 	public static void handTutorialStart(float x1, float y1, float x2, float y2)
 	{
 		MoveModifier moveMod = new MoveModifier(2, x1, x2, y1, y2);
@@ -68,6 +71,8 @@ public class HandTutorial
 						MainActivity.isHandTutorialActive = true;
 						MainActivity.mScene.sortChildren();
 						
+						//if the book icon is pressed and the pop up  is active
+						//then change the animation and start another animation
 						if(PopUp.popValue == 1)
 						{
 							MainActivity.handTutorial.unregisterEntityModifier(loopMod);
@@ -91,6 +96,7 @@ public class HandTutorial
 		MainActivity.handTutorial.registerEntityModifier(loopMod);
 	}
 	
+	//handtutorial animation from bookIcon to showing written Mo in the popup
 	public static void handTutorialStart2(float x1, float y1, float x2, float y2)
 	{
 		MoveModifier moveMod = new MoveModifier(1, x1, x2, y1, y2);
@@ -101,7 +107,6 @@ public class HandTutorial
 					public void onModifierStarted(IModifier<IEntity> arg0,
 							IEntity arg1) 
 					{
-						//MainActivity.isHandTutorialActive = true;
 						MainActivity.mScene.sortChildren();
 					}
 
@@ -109,8 +114,8 @@ public class HandTutorial
 					public void onModifierFinished(IModifier<IEntity> arg0,
 							IEntity arg1)
 					{
-						//MainActivity.isHandTutorialActive = false;
 
+						//animation from written Mo to right Mo
 						MainActivity.mScene.registerUpdateHandler(new TimerHandler(5, new ITimerCallback()
 						{
 							@Override
@@ -126,13 +131,11 @@ public class HandTutorial
 				});
 		
 		SequenceEntityModifier sequenceMod = new SequenceEntityModifier(delayMod,moveMod);
-		//LoopEntityModifier loopMod = new LoopEntityModifier(sequenceMod);
-		
 		MainActivity.handTutorial.registerEntityModifier(sequenceMod);
 		
 	}
 	 
-	
+	////handtutorial animation from written Mo to right Mo
 	public static void handTutorialStart3(float x1, float y1, float x2, float y2)
 	{
 		MoveModifier moveMod = new MoveModifier(1, x1, x2, y1, y2);
@@ -143,7 +146,6 @@ public class HandTutorial
 					public void onModifierStarted(IModifier<IEntity> arg0,
 							IEntity arg1) 
 					{
-						//MainActivity.isHandTutorialActive = true;
 						MainActivity.mScene.sortChildren();
 					}
 
@@ -151,8 +153,8 @@ public class HandTutorial
 					public void onModifierFinished(IModifier<IEntity> arg0,
 							IEntity arg1)
 					{
-						//MainActivity.isHandTutorialActive = false;
-
+						
+						//animation from Mo to cross button
 						MainActivity.mScene.registerUpdateHandler(new TimerHandler(5, new ITimerCallback()
 						{
 							@Override
@@ -168,13 +170,11 @@ public class HandTutorial
 				});
 		
 		SequenceEntityModifier sequenceMod = new SequenceEntityModifier(delayMod,moveMod);
-		//LoopEntityModifier loopMod = new LoopEntityModifier(sequenceMod);
-		
 		MainActivity.handTutorial.registerEntityModifier(sequenceMod);
 		
 	}
 	
-	
+	////handtutorial animation from Mo to cross button
 	public static void handTutorialStart4(float x1, float y1, float x2, float y2)
 	{
 		MoveModifier moveMod = new MoveModifier(2, x1, x2, y1, y2);
@@ -184,7 +184,6 @@ public class HandTutorial
 					public void onModifierStarted(IModifier<IEntity> arg0,
 							IEntity arg1) 
 					{
-						//MainActivity.isHandTutorialActive = true;
 						MainActivity.mScene.sortChildren();
 						
 						if(PopUp.popValue == 2)
@@ -212,6 +211,7 @@ public class HandTutorial
 		
 	}
 	
+	//handtutorial from cross to starting the duster animation and showing it
 	public static void handTutorialStart5(float x1, float y1, float x2, float y2)
 	{
 		MoveModifier moveMod = new MoveModifier(2, x1, x2, y1, y2);
@@ -221,34 +221,26 @@ public class HandTutorial
 					public void onModifierStarted(IModifier<IEntity> arg0,
 							IEntity arg1) 
 					{
-						//MainActivity.isHandTutorialActive = true;
 						MainActivity.handTutorial.unregisterEntityModifier(loopMod1);
 						MainActivity.mScene.sortChildren();
-						
-//						if(PopUp.popValue == 2)
-//						{
-//							//removing the tutorial
-//							MainActivity.handTutorial.unregisterEntityModifier(HandTutorial.loopMod1);
-//							MainActivity.mScene.detachChild(MainActivity.handTutorial);
-//							MainActivity.handTutorial.setY(2000);  
-//						}
 					}
 
 					@Override
 					public void onModifierFinished(IModifier<IEntity> arg0,
 							IEntity arg1)
 					{
+						//creating the duster
+						Duster.createDuster();
 						//Start the duster
 						Duster.startDuster();
-						
+						 
+						//the handtutorial part ends
 						MainActivity.isHandTutorialActive = false;
 						
 					}
 				});
 		
 		SequenceEntityModifier sequenceMod = new SequenceEntityModifier(delayMod,moveMod);
-		//loopMod1 = new LoopEntityModifier(sequenceMod);
-		
 		MainActivity.handTutorial.registerEntityModifier(sequenceMod);
 		
 	}

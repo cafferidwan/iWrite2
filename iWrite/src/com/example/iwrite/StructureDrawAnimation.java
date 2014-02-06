@@ -1,4 +1,4 @@
-package Animation;
+package com.example.iwrite;
 
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.DelayModifier;
@@ -13,27 +13,26 @@ import org.andengine.util.modifier.IModifier;
 
 import com.example.iwrite.MainActivity;
 
-public class Animation 
+public class StructureDrawAnimation 
 {
+	//scale animation for number sprite and setting the structure of the letter
 	public static void scale(float x, float y, int c)
 	{
 			
 			if(c<=MainActivity.spriteCounterLimit)
 			{
-			//MainActivity.animationStart = 1;
 			
-			MainActivity.numberSprites[MainActivity.spriteCounter] = new Sprite(x, y, 
-					MainActivity.mTextureRegionNumber[MainActivity.spriteCounter], MainActivity.vertexBufferObjectManager);
-			MainActivity.numberSprites[MainActivity.spriteCounter].setScale((float)0.1);
-			MainActivity.numberSprites[MainActivity.spriteCounter].setZIndex(0);
-			MainActivity.mScene.attachChild(MainActivity.numberSprites[MainActivity.spriteCounter]);
-			MainActivity.mScene.registerTouchArea(MainActivity.numberSprites[MainActivity.spriteCounter]);
+				MainActivity.numberSprites[MainActivity.spriteCounter] = new Sprite(x, y, 
+						MainActivity.mTextureRegionNumber[MainActivity.spriteCounter], MainActivity.vertexBufferObjectManager);
+				MainActivity.numberSprites[MainActivity.spriteCounter].setScale((float)0.1);
+				MainActivity.numberSprites[MainActivity.spriteCounter].setZIndex(0);
+				MainActivity.mScene.attachChild(MainActivity.numberSprites[MainActivity.spriteCounter]);
+				MainActivity.mScene.registerTouchArea(MainActivity.numberSprites[MainActivity.spriteCounter]);
 		
-			//sp.setVisible(true);
-			ScaleModifier scaleModifier = new ScaleModifier((float) 0.1, 0.1f, 0.3f);
-			LoopEntityModifier loopRotateMod = new LoopEntityModifier( new RotationModifier(4, 0, 360));
-			DelayModifier delayMod = new DelayModifier((float) 0.01, new IEntityModifierListener()
-			{ 
+				ScaleModifier scaleModifier = new ScaleModifier((float) 0.1, 0.1f, 0.3f);
+				LoopEntityModifier loopRotateMod = new LoopEntityModifier( new RotationModifier(4, 0, 360));
+				DelayModifier delayMod = new DelayModifier((float) 0.01, new IEntityModifierListener()
+				{ 
 
 						@Override
 						public void onModifierStarted(IModifier<IEntity> arg0,
@@ -85,15 +84,16 @@ public class Animation
 						}
 					});
 			
-			SequenceEntityModifier sequenceMod = new SequenceEntityModifier(scaleModifier,delayMod, loopRotateMod);
-			MainActivity.numberSprites[MainActivity.spriteCounter].registerEntityModifier(sequenceMod);
+				SequenceEntityModifier sequenceMod = new SequenceEntityModifier(scaleModifier,delayMod, loopRotateMod);
+				MainActivity.numberSprites[MainActivity.spriteCounter].registerEntityModifier(sequenceMod);
 			}
 			else
 			{
-				//MainActivity.animationStart = 0;
+
 			}
 	}
 
+	//shake animation 
 	public static void shake(int a, final Sprite sp, float x)
 	{
 		if(a<5) 
@@ -133,6 +133,7 @@ public class Animation
 		}
 	}
 	
+	//Drawing with touch when in the right range
 	public static void Draw(float x, float y)
 	{
 		MainActivity.aCounter++;
