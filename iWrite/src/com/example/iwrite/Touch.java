@@ -3,6 +3,10 @@ package com.example.iwrite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.debug.Debug;
 
+import Letters.LetterStructureAa;
+import Letters.LetterStructureE;
+import Letters.LetterStructureMo;
+import Objects.createObjects;
 import ScreenShoot.ScreenShot;
 
 public class Touch
@@ -47,9 +51,30 @@ public class Touch
 					MainActivity.state = 1;
 				}
 				
-				//building the structure for the letter with number sprite
-				NumberSprites.getStructure(pSceneTouchEvent.getX(),
-						pSceneTouchEvent.getY());
+				//For letter Mo
+				if(createObjects.letter == 1)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureMo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Aa
+				else if(createObjects.letter == 2)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureAa.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter E
+				else if(createObjects.letter == 3)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureE.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				
+				
+				
 				
 				//take the screenShoot when triggered
 				if(MainActivity.screenShotCounter == 1)

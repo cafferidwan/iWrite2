@@ -51,13 +51,12 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static ITextureRegion mbackGroundTextureRegion,
 			mBlackBoardTextureRegion, mMoOutLineTextureRegion,
 			mWhiteChalkTextureRegion, mCursorTextureRegion,
-			mAaExampleTextureRegion;
-	
-	public static ITextureRegion mPopUpBlackBoardTextureRegion,
-			mBookIconRegion, mCreatePopUpRegion,
-			mCorrectLetterRegion, mHandTutorialTextureRegion,
-			mCrossRegion, mDusterTextureRegion,
-			mSlidingScreenTextureRegion, mMoExampleTextureRegion;
+			mPopUpBlackBoardTextureRegion, mBookIconRegion,
+			mCreatePopUpRegion, mCorrectLetterRegion, 
+			mHandTutorialTextureRegion,	mCrossRegion,
+			mDusterTextureRegion, mSlidingScreenTextureRegion, 
+			mMoExampleTextureRegion, mAaOutLineTextureRegion, 
+			mEOutLineTextureRegion;
 	
 	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
 							mAnimatedMonkeyBitmapTextureAtlas;
@@ -69,7 +68,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasBoard, mBitmapTextureAtlasHandCross, 
 	 mBitmapTextureAtlasDuster, mBitmapTextureAtlasMonkeyBrush,
 	 mBitmapTextureAtlasHandTutorial, mBitmapTextureAtlasMoExample,
-	 mBitmapTextureAtlasAaExample;
+	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -77,7 +76,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Sprite[] whiteChalk = new Sprite[5000];
 	public static Sprite[] tutorialWhiteChalk = new Sprite[5000];
 	
-	public static Sprite backGround, blackBoard, moOutLine, aaOutLine;
+	public static Sprite backGround, blackBoard, OutLine, aaOutLine;
 	public static Sprite bookIcon, handTutorial, duster, slidingScreen;
 	public static Sprite createPopUp, correctLetter, drawnPicture, cross, board;
 	public static AnimatedSprite cursor;
@@ -165,7 +164,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mBitmapTextureAtlasMonkeyBrush = new BitmapTextureAtlas(this.getTextureManager(), 1300, 600, TextureOptions.BILINEAR);
 		
-		mBitmapTextureAtlasAaExample= new BitmapTextureAtlas(this.getTextureManager(), 700, 600, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasAaOutLine= new BitmapTextureAtlas(this.getTextureManager(), 700, 600, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasEOutLine= new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
 		//popup
 		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
@@ -195,8 +196,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mMoExampleTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasMoExample, this,
 				"moExample.png", 0, 0,  1, 1);
 		
-		mAaExampleTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAaExample, this,
+		mAaOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAaOutLine, this,
 				"aaExample.png", 0, 0,  1, 1);
+		
+		mEOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasEOutLine, this,
+				"eExample.png", 0, 0,  1, 1);
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -271,7 +275,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasMonkeyBrush.load();
 		mBitmapTextureAtlasHandTutorial.load();
 		mBitmapTextureAtlasMoExample.load();
-		mBitmapTextureAtlasAaExample.load();
+		mBitmapTextureAtlasAaOutLine.load();
+		mBitmapTextureAtlasEOutLine.load();
 
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -349,10 +354,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		moOutLineX = CAMERA_WIDTH / 2 - 130;
 		moOutLineY = CAMERA_HEIGHT / 2 - 130;
 		
-		createObjects.TextureRegion1 = mAaExampleTextureRegion;
-		
 		//create objects
-		createObjects.createObject();
+		createObjects.createObject("aa");
 		
 		//Timer for drawing during monkey Tutorial
 		AnimationDrawTutorial.animationDrawTimer();

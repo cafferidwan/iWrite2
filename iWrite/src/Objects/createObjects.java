@@ -9,11 +9,9 @@ import com.example.iwrite.MainActivity;
 
 public class createObjects 
 {
-
-	public Sprite currentSprite;
-	public static  ITextureRegion TextureRegion1;
+	public static int letter;
 	
-	public static void createObject()
+	public static void createObject(String letterWord)
 	{
 		MainActivity.backGround = new Sprite(0, 0, MainActivity.mbackGroundTextureRegion,
 				MainActivity.vertexBufferObjectManager);
@@ -42,19 +40,36 @@ public class createObjects
 		
 		
 		
-//		if(letterWord.toLowerCase().equals("mo"))
-//		{
+		if(letterWord.toLowerCase().equals("mo"))
+		{
 			//Outline of letter
-			MainActivity.moOutLine = new Sprite(MainActivity.moOutLineX, MainActivity.moOutLineY,
-					TextureRegion1, MainActivity.vertexBufferObjectManager);
-			MainActivity.mScene.attachChild(MainActivity.moOutLine);
-//		}
-//		else if(letterWord.toLowerCase().equals("aa"))
-//		{
-//			MainActivity.aaOutLine = new Sprite(MainActivity.moOutLineX, MainActivity.moOutLineY,
-//					MainActivity.mAaExampleTextureRegion, MainActivity.vertexBufferObjectManager);
-//			MainActivity.mScene.attachChild(MainActivity.aaOutLine);
-//		}
+			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX, MainActivity.moOutLineY,
+					MainActivity.mMoOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
+			
+			letter = 1;
+			
+		}
+		else if(letterWord.toLowerCase().equals("aa"))
+		{
+			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-200, MainActivity.moOutLineY-180,
+					MainActivity.mAaOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
+			MainActivity.OutLine.setScale((float)0.5);
+			
+			letter = 2;
+		}
+		
+		else if(letterWord.toLowerCase().equals("e"))
+		{
+			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-80, MainActivity.moOutLineY-80,
+					MainActivity.mEOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
+//			MainActivity.OutLine.setScale((float)0.5);
+			MainActivity.OutLine.setScaleY((float)0.8);
+			MainActivity.OutLine.setScaleX((float)0.8);
+			letter = 3;
+		}
+		
+		
+		MainActivity.mScene.attachChild(MainActivity.OutLine);
 		
 	}
 	

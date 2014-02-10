@@ -11,6 +11,11 @@ import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.modifier.IModifier;
 
+import Letters.LetterStructureAa;
+import Letters.LetterStructureE;
+import Letters.LetterStructureMo;
+import Objects.createObjects;
+
 import com.example.iwrite.MainActivity;
 
 public class StructureDrawAnimation 
@@ -47,39 +52,20 @@ public class StructureDrawAnimation
 								IEntity arg1)
 						{
 							
-							if(MainActivity.spriteCounterLimit == 4)
+							//For letter Mo
+							if(createObjects.letter == 1)
 							{
-								MainActivity.spriteCounter++;
-								scale(MainActivity.moOutLineX+70*MainActivity.spriteCounter - 100, 
-										MainActivity.moOutLineY -50, MainActivity.spriteCounter);
+								LetterStructureMo.Structure();
 							}
-							else if(MainActivity.spriteCounterLimit == 7)
+							//For letter Aa
+							else if(createObjects.letter == 2)
 							{
-								MainActivity.spriteCounter++;
-								scale(MainActivity.moOutLineX+30*MainActivity.spriteCounter - 150 ,
-										MainActivity.moOutLineY+60*MainActivity.spriteCounter - 350,
-										MainActivity.spriteCounter);
+								LetterStructureAa.Structure();
 							}
-							else if(MainActivity.spriteCounterLimit == 9)
+							//For letter E
+							else if(createObjects.letter == 3)
 							{
-								MainActivity.spriteCounter++;
-								scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +410 ,
-										MainActivity.moOutLineY-30*MainActivity.spriteCounter + 340,
-										MainActivity.spriteCounter);
-							}
-							else if(MainActivity.spriteCounterLimit == 13)
-							{
-								MainActivity.spriteCounter++;
-								scale(MainActivity.moOutLineX+40*MainActivity.spriteCounter -385 ,
-										MainActivity.moOutLineY+50*MainActivity.spriteCounter-480,
-										MainActivity.spriteCounter);
-							}
-							else if(MainActivity.spriteCounterLimit == 16)
-							{
-								MainActivity.spriteCounter++;
-								scale(MainActivity.moOutLineX+120 , 
-										70+MainActivity.moOutLineY-70*MainActivity.spriteCounter+1000,
-										MainActivity.spriteCounter);
+								LetterStructureE.Structure();
 							}
 							
 						}
