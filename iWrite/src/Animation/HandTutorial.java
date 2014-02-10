@@ -191,7 +191,7 @@ public class HandTutorial
 							//removing the tutorial
 							handTutorialStart5(MainActivity.handTutorial.getX(),
 									 MainActivity.handTutorial.getY(),
-									 600, 250);
+									 670, 300);
 						}
 					}
 
@@ -229,10 +229,14 @@ public class HandTutorial
 					public void onModifierFinished(IModifier<IEntity> arg0,
 							IEntity arg1)
 					{
-						//creating the duster
-						Duster.createDuster();
-						//Start the duster
-						Duster.startDuster();
+						MainActivity.dusterCounter++;
+						if(MainActivity.dusterCounter == 1)
+						{
+							//creating the duster
+							Duster.createDuster();
+							//Start the duster
+							Duster.startDuster();
+						}
 						 
 						//the handtutorial part ends
 						MainActivity.isHandTutorialActive = false;
@@ -241,7 +245,8 @@ public class HandTutorial
 				});
 		
 		SequenceEntityModifier sequenceMod = new SequenceEntityModifier(delayMod,moveMod);
-		MainActivity.handTutorial.registerEntityModifier(sequenceMod);
+		LoopEntityModifier loopMod2 = new LoopEntityModifier(sequenceMod);
+		MainActivity.handTutorial.registerEntityModifier(loopMod2);
 		
 	}
 	

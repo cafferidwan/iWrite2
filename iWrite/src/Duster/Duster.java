@@ -8,6 +8,7 @@ import org.andengine.entity.modifier.PathModifier.IPathModifierListener;
 import org.andengine.entity.modifier.PathModifier.Path;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.ease.EaseBounceOut;
 
 import Animation.AnimationDrawTutorial;
@@ -18,8 +19,6 @@ import com.example.iwrite.MainActivity;
 public class Duster
 {
 
-	public static int dusterCounter = 0;
-	
 	//create duster
 	public static void createDuster()
 	{
@@ -35,8 +34,10 @@ public class Duster
 				case TouchEvent.ACTION_DOWN:
 					
 					//when duster icon pressed start finish duster animation 
-					dusterCounter++;
-					if(dusterCounter==1)
+					MainActivity.dusterFinishCounter++;
+					
+					Debug.d("dustercounter:"+MainActivity.dusterCounter);
+					if(MainActivity.dusterFinishCounter==1)
 					{	
 						finishDuster();
 					}
@@ -105,11 +106,11 @@ public class Duster
 		{
 			MainActivity.mScene.detachChild(MainActivity.whiteChalk[i]);
 		}
-		MainActivity.aCounter = 0 ;
-		MainActivity.mScene.detachChild(MainActivity.cursor);
+//		MainActivity.aCounter = 0 ;
+//		MainActivity.mScene.detachChild(MainActivity.cursor);
 
-		MainActivity.spriteCounter = 1;
-		AnimationDrawTutorial.createNumberSpriteAndCursor(2);
+//		MainActivity.spriteCounter = 1;
+//		AnimationDrawTutorial.createNumberSpriteAndCursor(2);
 	}
 	
 	//Sliding monkey hand animation for restarting the application
@@ -119,25 +120,34 @@ public class Duster
 		MainActivity.slidingScreen = new Sprite(0, -800, MainActivity.mSlidingScreenTextureRegion, MainActivity.vertexBufferObjectManager);
 		MainActivity.mScene.attachChild(MainActivity.slidingScreen);
 			
-		Path finishingPath = new Path(2).to(-1200, -200).to(MainActivity.CAMERA_WIDTH  + 10, -200);
+		Path finishingPath = new Path(2).to(-1200, -150).to(MainActivity.CAMERA_WIDTH  + 10, -150);
 
 		MainActivity.slidingScreen.registerEntityModifier(new PathModifier((float) 1.8, finishingPath, null, new IPathModifierListener()
 		{
 				@Override
 				public void onPathStarted(final PathModifier pPathModifier,final IEntity pEntity) 
 				{
+					
+					delete();
+					MainActivity.mScene.clearEntityModifiers();
+//					MainActivity.mScene.detachChildren();
+					MainActivity.mScene.detachSelf();
+					MainActivity.mScene.dispose();
+					
 					//Restarting the activity
-					MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)1, new ITimerCallback() {
+					MainActivity.mScene.registerUpdateHandler(new TimerHandler((float)1, new ITimerCallback() 
+					{
 								
 						@Override
 						public void onTimePassed(TimerHandler pTimerHandler)
 						{
 							// TODO Auto-generated method stub
-							MainActivity.mScene.detachSelf();
+							
 									
 							//Resetting the stars
 							MainActivity.aCounter=0;
-									
+							
+							MainActivity.mScene.detachChild(MainActivity.handTutorial);
 							MainActivity.mScene.unregisterUpdateHandler(MainActivity.timer1);
 							MainActivity.MainActivityInstace.finish();
 							MainActivity.MainActivityInstace.startActivity(new Intent(MainActivity.MainActivityInstace.getBaseContext(),

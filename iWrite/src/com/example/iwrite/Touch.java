@@ -16,7 +16,7 @@ public class Touch
 			return true;
 		}
 		else if (pSceneTouchEvent.isActionMove() && MainActivity.isPopupActive == false
-				&& MainActivity.isHandTutorialActive == false)
+				&& MainActivity.isHandTutorialActive == false && MainActivity.isActionMoving == true)
 		{
 			MainActivity.touch++;
 			

@@ -18,6 +18,9 @@ public class PopUp
 	//create book icon
 	public static void createBookIcon() 
 	{
+		//creating pop up after book icon
+		createPopUp();
+				
 		// create book icon
 		MainActivity.bookIcon = new Sprite(0, MainActivity.CAMERA_HEIGHT - 200, 
 				MainActivity.mBookIconRegion, MainActivity.vertexBufferObjectManager) 
@@ -52,9 +55,6 @@ public class PopUp
 		MainActivity.mScene.registerTouchArea(MainActivity.bookIcon);
 		MainActivity.bookIcon.setScale((float) 0.6);
 		MainActivity.mScene.attachChild(MainActivity.bookIcon);
-		
-		//creating pop up after book icon
-		createPopUp();
 		
 	}
 	

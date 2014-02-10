@@ -24,6 +24,7 @@ public class StructureDrawAnimation
 			
 				MainActivity.numberSprites[MainActivity.spriteCounter] = new Sprite(x, y, 
 						MainActivity.mTextureRegionNumber[MainActivity.spriteCounter], MainActivity.vertexBufferObjectManager);
+				
 				MainActivity.numberSprites[MainActivity.spriteCounter].setScale((float)0.1);
 				MainActivity.numberSprites[MainActivity.spriteCounter].setZIndex(0);
 				MainActivity.mScene.attachChild(MainActivity.numberSprites[MainActivity.spriteCounter]);

@@ -50,7 +50,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 	public static ITextureRegion mbackGroundTextureRegion,
 			mBlackBoardTextureRegion, mMoOutLineTextureRegion,
-			mWhiteChalkTextureRegion, mCursorTextureRegion;
+			mWhiteChalkTextureRegion, mCursorTextureRegion,
+			mAaExampleTextureRegion;
 	
 	public static ITextureRegion mPopUpBlackBoardTextureRegion,
 			mBookIconRegion, mCreatePopUpRegion,
@@ -67,7 +68,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasBookIcon, mBitmapTextureAtlasHandWirtingBook,
 	 mBitmapTextureAtlasBoard, mBitmapTextureAtlasHandCross, 
 	 mBitmapTextureAtlasDuster, mBitmapTextureAtlasMonkeyBrush,
-	 mBitmapTextureAtlasHandTutorial, mBitmapTextureAtlasMoExample;
+	 mBitmapTextureAtlasHandTutorial, mBitmapTextureAtlasMoExample,
+	 mBitmapTextureAtlasAaExample;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -75,7 +77,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Sprite[] whiteChalk = new Sprite[5000];
 	public static Sprite[] tutorialWhiteChalk = new Sprite[5000];
 	
-	public static Sprite backGround, blackBoard, moOutLine;
+	public static Sprite backGround, blackBoard, moOutLine, aaOutLine;
 	public static Sprite bookIcon, handTutorial, duster, slidingScreen;
 	public static Sprite createPopUp, correctLetter, drawnPicture, cross, board;
 	public static AnimatedSprite cursor;
@@ -83,19 +85,20 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Rectangle rectangle;
 	public static float moOutLineX, moOutLineY;
 
-	public static int iCounter, screenShotCounter, shakeCounter = 0, sCounter, wCounter;
 	public static String DEBUG_TAG = MainActivity.class.getSimpleName();
+	
+	public static int iCounter, screenShotCounter, shakeCounter = 0, sCounter, wCounter;
 	public static int aCounter = 0, bCounter, serialCounter = 1, totalLoadNumberPic = 18,
 			totalNumberSprite;
 	public static int monkeyTutorialStart;
-	public static int spriteCounter;
+	public static int spriteCounter, dusterCounter, dusterFinishCounter ;
 	public static int spriteCounterLimit;
 	public static int  state = 0;
 	public static Rectangle rect;
 	public static float posX;
 	public static float posY;
 	public static boolean isShaking, isPopupActive,
-						  isHandTutorialActive;
+						  isHandTutorialActive, isActionMoving;
 	public static int touch, popUpValue, tutorialCounter;
 	public static int soundCounter;
 	public static Boolean audioPlay = false;
@@ -110,6 +113,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static int changeTexture = 0;
 	public static boolean screenShot = false;
 	public static int viewWidth, viewHeight;
+	
 	
 	@Override
 	public EngineOptions onCreateEngineOptions()
@@ -161,6 +165,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mBitmapTextureAtlasMonkeyBrush = new BitmapTextureAtlas(this.getTextureManager(), 1300, 600, TextureOptions.BILINEAR);
 		
+		mBitmapTextureAtlasAaExample= new BitmapTextureAtlas(this.getTextureManager(), 700, 600, TextureOptions.BILINEAR);
+		
 		//popup
 		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
 				"bookIcon.png", 0, 0,  1, 1);
@@ -188,6 +194,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 		mMoExampleTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasMoExample, this,
 				"moExample.png", 0, 0,  1, 1);
+		
+		mAaExampleTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAaExample, this,
+				"aaExample.png", 0, 0,  1, 1);
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -262,6 +271,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasMonkeyBrush.load();
 		mBitmapTextureAtlasHandTutorial.load();
 		mBitmapTextureAtlasMoExample.load();
+		mBitmapTextureAtlasAaExample.load();
 
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -322,12 +332,15 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		isShaking = false;
 		isPopupActive  = false;
 		isHandTutorialActive = false;
+		isActionMoving = true;
 		touch = 0;
 		soundCounter=0;
 		bCounter = 0;
 		changeTexture = 0;
 		screenShotCounter = 0;
 		tutorialCounter = 0;
+		dusterCounter = 0;
+		dusterFinishCounter = 0;
 
 		//getting the renderView width and height for taking the screen shot
 		viewWidth = MainActivity.MainActivityInstace.mRenderSurfaceView.getWidth() - 525;
@@ -336,24 +349,26 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		moOutLineX = CAMERA_WIDTH / 2 - 130;
 		moOutLineY = CAMERA_HEIGHT / 2 - 130;
 		
+		createObjects.TextureRegion1 = mAaExampleTextureRegion;
+		
 		//create objects
 		createObjects.createObject();
-
+		
 		//Timer for drawing during monkey Tutorial
 		AnimationDrawTutorial.animationDrawTimer();
 		mScene.registerUpdateHandler(timer1);
 
 		//MonkeyTutorial Create
-		MonkeyTutorial.monkeyTutorialCreate();
+//		MonkeyTutorial.monkeyTutorialCreate();
 		//MonkeyTutorial start
-		MonkeyTutorial.monkeyTutorialstart();
+//		MonkeyTutorial.monkeyTutorialstart();
 		
 		//create book icon
 //		PopUp.createBookIcon(); 
 //		HandTutorial.handTutorialCreate();
 		
 		//create number with cursor
-//		AnimationTutorial.createNumberSpriteAndCursor(2);
+		AnimationDrawTutorial.createNumberSpriteAndCursor(2);
 
 		return mScene;
 	}

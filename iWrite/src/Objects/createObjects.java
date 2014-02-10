@@ -2,6 +2,7 @@ package Objects;
 
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.util.color.Color;
 
 import com.example.iwrite.MainActivity;
@@ -9,6 +10,9 @@ import com.example.iwrite.MainActivity;
 public class createObjects 
 {
 
+	public Sprite currentSprite;
+	public static  ITextureRegion TextureRegion1;
+	
 	public static void createObject()
 	{
 		MainActivity.backGround = new Sprite(0, 0, MainActivity.mbackGroundTextureRegion,
@@ -36,10 +40,22 @@ public class createObjects
 		MainActivity.rect.setColor(Color.RED);
 		MainActivity.rect.setVisible(false);
 		
-		//Outline of letter
-		MainActivity.moOutLine = new Sprite(MainActivity.moOutLineX, MainActivity.moOutLineY,
-				MainActivity.mMoOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
-		MainActivity.mScene.attachChild(MainActivity.moOutLine);
+		
+		
+//		if(letterWord.toLowerCase().equals("mo"))
+//		{
+			//Outline of letter
+			MainActivity.moOutLine = new Sprite(MainActivity.moOutLineX, MainActivity.moOutLineY,
+					TextureRegion1, MainActivity.vertexBufferObjectManager);
+			MainActivity.mScene.attachChild(MainActivity.moOutLine);
+//		}
+//		else if(letterWord.toLowerCase().equals("aa"))
+//		{
+//			MainActivity.aaOutLine = new Sprite(MainActivity.moOutLineX, MainActivity.moOutLineY,
+//					MainActivity.mAaExampleTextureRegion, MainActivity.vertexBufferObjectManager);
+//			MainActivity.mScene.attachChild(MainActivity.aaOutLine);
+//		}
 		
 	}
+	
 }

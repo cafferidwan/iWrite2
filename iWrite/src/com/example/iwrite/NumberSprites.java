@@ -647,6 +647,8 @@ public class NumberSprites
 				//create book icon
 				PopUp.createBookIcon();
 				
+				MainActivity.isActionMoving = false;
+				
 				//start the hand tutorial 
 //				MainActivity.tutorialCounter++;
 //				if(MainActivity.tutorialCounter==1)
