@@ -60,7 +60,7 @@ public class createObjects
 		
 		else if(letterWord.toLowerCase().equals("e"))
 		{
-			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-80, MainActivity.moOutLineY-80,
+			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-80, MainActivity.moOutLineY-110,
 					MainActivity.mEOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
 //			MainActivity.OutLine.setScale((float)0.5);
 			MainActivity.OutLine.setScaleY((float)0.8);

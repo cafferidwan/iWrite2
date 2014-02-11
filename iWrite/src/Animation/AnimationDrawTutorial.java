@@ -137,7 +137,7 @@ public class AnimationDrawTutorial
 						public void onTimePassed(TimerHandler pTimerHandler)
 						{
 							// TODO Auto-generated method stub
-							createNumberSpriteAndCursor(1);
+							createNumberSpriteAndCursor(1,4);
 						}
 			}));
 			//go to the second step
@@ -146,17 +146,17 @@ public class AnimationDrawTutorial
 		//second time call
 		else if(a==2)
 		{
-			createNumberSpriteAndCursor(2);
+			createNumberSpriteAndCursor(2,4);
 		}
 	}
 	
 	//create numberSprite and cursor
-	public static void createNumberSpriteAndCursor(int a)
+	public static void createNumberSpriteAndCursor(int a, int spriteLimit)
 	{
 		
 		//creating the first line of numbers
-		MainActivity.spriteCounterLimit = 4;
-		StructureDrawAnimation.scale(MainActivity.moOutLineX + 70 - 100, MainActivity.moOutLineY - 50, 1);
+		MainActivity.spriteCounterLimit = spriteLimit;
+		StructureDrawAnimation.scale(MainActivity.moOutLineX + 70 - 120, MainActivity.moOutLineY - 50, 1);
 		
 		//creating the fish cursor
 		MainActivity.cursor = new AnimatedSprite(MainActivity.moOutLineX, MainActivity.moOutLineY, 

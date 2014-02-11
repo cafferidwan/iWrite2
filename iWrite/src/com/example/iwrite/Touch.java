@@ -35,7 +35,7 @@ public class Touch
 						pSceneTouchEvent.getY() - MainActivity.rect.getHeight() / 2);
 				
 				
-				//Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
+				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
 				Debug.d("State:" + MainActivity.state);
 
 				//enabling drawing from the first number sprite

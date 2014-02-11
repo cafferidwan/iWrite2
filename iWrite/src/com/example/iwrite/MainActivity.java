@@ -87,8 +87,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static String DEBUG_TAG = MainActivity.class.getSimpleName();
 	
 	public static int iCounter, screenShotCounter, shakeCounter = 0, sCounter, wCounter;
-	public static int aCounter = 0, bCounter, serialCounter = 1, totalLoadNumberPic = 18,
-			totalNumberSprite;
+	public static int aCounter = 0, bCounter, serialCounter = 1, totalLoadNumberPic = 20;
 	public static int monkeyTutorialStart;
 	public static int spriteCounter, dusterCounter, dusterFinishCounter ;
 	public static int spriteCounterLimit;
@@ -254,13 +253,20 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 							"Number" + (i-9) + ".png", 0, 0, 1, 1);
 		}
 		
-		for (int i = 14; i <= 16; i++) 
+		for (int i = 14; i <= 17; i++) 
 		{
 			mTextureRegionNumber[i] = BitmapTextureAtlasTextureRegionFactory
 					.createTiledFromAsset(mBitmapTextureAtlasNumber[i], this,
 							"Number" + (i-13) + ".png", 0, 0, 1, 1);
 		}
-
+		
+		for (int i = 18; i <= 20; i++) 
+		{
+			mTextureRegionNumber[i] = BitmapTextureAtlasTextureRegionFactory
+					.createTiledFromAsset(mBitmapTextureAtlasNumber[i], this,
+							"Number" + (i-17) + ".png", 0, 0, 1, 1);
+		}
+		
 		mBitmapTextureAtlasBackGround.load();
 		mBitmapTextureAtlasBlackBoard.load();
 		mBitmapTextureAtlasMoOutLine.load();
@@ -325,7 +331,6 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		vertexBufferObjectManager = getVertexBufferObjectManager();
 		
 		serialCounter = 1;
-		totalNumberSprite = 4;
 		sCounter = 0;
 		wCounter = 0;
 		monkeyTutorialStart = 0;
@@ -371,7 +376,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 //		HandTutorial.handTutorialCreate();
 		
 		//create number with cursor
-		AnimationDrawTutorial.createNumberSpriteAndCursor(2);
+		AnimationDrawTutorial.createNumberSpriteAndCursor(2, 4);
 
 		return mScene;
 	}

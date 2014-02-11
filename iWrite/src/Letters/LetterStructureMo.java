@@ -1,7 +1,11 @@
 package Letters;
 
+import Animation.HandTutorial;
+import Popup.PopUp;
+
 import com.example.iwrite.MainActivity;
 import com.example.iwrite.NumberSprites;
+import com.example.iwrite.R;
 import com.example.iwrite.StructureDrawAnimation;
 
 public class LetterStructureMo
@@ -664,4 +668,5 @@ public class LetterStructureMo
 					MainActivity.spriteCounter);
 		}
 	}
+	
 }

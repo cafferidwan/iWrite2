@@ -126,10 +126,10 @@ public class StructureDrawAnimation
 		MainActivity.aCounter++;
 		MainActivity.whiteChalk[MainActivity.aCounter] = new Sprite(x -25, y-30, 
 				MainActivity.mWhiteChalkTextureRegion, MainActivity.vertexBufferObjectManager);
-		MainActivity.whiteChalk[MainActivity.aCounter].setZIndex(1);
+//		MainActivity.whiteChalk[MainActivity.aCounter].setZIndex(1);
 		MainActivity.mScene.attachChild(MainActivity.whiteChalk[MainActivity.aCounter]);
 		MainActivity.whiteChalk[MainActivity.aCounter].setScale((float) 0.6);
-		MainActivity.mScene.sortChildren();
+		//MainActivity.mScene.sortChildren();
 		//Debug.d("I:"+MainActivity.aCounter); 
 	}
 }
