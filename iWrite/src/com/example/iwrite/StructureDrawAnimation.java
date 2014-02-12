@@ -53,17 +53,17 @@ public class StructureDrawAnimation
 						{
 							
 							//For letter Mo
-							if(createObjects.letter == 1)
+							if(MainActivity.letter == 1)
 							{
 								LetterStructureMo.Structure();
 							}
 							//For letter Aa
-							else if(createObjects.letter == 2)
+							else if(MainActivity.letter == 2)
 							{
 								LetterStructureAa.Structure();
 							}
 							//For letter E
-							else if(createObjects.letter == 3)
+							else if(MainActivity.letter == 3)
 							{
 								LetterStructureE.Structure();
 							}

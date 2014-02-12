@@ -7,6 +7,11 @@ import org.andengine.entity.modifier.PathModifier;
 import org.andengine.entity.modifier.PathModifier.IPathModifierListener;
 import org.andengine.entity.modifier.PathModifier.Path;
 import org.andengine.entity.sprite.AnimatedSprite;
+
+import Letters.LetterStructureAa;
+import Letters.LetterStructureE;
+import Letters.LetterStructureMo;
+
 import com.example.iwrite.MainActivity;
 import com.example.iwrite.NumberSprites;
 import com.example.iwrite.R;
@@ -15,12 +20,15 @@ import com.example.iwrite.StructureDrawAnimation;
 public class AnimationDrawTutorial 
 {
 	//animation for drawing with chalk during monkey tutorial
-	public static void animatedChalk1(float x1, float y1, float x2, float y2)
+	public static void animatedChalk1(float xA1, float yA1, float xA2, float yA2, 
+			final float x1, final float y1, final float x2, final float y2,final float x3, final float y3,
+			final float x4, final float y4, final float x5,final float y5, final float x6, final float y6,
+			final float x7, final float y7, final float x8, final float y8, final float x9, final float y9)
 	{
 		Path chalkPath = null;
 		
 		chalkPath = new Path(2)
-		.to(x1, y1).to(x2, y2);
+		.to(xA1, yA1).to(xA2, yA2);
 		
 		
 		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)2.5, chalkPath, null, new IPathModifierListener()
@@ -29,6 +37,9 @@ public class AnimationDrawTutorial
 			public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity) 
 			{
 				MainActivity.monkeyTutorialStart = 1;
+				
+				//disabling the touch
+				MainActivity.isActionMoving = false;
 			}
 
 			@Override
@@ -51,16 +62,9 @@ public class AnimationDrawTutorial
 				
 				//move to the next step of drawing with chalk
 				AnimationDrawTutorial.animatedChalk2(
-						MainActivity.moOutLineX+10, MainActivity.moOutLineY-15, 
-						MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
-						MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
-						MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
-						MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
-						MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
-						MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
-						MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
-						MainActivity.moOutLineX+150, MainActivity.moOutLineY
-						);
+					x1, y1, x2, y2, x3, y3, x4, y4,
+					x5, y5, x6, y6, x7, y7, x8, y8,
+					x9, y9);
 			}
 		}));
 	}
@@ -137,16 +141,33 @@ public class AnimationDrawTutorial
 						public void onTimePassed(TimerHandler pTimerHandler)
 						{
 							// TODO Auto-generated method stub
+							
+							//start first line animation cursor tutorial
 							createNumberSpriteAndCursor(1);
 						}
 			}));
-			//go to the second step
-//			createNumberSpriteAndCursor(1);
 		}
 		//second time call
-		else if(a==2)
+		else if(a==2) 
 		{
-			createNumberSpriteAndCursor(2);
+			//createNumberSpriteAndCursor(2);
+			MainActivity.isActionMoving = true;
+			
+			if(MainActivity.letter == 1)
+			{
+				//create number with cursor
+				LetterStructureMo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 2)
+			{
+				//create number with cursor
+				LetterStructureAa.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 3)
+			{
+				//create number with cursor
+				LetterStructureE.createNumberSpriteAndCursor();
+			}
 		}
 	}
 	

@@ -1,5 +1,7 @@
 package Letters;
 
+import org.andengine.entity.sprite.AnimatedSprite;
+
 import Animation.HandTutorial;
 import Popup.PopUp;
 
@@ -10,6 +12,39 @@ import com.example.iwrite.StructureDrawAnimation;
 
 public class LetterStructureAa 
 {
+	
+	//create numberSprite and cursor
+	public static void createNumberSpriteAndCursor()
+	{
+			 
+		//creating the first line of numbers
+		MainActivity.spriteCounterLimit = 4;
+		StructureDrawAnimation.scale(MainActivity.moOutLineX + 70 - 100, MainActivity.moOutLineY - 50, 1);
+					
+		//creating the fish cursor
+		MainActivity.cursor = new AnimatedSprite(MainActivity.moOutLineX, MainActivity.moOutLineY, 
+				MainActivity.mFishTextureRegion, MainActivity.vertexBufferObjectManager);
+		MainActivity.cursor.animate(new long[]{100, 100, 100, 100, 100, 100}, 0, 5, true);
+		MainActivity.cursor.setZIndex(3);
+		MainActivity.mScene.attachChild(MainActivity.cursor);
+					
+		//setting the cursor to top of first number sprite
+		NumberSprites.setCursorPosition(MainActivity.numberSprites[1]);
+					
+//		if(a==1)
+//		{
+//				//go to the next step or move the animated fish 
+//				animatedCursor(MainActivity.moOutLineX-10, 
+//						MainActivity.moOutLineY-20, 
+//						MainActivity.moOutLineX+180, 
+//						MainActivity.moOutLineY-20); 
+//		}
+//		else if(a==2)
+//		{
+//						
+//		}
+	}
+	
 	public static void Structure()
 	{
 		
@@ -496,7 +531,7 @@ public class LetterStructureAa
 					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
 					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
-						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
+						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-60 
 					)
 			{
 				
@@ -758,7 +793,7 @@ public class LetterStructureAa
 //				MainActivity.tutorialCounter++;
 //				if(MainActivity.tutorialCounter==1)
 //				{
-					HandTutorial.handTutorialCreate();
+					//HandTutorial.handTutorialCreate();
 //				}
 			}
 			MainActivity.mScene.detachChild(MainActivity.numberSprites[removeSpriteNumber]);
@@ -772,4 +807,5 @@ public class LetterStructureAa
 			
 		}
 	}
+
 }

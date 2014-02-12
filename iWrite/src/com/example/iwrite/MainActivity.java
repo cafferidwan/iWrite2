@@ -68,7 +68,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasBoard, mBitmapTextureAtlasHandCross, 
 	 mBitmapTextureAtlasDuster, mBitmapTextureAtlasMonkeyBrush,
 	 mBitmapTextureAtlasHandTutorial, mBitmapTextureAtlasMoExample,
-	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine;
+	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine,
+	 mBitmapTextureAtlasEHoOutLine;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -112,6 +113,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static boolean screenShot = false;
 	public static int viewWidth, viewHeight;
 	
+	public static int letter;
 	
 	@Override
 	public EngineOptions onCreateEngineOptions()
@@ -214,7 +216,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 		mBlackBoardTextureRegion = BitmapTextureAtlasTextureRegionFactory
 				.createTiledFromAsset(mBitmapTextureAtlasBlackBoard, this,
-						"blackboard.png", 0, 0, 1, 1);
+						"board2.png", 0, 0, 1, 1);
 
 		mMoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory
 				.createTiledFromAsset(mBitmapTextureAtlasMoOutLine, this,
@@ -351,28 +353,24 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		tutorialCounter = 0;
 		dusterCounter = 0;
 		dusterFinishCounter = 0;
+		letter = 0;
 
 		//getting the renderView width and height for taking the screen shot
-		viewWidth = MainActivity.MainActivityInstace.mRenderSurfaceView.getWidth() - 525;
+		viewWidth = MainActivity.MainActivityInstace.mRenderSurfaceView.getWidth() - 500;
 		viewHeight = MainActivity.MainActivityInstace.mRenderSurfaceView.getHeight() - 165;
 		
 		moOutLineX = CAMERA_WIDTH / 2 - 130;
 		moOutLineY = CAMERA_HEIGHT / 2 - 130;
 		
-		//choose the letter with number
-		createObjects.letter = 1;
-		//create objects
-		createObjects.createObject();
-		
-		
 		//Timer for drawing during monkey Tutorial
 		AnimationDrawTutorial.animationDrawTimer();
 		mScene.registerUpdateHandler(timer1);
-
-		//MonkeyTutorial Create
-		MonkeyTutorial.monkeyTutorialCreate();
-		//MonkeyTutorial start
-		MonkeyTutorial.monkeyTutorialstart();
+				
+		//1.Mo 2.Aa 3.e
+		//choose the letter with number
+		MainActivity.letter = 2;  
+		//create objects
+		createObjects.createObject();
 		
 		//create book icon
 //		PopUp.createBookIcon(); 

@@ -52,21 +52,21 @@ public class Touch
 				}
 				
 				//For letter Mo
-				if(createObjects.letter == 1)
+				if(MainActivity.letter == 1)
 				{
 					//building the structure for the letter with number sprite
 					LetterStructureMo.getStructure(pSceneTouchEvent.getX(),
 							pSceneTouchEvent.getY());
 				}
 				//For letter Aa
-				else if(createObjects.letter == 2)
+				else if(MainActivity.letter == 2)
 				{
 					//building the structure for the letter with number sprite
 					LetterStructureAa.getStructure(pSceneTouchEvent.getX(),
 							pSceneTouchEvent.getY());
 				}
 				//For letter E
-				else if(createObjects.letter == 3)
+				else if(MainActivity.letter == 3)
 				{
 					//building the structure for the letter with number sprite
 					LetterStructureE.getStructure(pSceneTouchEvent.getX(),
