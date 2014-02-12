@@ -11,7 +11,7 @@ public class createObjects
 {
 	public static int letter;
 	
-	public static void createObject(String letterWord)
+	public static void createObject()
 	{
 		MainActivity.backGround = new Sprite(0, 0, MainActivity.mbackGroundTextureRegion,
 				MainActivity.vertexBufferObjectManager);
@@ -39,33 +39,28 @@ public class createObjects
 		MainActivity.rect.setVisible(false);
 		
 		
-		
-		if(letterWord.toLowerCase().equals("mo"))
+		//Outline of letter Mo
+		if(letter == 1)
 		{
-			//Outline of letter
 			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX, MainActivity.moOutLineY,
 					MainActivity.mMoOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
 			
-			letter = 1;
-			
 		}
-		else if(letterWord.toLowerCase().equals("aa"))
+		//Outline of letter Aa
+		else if(letter == 2)
 		{
 			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-200, MainActivity.moOutLineY-180,
 					MainActivity.mAaOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
 			MainActivity.OutLine.setScale((float)0.5);
 			
-			letter = 2;
 		}
-		
-		else if(letterWord.toLowerCase().equals("e"))
+		//Outline of letter e
+		else if(letter == 3)
 		{
-			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-80, MainActivity.moOutLineY-110,
+			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-70, MainActivity.moOutLineY-80,
 					MainActivity.mEOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
-//			MainActivity.OutLine.setScale((float)0.5);
-			MainActivity.OutLine.setScaleY((float)0.8);
-			MainActivity.OutLine.setScaleX((float)0.8);
-			letter = 3;
+			MainActivity.OutLine.setScale((float)0.8);
+			
 		}
 		
 		

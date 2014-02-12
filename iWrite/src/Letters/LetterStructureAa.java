@@ -52,7 +52,7 @@ public class LetterStructureAa
 		else if(MainActivity.spriteCounterLimit == 19)
 		{
 			MainActivity.spriteCounter++;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX+230 , 
+			StructureDrawAnimation.scale(MainActivity.moOutLineX+240 , 
 					MainActivity.moOutLineY-30,
 					MainActivity.spriteCounter);
 		}
@@ -453,7 +453,7 @@ public class LetterStructureAa
 			
 			if(
 					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>30 
+					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>30 
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
@@ -494,7 +494,7 @@ public class LetterStructureAa
 			
 			if(
 					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>40 
+					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
@@ -581,7 +581,7 @@ public class LetterStructureAa
 					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
 					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>30 
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>30 
-						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-100 
+						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-50 
 					)
 			{
 				
@@ -704,7 +704,7 @@ public class LetterStructureAa
 			
 			if(
 					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>30 
+					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>30 
 						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)

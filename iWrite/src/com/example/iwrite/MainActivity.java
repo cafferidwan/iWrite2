@@ -359,24 +359,27 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		moOutLineX = CAMERA_WIDTH / 2 - 130;
 		moOutLineY = CAMERA_HEIGHT / 2 - 130;
 		
+		//choose the letter with number
+		createObjects.letter = 1;
 		//create objects
-		createObjects.createObject("aa");
+		createObjects.createObject();
+		
 		
 		//Timer for drawing during monkey Tutorial
 		AnimationDrawTutorial.animationDrawTimer();
 		mScene.registerUpdateHandler(timer1);
 
 		//MonkeyTutorial Create
-//		MonkeyTutorial.monkeyTutorialCreate();
+		MonkeyTutorial.monkeyTutorialCreate();
 		//MonkeyTutorial start
-//		MonkeyTutorial.monkeyTutorialstart();
+		MonkeyTutorial.monkeyTutorialstart();
 		
 		//create book icon
 //		PopUp.createBookIcon(); 
 //		HandTutorial.handTutorialCreate();
-		
+
 		//create number with cursor
-		AnimationDrawTutorial.createNumberSpriteAndCursor(2, 4);
+		//AnimationDrawTutorial.createNumberSpriteAndCursor(2);
 
 		return mScene;
 	}
