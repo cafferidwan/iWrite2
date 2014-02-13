@@ -33,13 +33,17 @@ public class Duster
 				{
 				case TouchEvent.ACTION_DOWN:
 					
-					//when duster icon pressed start finish duster animation 
-					MainActivity.dusterFinishCounter++;
+					//if the pop up is active, then disabling the book icon from pressing again
+					if(MainActivity.isPopupActive == false)
+					{
+						//when duster icon pressed start finish duster animation 
+						MainActivity.dusterFinishCounter++;
 					
-					Debug.d("dustercounter:"+MainActivity.dusterCounter);
-					if(MainActivity.dusterFinishCounter==1)
-					{	
-						finishDuster();
+						Debug.d("dustercounter:"+MainActivity.dusterCounter);
+						if(MainActivity.dusterFinishCounter==1)
+						{	
+							finishDuster();
+						}
 					}
 					
 					break;
@@ -56,13 +60,15 @@ public class Duster
 		MainActivity.duster.setScale((float) 0.5);
 		MainActivity.mScene.registerTouchArea(MainActivity.duster);
 		MainActivity.mScene.attachChild(MainActivity.duster);
+		MainActivity.duster.setZIndex(4);
+		
 	}
 	
 	//start duster animation
 	public static void startDuster()
 	{
 		Path createDusterPath = new Path(2).to(MainActivity.CAMERA_WIDTH/2+100, -300)
-				.to(MainActivity.CAMERA_WIDTH/2+100,
+				.to(MainActivity.CAMERA_WIDTH/2+190,
 				MainActivity.CAMERA_HEIGHT/2);
 
 	

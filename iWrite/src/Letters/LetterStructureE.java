@@ -3,6 +3,7 @@ package Letters;
 import org.andengine.entity.sprite.AnimatedSprite;
 
 import Animation.HandTutorial;
+import Duster.Duster;
 import Popup.PopUp;
 
 import com.example.iwrite.MainActivity;
@@ -485,6 +486,9 @@ public class LetterStructureE
 				MainActivity.screenShotCounter = 1;
 				//create book icon
 				PopUp.createBookIcon();
+				
+				//create duster
+				Duster.createDuster();
 				
 				MainActivity.isActionMoving = false;
 				

@@ -4,8 +4,11 @@ import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.debug.Debug;
 
 import Letters.LetterStructureAa;
+import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
+import Letters.LetterStructureKo;
 import Letters.LetterStructureMo;
+import Letters.LetterStructureRaw;
 import Objects.createObjects;
 import ScreenShoot.ScreenShot;
 
@@ -17,6 +20,9 @@ public class Touch
 		if (pSceneTouchEvent.isActionDown()) 
 		{
 			MainActivity.touch = 1;
+			Debug.d("Touch.x:"+(pSceneTouchEvent.getX()-50));
+			Debug.d("Touch.y:"+(pSceneTouchEvent.getY()-50));
+			
 			return true;
 		}
 		else if (pSceneTouchEvent.isActionMove() && MainActivity.isPopupActive == false
@@ -70,6 +76,27 @@ public class Touch
 				{
 					//building the structure for the letter with number sprite
 					LetterStructureE.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Raw
+				else if(MainActivity.letter == 4)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureRaw.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Ko
+				else if(MainActivity.letter == 5)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureKo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Bo
+				else if(MainActivity.letter == 6)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureBo.getStructure(pSceneTouchEvent.getX(),
 							pSceneTouchEvent.getY());
 				}
 				

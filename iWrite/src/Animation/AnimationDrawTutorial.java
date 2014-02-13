@@ -9,8 +9,11 @@ import org.andengine.entity.modifier.PathModifier.Path;
 import org.andengine.entity.sprite.AnimatedSprite;
 
 import Letters.LetterStructureAa;
+import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
+import Letters.LetterStructureKo;
 import Letters.LetterStructureMo;
+import Letters.LetterStructureRaw;
 
 import com.example.iwrite.MainActivity;
 import com.example.iwrite.NumberSprites;
@@ -167,6 +170,21 @@ public class AnimationDrawTutorial
 			{
 				//create number with cursor
 				LetterStructureE.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 4)
+			{
+				//create number with cursor
+				LetterStructureRaw.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 5)
+			{
+				//create number with cursor
+				LetterStructureKo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 6)
+			{
+				//create number with cursor
+				LetterStructureBo.createNumberSpriteAndCursor();
 			}
 		}
 	}

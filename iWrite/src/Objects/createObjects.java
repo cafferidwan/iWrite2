@@ -6,8 +6,11 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.util.color.Color;
 
 import Animation.MonkeyTutorial;
+import Duster.Duster;
+import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureMo;
+import Letters.LetterStructureRaw;
 
 import com.example.iwrite.MainActivity;
 
@@ -44,6 +47,8 @@ public class createObjects
 		//MonkeyTutorial Create
 		MonkeyTutorial.monkeyTutorialCreate();
 		
+		Duster.createDuster();
+		
 		//Outline of letter Mo
 		if(MainActivity.letter == 1)
 		{
@@ -79,7 +84,7 @@ public class createObjects
 			
 			//MonkeyTutorial start 
 			MonkeyTutorial.monkeyTutorialstart( 
-					MainActivity.moOutLineX - 10,
+					MainActivity.moOutLineX - 20,
 					MainActivity.moOutLineY - 20,
 					MainActivity.moOutLineX + 180,
 					MainActivity.moOutLineY - 20,
@@ -123,10 +128,92 @@ public class createObjects
 					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
 					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
 					MainActivity.moOutLineX+150, MainActivity.moOutLineY); 
-			
-			
+			 
 		}
-		
+		//Outline of letter Aa
+		else if(MainActivity.letter == 4)
+		{
+			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-70, MainActivity.moOutLineY-80,
+					MainActivity.mRawOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
+			MainActivity.OutLine.setScale((float)0.9);
+			MainActivity.mScene.attachChild(MainActivity.OutLine);
+			
+			//MonkeyTutorial start 
+//			MonkeyTutorial.monkeyTutorialstart( 
+//					MainActivity.moOutLineX - 10,
+//					MainActivity.moOutLineY - 20,
+//					MainActivity.moOutLineX + 180,
+//					MainActivity.moOutLineY - 10,
+//			
+//					//Edit From Here
+//					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15,
+//					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
+//					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
+//					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
+//					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
+//					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
+//					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
+//					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
+//					MainActivity.moOutLineX+150, MainActivity.moOutLineY);
+			
+			LetterStructureRaw.createNumberSpriteAndCursor(); 
+		}
+		//Outline of letter Ko
+		else if(MainActivity.letter == 5)
+		{
+			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-70, MainActivity.moOutLineY-80,
+					MainActivity.mKoOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
+			MainActivity.OutLine.setScale((float)0.9);
+			MainActivity.mScene.attachChild(MainActivity.OutLine);
+			
+			//MonkeyTutorial start 
+//			MonkeyTutorial.monkeyTutorialstart( 
+//					MainActivity.moOutLineX - 10,
+//					MainActivity.moOutLineY - 20,
+//					MainActivity.moOutLineX + 180,
+//					MainActivity.moOutLineY - 10,
+//
+//					//Edit From Here
+//					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15,
+//					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
+//					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
+//					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
+//					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
+//					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
+//					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
+//					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
+//					MainActivity.moOutLineX+150, MainActivity.moOutLineY);
+			
+			LetterStructureRaw.createNumberSpriteAndCursor(); 
+		}
+		//Outline of letter Bo
+		else if(MainActivity.letter == 6)
+		{
+			MainActivity.OutLine = new Sprite(MainActivity.moOutLineX-70, MainActivity.moOutLineY-80,
+					MainActivity.mBoOutLineTextureRegion, MainActivity.vertexBufferObjectManager);
+			MainActivity.OutLine.setScale((float)0.9);
+			MainActivity.mScene.attachChild(MainActivity.OutLine);
+			
+			//MonkeyTutorial start 
+//			MonkeyTutorial.monkeyTutorialstart( 
+//					MainActivity.moOutLineX - 10,
+//					MainActivity.moOutLineY - 20,
+//					MainActivity.moOutLineX + 180,
+//					MainActivity.moOutLineY - 10,
+//			
+//					//Edit From Here
+//					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15,
+//					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
+//					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
+//					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
+//					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
+//					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
+//					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
+//					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
+//					MainActivity.moOutLineX+150, MainActivity.moOutLineY);
+			
+			LetterStructureBo.createNumberSpriteAndCursor(); 
+		} 
 		
 	}
 	

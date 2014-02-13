@@ -55,6 +55,7 @@ public class PopUp
 		MainActivity.mScene.registerTouchArea(MainActivity.bookIcon);
 		MainActivity.bookIcon.setScale((float) 0.6);
 		MainActivity.mScene.attachChild(MainActivity.bookIcon);
+		MainActivity.mScene.sortChildren();
 		
 	}
 	
@@ -65,7 +66,7 @@ public class PopUp
 		//creating pop up area
 		popUpArea = new Entity(100, MainActivity.CAMERA_HEIGHT + 100);
 		MainActivity.mScene.attachChild(popUpArea);
-		popUpArea.setZIndex(4);
+		popUpArea.setZIndex(5);
 		
 		//creating pop up window
 		MainActivity.createPopUp = new Sprite(-500, -300, MainActivity.mCreatePopUpRegion,
@@ -154,7 +155,7 @@ public class PopUp
 		// If screen shot taken, then show screen shot image
 		if (MainActivity.changeTexture == 1) 
 		{
-			MainActivity.drawnPicture = new Sprite(-40, -68, MainActivity.textureRegion,
+			MainActivity.drawnPicture = new Sprite(-40, -60, MainActivity.textureRegion,
 					MainActivity.vertexBufferObjectManager);
 			MainActivity.drawnPicture.setScale((float) 0.6);
 			popUpArea.attachChild(MainActivity.drawnPicture);

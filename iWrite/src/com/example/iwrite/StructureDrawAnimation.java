@@ -12,8 +12,11 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.modifier.IModifier;
 
 import Letters.LetterStructureAa;
+import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
+import Letters.LetterStructureKo;
 import Letters.LetterStructureMo;
+import Letters.LetterStructureRaw;
 import Objects.createObjects;
 
 import com.example.iwrite.MainActivity;
@@ -42,7 +45,7 @@ public class StructureDrawAnimation
 
 						@Override
 						public void onModifierStarted(IModifier<IEntity> arg0,
-								IEntity arg1) 
+								IEntity arg1)
 						{
 
 						}
@@ -66,6 +69,21 @@ public class StructureDrawAnimation
 							else if(MainActivity.letter == 3)
 							{
 								LetterStructureE.Structure();
+							}
+							//For letter Raw
+							else if(MainActivity.letter == 4)
+							{
+								LetterStructureRaw.Structure();
+							}
+							//For letter Ko
+							else if(MainActivity.letter == 5)
+							{
+								LetterStructureKo.Structure();
+							}
+							//For letter Bo
+							else if(MainActivity.letter == 6)
+							{
+								LetterStructureBo.Structure();
 							}
 							
 						}

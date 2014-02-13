@@ -56,7 +56,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			mHandTutorialTextureRegion,	mCrossRegion,
 			mDusterTextureRegion, mSlidingScreenTextureRegion, 
 			mMoExampleTextureRegion, mAaOutLineTextureRegion, 
-			mEOutLineTextureRegion;
+			mEOutLineTextureRegion, mRawOutLineTextureRegion,
+			mKoOutLineTextureRegion, mBoOutLineTextureRegion;
 	
 	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
 							mAnimatedMonkeyBitmapTextureAtlas;
@@ -69,7 +70,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasDuster, mBitmapTextureAtlasMonkeyBrush,
 	 mBitmapTextureAtlasHandTutorial, mBitmapTextureAtlasMoExample,
 	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine,
-	 mBitmapTextureAtlasEHoOutLine;
+	 mBitmapTextureAtlasRawOutLine, mBitmapTextureAtlasKoOutLine,
+	 mBitmapTextureAtlasBoOutLine;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -77,7 +79,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Sprite[] whiteChalk = new Sprite[5000];
 	public static Sprite[] tutorialWhiteChalk = new Sprite[5000];
 	
-	public static Sprite backGround, blackBoard, OutLine, aaOutLine;
+	public static Sprite backGround, blackBoard, OutLine, aaOutLine, rawOutLine, koOutline,
+						boOutline;
 	public static Sprite bookIcon, handTutorial, duster, slidingScreen;
 	public static Sprite createPopUp, correctLetter, drawnPicture, cross, board;
 	public static AnimatedSprite cursor;
@@ -146,6 +149,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 
 		mBitmapTextureAtlasMoExample = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
+
 		//popup
 		mBitmapTextureAtlasBookIcon = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
 		 
@@ -168,6 +172,13 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasAaOutLine= new BitmapTextureAtlas(this.getTextureManager(), 700, 600, TextureOptions.BILINEAR);
 		
 		mBitmapTextureAtlasEOutLine= new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasRawOutLine= new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasKoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasBoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
 		
 		//popup
 		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
@@ -202,6 +213,16 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mEOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasEOutLine, this,
 				"eExample.png", 0, 0,  1, 1);
+		
+		mRawOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasRawOutLine, this,
+				"rawExample.png", 0, 0,  1, 1);
+		
+		mKoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasKoOutLine, this,
+				"koExample.png", 0, 0,  1, 1);
+		
+		mBoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBoOutLine, this,
+				"boExample.png", 0, 0,  1, 1);
+		
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -285,7 +306,10 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasMoExample.load();
 		mBitmapTextureAtlasAaOutLine.load();
 		mBitmapTextureAtlasEOutLine.load();
-
+		mBitmapTextureAtlasRawOutLine.load();
+		mBitmapTextureAtlasKoOutLine.load();
+		mBitmapTextureAtlasBoOutLine.load();
+		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
 		{
@@ -356,7 +380,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		letter = 0;
 
 		//getting the renderView width and height for taking the screen shot
-		viewWidth = MainActivity.MainActivityInstace.mRenderSurfaceView.getWidth() - 500;
+		viewWidth = MainActivity.MainActivityInstace.mRenderSurfaceView.getWidth() - 490;
 		viewHeight = MainActivity.MainActivityInstace.mRenderSurfaceView.getHeight() - 165;
 		
 		moOutLineX = CAMERA_WIDTH / 2 - 130;
@@ -366,9 +390,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		AnimationDrawTutorial.animationDrawTimer();
 		mScene.registerUpdateHandler(timer1);
 				
-		//1.Mo 2.Aa 3.e
+		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo
 		//choose the letter with number
-		MainActivity.letter = 2;  
+		MainActivity.letter = 5;  
 		//create objects
 		createObjects.createObject();
 		
