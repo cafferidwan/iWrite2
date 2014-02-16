@@ -10,14 +10,13 @@ import org.andengine.entity.modifier.SequenceEntityModifier;
 import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.modifier.IModifier;
-
 import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureMo;
 import Letters.LetterStructureRaw;
-import Objects.createObjects;
+import Letters.LetterStructureTalibaSha;
 
 import com.example.iwrite.MainActivity;
 
@@ -84,6 +83,11 @@ public class StructureDrawAnimation
 							else if(MainActivity.letter == 6)
 							{
 								LetterStructureBo.Structure();
+							}
+							//For letter TalibaSha
+							else if(MainActivity.letter == 7)
+							{
+								LetterStructureTalibaSha.Structure();
 							}
 							
 						}

@@ -9,6 +9,7 @@ import Letters.LetterStructureE;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureMo;
 import Letters.LetterStructureRaw;
+import Letters.LetterStructureTalibaSha;
 import Objects.createObjects;
 import ScreenShoot.ScreenShot;
 
@@ -97,6 +98,13 @@ public class Touch
 				{
 					//building the structure for the letter with number sprite
 					LetterStructureBo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter TalibaSha
+				else if(MainActivity.letter == 7)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureTalibaSha.getStructure(pSceneTouchEvent.getX(),
 							pSceneTouchEvent.getY());
 				}
 				

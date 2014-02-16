@@ -14,6 +14,7 @@ import Letters.LetterStructureE;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureMo;
 import Letters.LetterStructureRaw;
+import Letters.LetterStructureTalibaSha;
 
 import com.example.iwrite.MainActivity;
 import com.example.iwrite.NumberSprites;
@@ -185,6 +186,11 @@ public class AnimationDrawTutorial
 			{
 				//create number with cursor
 				LetterStructureBo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 7)
+			{
+				//create number with cursor
+				LetterStructureTalibaSha.createNumberSpriteAndCursor();
 			}
 		}
 	}

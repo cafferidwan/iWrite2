@@ -57,7 +57,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			mDusterTextureRegion, mSlidingScreenTextureRegion, 
 			mMoExampleTextureRegion, mAaOutLineTextureRegion, 
 			mEOutLineTextureRegion, mRawOutLineTextureRegion,
-			mKoOutLineTextureRegion, mBoOutLineTextureRegion;
+			mKoOutLineTextureRegion, mBoOutLineTextureRegion,
+			mTalibaShaOutLineTextureRegion;
 	
 	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
 							mAnimatedMonkeyBitmapTextureAtlas;
@@ -71,7 +72,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasHandTutorial, mBitmapTextureAtlasMoExample,
 	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine,
 	 mBitmapTextureAtlasRawOutLine, mBitmapTextureAtlasKoOutLine,
-	 mBitmapTextureAtlasBoOutLine;
+	 mBitmapTextureAtlasBoOutLine, mBitmapTextureAtlasTalibaShaOutLine;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -80,7 +81,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static Sprite[] tutorialWhiteChalk = new Sprite[5000];
 	
 	public static Sprite backGround, blackBoard, OutLine, aaOutLine, rawOutLine, koOutline,
-						boOutline;
+						boOutline, talibaSha;
 	public static Sprite bookIcon, handTutorial, duster, slidingScreen;
 	public static Sprite createPopUp, correctLetter, drawnPicture, cross, board;
 	public static AnimatedSprite cursor;
@@ -179,6 +180,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mBitmapTextureAtlasBoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
+		mBitmapTextureAtlasTalibaShaOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
 		
 		//popup
 		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
@@ -222,6 +225,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mBoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBoOutLine, this,
 				"boExample.png", 0, 0,  1, 1);
+		
+		mTalibaShaOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBoOutLine, this,
+				"talibaShaExample.png", 0, 0,  1, 1);
 		
 		
 		// All the numbers
@@ -309,6 +315,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasRawOutLine.load();
 		mBitmapTextureAtlasKoOutLine.load();
 		mBitmapTextureAtlasBoOutLine.load();
+		mBitmapTextureAtlasTalibaShaOutLine.load();
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -390,9 +397,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		AnimationDrawTutorial.animationDrawTimer();
 		mScene.registerUpdateHandler(timer1);
 				
-		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo
+		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha
 		//choose the letter with number
-		MainActivity.letter = 5;  
+		MainActivity.letter = 7;  
 		//create objects
 		createObjects.createObject();
 		
