@@ -2,15 +2,15 @@ package com.example.iwrite;
 
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.debug.Debug;
-
 import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureKo;
+import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
+import Letters.LetterStructurePo;
 import Letters.LetterStructureRaw;
 import Letters.LetterStructureTalibaSha;
-import Objects.createObjects;
 import ScreenShoot.ScreenShot;
 
 public class Touch
@@ -107,8 +107,20 @@ public class Touch
 					LetterStructureTalibaSha.getStructure(pSceneTouchEvent.getX(),
 							pSceneTouchEvent.getY());
 				}
-				
-				
+				//For letter Lo
+				else if(MainActivity.letter == 8)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureLo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Po
+				else if(MainActivity.letter == 9)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructurePo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
 				
 				
 				//take the screenShoot when triggered

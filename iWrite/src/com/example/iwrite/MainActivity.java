@@ -58,7 +58,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			mMoExampleTextureRegion, mAaOutLineTextureRegion, 
 			mEOutLineTextureRegion, mRawOutLineTextureRegion,
 			mKoOutLineTextureRegion, mBoOutLineTextureRegion,
-			mTalibaShaOutLineTextureRegion;
+			mTalibaShaOutLineTextureRegion, mLoOutLineTextureRegion,
+			mPoOutLineTextureRegion;
 	
 	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
 							mAnimatedMonkeyBitmapTextureAtlas;
@@ -72,7 +73,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasHandTutorial, mBitmapTextureAtlasMoExample,
 	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine,
 	 mBitmapTextureAtlasRawOutLine, mBitmapTextureAtlasKoOutLine,
-	 mBitmapTextureAtlasBoOutLine, mBitmapTextureAtlasTalibaShaOutLine;
+	 mBitmapTextureAtlasBoOutLine, mBitmapTextureAtlasTalibaShaOutLine,
+	 mBitmapTextureAtlasLoOutLine, mBitmapTextureAtlasPoOutLine;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -182,6 +184,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mBitmapTextureAtlasTalibaShaOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
+		mBitmapTextureAtlasLoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasPoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
 		//popup
 		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
@@ -229,6 +234,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mTalibaShaOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBoOutLine, this,
 				"talibaShaExample.png", 0, 0,  1, 1);
 		
+		mLoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasLoOutLine, this,
+				"loExample.png", 0, 0,  1, 1);
+		
+		mPoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasPoOutLine, this,
+				"poExample.png", 0, 0,  1, 1);
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -309,6 +319,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasDuster.load();
 		mBitmapTextureAtlasMonkeyBrush.load();
 		mBitmapTextureAtlasHandTutorial.load();
+		
 		mBitmapTextureAtlasMoExample.load();
 		mBitmapTextureAtlasAaOutLine.load();
 		mBitmapTextureAtlasEOutLine.load();
@@ -316,6 +327,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasKoOutLine.load();
 		mBitmapTextureAtlasBoOutLine.load();
 		mBitmapTextureAtlasTalibaShaOutLine.load();
+		mBitmapTextureAtlasLoOutLine.load();
+		mBitmapTextureAtlasPoOutLine.load();
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -397,9 +410,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		AnimationDrawTutorial.animationDrawTimer();
 		mScene.registerUpdateHandler(timer1);
 				
-		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha
+		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha 8.Lo 9.Po
 		//choose the letter with number
-		MainActivity.letter = 7;  
+		MainActivity.letter = 9;  
 		//create objects
 		createObjects.createObject();
 		

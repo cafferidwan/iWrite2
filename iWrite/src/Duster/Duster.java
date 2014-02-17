@@ -10,10 +10,7 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.ease.EaseBounceOut;
-
-import Animation.AnimationDrawTutorial;
 import android.content.Intent;
-
 import com.example.iwrite.MainActivity;
 
 public class Duster

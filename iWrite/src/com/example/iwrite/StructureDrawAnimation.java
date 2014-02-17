@@ -14,7 +14,9 @@ import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureKo;
+import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
+import Letters.LetterStructurePo;
 import Letters.LetterStructureRaw;
 import Letters.LetterStructureTalibaSha;
 
@@ -89,6 +91,16 @@ public class StructureDrawAnimation
 							{
 								LetterStructureTalibaSha.Structure();
 							}
+							//For letter Lo
+							else if(MainActivity.letter == 8)
+							{
+								LetterStructureLo.Structure();
+							}
+							//For letter Po
+							else if(MainActivity.letter == 9)
+							{
+								LetterStructurePo.Structure();
+							}
 							
 						}
 					});
@@ -102,7 +114,8 @@ public class StructureDrawAnimation
 			}
 	}
 
-	//shake animation 
+	
+	//shake animation
 	public static void shake(int a, final Sprite sp, float x)
 	{
 		if(a<5) 

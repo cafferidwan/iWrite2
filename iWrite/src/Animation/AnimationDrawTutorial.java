@@ -12,7 +12,9 @@ import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureKo;
+import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
+import Letters.LetterStructurePo;
 import Letters.LetterStructureRaw;
 import Letters.LetterStructureTalibaSha;
 
@@ -191,6 +193,16 @@ public class AnimationDrawTutorial
 			{
 				//create number with cursor
 				LetterStructureTalibaSha.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 8)
+			{
+				//create number with cursor
+				LetterStructureLo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 9)
+			{
+				//create number with cursor
+				LetterStructurePo.createNumberSpriteAndCursor();
 			}
 		}
 	}
