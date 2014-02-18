@@ -11,6 +11,7 @@ import org.andengine.entity.sprite.AnimatedSprite;
 import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
+import Letters.LetterStructureGo;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
@@ -203,6 +204,11 @@ public class AnimationDrawTutorial
 			{
 				//create number with cursor
 				LetterStructurePo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 10)
+			{
+				//create number with cursor
+				LetterStructureGo.createNumberSpriteAndCursor();
 			}
 		}
 	}

@@ -59,7 +59,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			mEOutLineTextureRegion, mRawOutLineTextureRegion,
 			mKoOutLineTextureRegion, mBoOutLineTextureRegion,
 			mTalibaShaOutLineTextureRegion, mLoOutLineTextureRegion,
-			mPoOutLineTextureRegion;
+			mPoOutLineTextureRegion, mGoOutLineTextureRegion;
 	
 	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
 							mAnimatedMonkeyBitmapTextureAtlas;
@@ -74,7 +74,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine,
 	 mBitmapTextureAtlasRawOutLine, mBitmapTextureAtlasKoOutLine,
 	 mBitmapTextureAtlasBoOutLine, mBitmapTextureAtlasTalibaShaOutLine,
-	 mBitmapTextureAtlasLoOutLine, mBitmapTextureAtlasPoOutLine;
+	 mBitmapTextureAtlasLoOutLine, mBitmapTextureAtlasPoOutLine,
+	 mBitmapTextureAtlasGoOutLine;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -188,6 +189,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mBitmapTextureAtlasPoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
+		mBitmapTextureAtlasGoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
 		//popup
 		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
 				"bookIcon.png", 0, 0,  1, 1);
@@ -239,6 +242,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mPoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasPoOutLine, this,
 				"poExample.png", 0, 0,  1, 1);
+		
+		mGoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasGoOutLine, this,
+				"goExample.png", 0, 0,  1, 1);
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -329,6 +335,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasTalibaShaOutLine.load();
 		mBitmapTextureAtlasLoOutLine.load();
 		mBitmapTextureAtlasPoOutLine.load();
+		mBitmapTextureAtlasGoOutLine.load();
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -410,9 +417,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		AnimationDrawTutorial.animationDrawTimer();
 		mScene.registerUpdateHandler(timer1);
 				
-		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha 8.Lo 9.Po
+		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha 8.Lo 9.Po 10.Go
 		//choose the letter with number
-		MainActivity.letter = 9;  
+		MainActivity.letter = 10;  
 		//create objects
 		createObjects.createObject();
 		

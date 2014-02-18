@@ -11,41 +11,41 @@ public class NumberSprites
 	
 	//when a sprite collides a number sprite then it is called;
 	//it removes the number sprite and enables the next state for drawing
-	public static void remove(int collisionSprite, int removeSpriteNumber, int stateNumber)
-	{
-		
-		if(MainActivity.whiteChalk[MainActivity.aCounter].collidesWith(MainActivity.numberSprites[collisionSprite]))
-		{
-			//removing when it is in the last state
-			if(collisionSprite == 16)
-			{ 
-				MainActivity.mScene.detachChild(MainActivity.numberSprites[16]);
-				
-				//trigger for taking screen shot
-				MainActivity.screenShotCounter = 1;
-				//create book icon
-				PopUp.createBookIcon();
-				
-				MainActivity.isActionMoving = false;
-				
-				//start the hand tutorial 
-//				MainActivity.tutorialCounter++;
-//				if(MainActivity.tutorialCounter==1)
-//				{
-					HandTutorial.handTutorialCreate();
-//				}
-			}
-			MainActivity.mScene.detachChild(MainActivity.numberSprites[removeSpriteNumber]);
-			MainActivity.numberSprites[removeSpriteNumber].setY(MainActivity.CAMERA_HEIGHT+500);
-			MainActivity.wCounter =MainActivity. aCounter+2;
-			MainActivity.state = stateNumber;
-			
-			//play sound
-			MainActivity.audioPlay = true;
-			playAudio(R.raw.star);
-			
-		}
-	}
+//	public static void remove(int collisionSprite, int removeSpriteNumber, int stateNumber)
+//	{
+//		
+//		if(MainActivity.whiteChalk[MainActivity.aCounter].collidesWith(MainActivity.numberSprites[collisionSprite]))
+//		{
+//			//removing when it is in the last state
+//			if(collisionSprite == 16)
+//			{ 
+//				MainActivity.mScene.detachChild(MainActivity.numberSprites[16]);
+//				
+//				//trigger for taking screen shot
+//				MainActivity.screenShotCounter = 1;
+//				//create book icon
+//				PopUp.createBookIcon();
+//				
+//				MainActivity.isActionMoving = false;
+//				
+//				//start the hand tutorial 
+////				MainActivity.tutorialCounter++;
+////				if(MainActivity.tutorialCounter==1)
+////				{
+//					HandTutorial.handTutorialCreate();
+////				}
+//			}
+//			MainActivity.mScene.detachChild(MainActivity.numberSprites[removeSpriteNumber]);
+//			MainActivity.numberSprites[removeSpriteNumber].setY(MainActivity.CAMERA_HEIGHT+500);
+//			MainActivity.wCounter =MainActivity. aCounter+2;
+//			MainActivity.state = stateNumber;
+//			
+//			//play sound
+//			MainActivity.audioPlay = true;
+//			playAudio(R.raw.star);
+//			
+//		}
+//	}
 	
 	
 	//set cursor/fish position

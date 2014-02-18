@@ -13,6 +13,7 @@ import org.andengine.util.modifier.IModifier;
 import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
+import Letters.LetterStructureGo;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
@@ -48,14 +49,14 @@ public class StructureDrawAnimation
 						public void onModifierStarted(IModifier<IEntity> arg0,
 								IEntity arg1)
 						{
-
+							MainActivity.isActionMoving =false;
 						}
 
 						@Override
 						public void onModifierFinished(IModifier<IEntity> arg0,
 								IEntity arg1)
 						{
-							
+							MainActivity.isActionMoving = true;
 							//For letter Mo
 							if(MainActivity.letter == 1)
 							{
@@ -100,6 +101,11 @@ public class StructureDrawAnimation
 							else if(MainActivity.letter == 9)
 							{
 								LetterStructurePo.Structure();
+							}
+							//For letter Go
+							else if(MainActivity.letter == 10)
+							{
+								LetterStructureGo.Structure();
 							}
 							
 						}
