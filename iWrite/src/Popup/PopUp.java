@@ -105,6 +105,42 @@ public class PopUp
 			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mRawFilledTextureRegion,
 					MainActivity.vertexBufferObjectManager);
 		}
+		//Ko
+		else if(MainActivity.letter == 5)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mKoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Bo
+		else if(MainActivity.letter == 6)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mBoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Talibasha
+		else if(MainActivity.letter == 7)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mTalibashaFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Lo
+		else if(MainActivity.letter == 8)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mLoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Po
+		else if(MainActivity.letter == 9)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mPoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Go
+		else if(MainActivity.letter == 10)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mGoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
 		//Ho
 		else if(MainActivity.letter == 11)
 		{
