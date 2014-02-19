@@ -14,6 +14,7 @@ import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureGo;
+import Letters.LetterStructureHo;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
@@ -106,6 +107,11 @@ public class StructureDrawAnimation
 							else if(MainActivity.letter == 10)
 							{
 								LetterStructureGo.Structure();
+							}
+							//For letter Ho
+							else if(MainActivity.letter == 11)
+							{
+								LetterStructureHo.Structure();
 							}
 							
 						}

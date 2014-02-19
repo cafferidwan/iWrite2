@@ -6,6 +6,7 @@ import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureGo;
+import Letters.LetterStructureHo;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
@@ -127,6 +128,13 @@ public class Touch
 				{
 					//building the structure for the letter with number sprite
 					LetterStructureGo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Ho
+				else if(MainActivity.letter == 11)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureHo.getStructure(pSceneTouchEvent.getX(),
 							pSceneTouchEvent.getY());
 				}
 				

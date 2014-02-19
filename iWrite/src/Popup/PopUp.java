@@ -81,8 +81,37 @@ public class PopUp
 		popUpArea.attachChild(MainActivity.board);
 
 		//creating correct letter
-		MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mMoExampleTextureRegion,
-				MainActivity.vertexBufferObjectManager);
+		//Mo
+		if(MainActivity.letter == 1)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mMoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Aa
+		else if(MainActivity.letter == 2)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mAaFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//E
+		else if(MainActivity.letter == 3)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mEFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Raw
+		else if(MainActivity.letter == 4)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mRawFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Ho
+		else if(MainActivity.letter == 11)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mHoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		
 		MainActivity.correctLetter.setScale((float) 0.4);
 		popUpArea.attachChild(MainActivity.correctLetter);
 		

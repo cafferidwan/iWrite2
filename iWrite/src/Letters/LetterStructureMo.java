@@ -516,9 +516,9 @@ public class LetterStructureMo
 				
 				if(
 						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>30 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>30 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35 
+						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
+							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
+							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 						)
 				{
 					

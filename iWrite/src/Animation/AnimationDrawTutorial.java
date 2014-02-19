@@ -12,6 +12,7 @@ import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureGo;
+import Letters.LetterStructureHo;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
@@ -209,6 +210,11 @@ public class AnimationDrawTutorial
 			{
 				//create number with cursor
 				LetterStructureGo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 11)
+			{
+				//create number with cursor
+				LetterStructureHo.createNumberSpriteAndCursor();
 			}
 		}
 	}

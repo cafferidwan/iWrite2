@@ -47,20 +47,38 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static BitmapTextureAtlas mBitmapTextureAtlasBlackBoard,
 			mBitmapTextureAtlasMoOutLine, mBitmapTextureAtlasBackGround,
 			mBitmapTextureAtlasWhiteChalk, mBitmapTextureAtlasCursor;
-
+	
+	public static ITextureRegion mMoFilledTextureRegion, mAaFilledTextureRegion,
+								mEFilledTextureRegion, mHoFilledTextureRegion,
+								mRawFilledTextureRegion;
+	
+	public static BitmapTextureAtlas mBitmapTextureAtlasMoFilled, mBitmapTextureAtlasAaFilled,
+									mBitmapTextureAtlasEFilled, mBitmapTextureAtlasHoFilled,
+									mBitmapTextureAtlasRawFilled;
+	
+	public static ITextureRegion mAaOutLineTextureRegion, 
+	mEOutLineTextureRegion, mRawOutLineTextureRegion,
+	mKoOutLineTextureRegion, mBoOutLineTextureRegion,
+	mTalibaShaOutLineTextureRegion, mLoOutLineTextureRegion,
+	mPoOutLineTextureRegion, mGoOutLineTextureRegion,
+	mHoOutLineTextureRegion, mMoOutLineTextureRegion;
+	
 	public static ITextureRegion mbackGroundTextureRegion,
-			mBlackBoardTextureRegion, mMoOutLineTextureRegion,
+			mBlackBoardTextureRegion, mSlidingScreenTextureRegion,
 			mWhiteChalkTextureRegion, mCursorTextureRegion,
 			mPopUpBlackBoardTextureRegion, mBookIconRegion,
 			mCreatePopUpRegion, mCorrectLetterRegion, 
 			mHandTutorialTextureRegion,	mCrossRegion,
-			mDusterTextureRegion, mSlidingScreenTextureRegion, 
-			mMoExampleTextureRegion, mAaOutLineTextureRegion, 
-			mEOutLineTextureRegion, mRawOutLineTextureRegion,
-			mKoOutLineTextureRegion, mBoOutLineTextureRegion,
-			mTalibaShaOutLineTextureRegion, mLoOutLineTextureRegion,
-			mPoOutLineTextureRegion, mGoOutLineTextureRegion;
+			mDusterTextureRegion; 
 	
+	
+	public static BitmapTextureAtlas 
+	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine,
+	 mBitmapTextureAtlasRawOutLine, mBitmapTextureAtlasKoOutLine,
+	 mBitmapTextureAtlasBoOutLine, mBitmapTextureAtlasTalibaShaOutLine,
+	 mBitmapTextureAtlasLoOutLine, mBitmapTextureAtlasPoOutLine,
+	 mBitmapTextureAtlasGoOutLine, mBitmapTextureAtlasHoOutLine;
+			
 	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
 							mAnimatedMonkeyBitmapTextureAtlas;
 	public static TiledTextureRegion mFishTextureRegion,
@@ -70,12 +88,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasBookIcon, mBitmapTextureAtlasHandWirtingBook,
 	 mBitmapTextureAtlasBoard, mBitmapTextureAtlasHandCross, 
 	 mBitmapTextureAtlasDuster, mBitmapTextureAtlasMonkeyBrush,
-	 mBitmapTextureAtlasHandTutorial, mBitmapTextureAtlasMoExample,
-	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine,
-	 mBitmapTextureAtlasRawOutLine, mBitmapTextureAtlasKoOutLine,
-	 mBitmapTextureAtlasBoOutLine, mBitmapTextureAtlasTalibaShaOutLine,
-	 mBitmapTextureAtlasLoOutLine, mBitmapTextureAtlasPoOutLine,
-	 mBitmapTextureAtlasGoOutLine;
+	 mBitmapTextureAtlasHandTutorial;
 
 	public static BitmapTextureAtlas[] mBitmapTextureAtlasNumber = new BitmapTextureAtlas[25];
 	public static ITextureRegion[] mTextureRegionNumber = new ITextureRegion[25];
@@ -141,37 +154,35 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	protected void onCreateResources() 
 	{
 		// TODO Auto-generated method stub
-		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("iWriteGFX/");
-
-		mBitmapTextureAtlasBackGround = new BitmapTextureAtlas(this.getTextureManager(), 1600, 864, TextureOptions.BILINEAR);
-
-		mBitmapTextureAtlasBlackBoard = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
-
-		mBitmapTextureAtlasMoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 254, 262, TextureOptions.BILINEAR);
-
-		mBitmapTextureAtlasWhiteChalk = new BitmapTextureAtlas(this.getTextureManager(), 50, 50, TextureOptions.BILINEAR);
-
-		mBitmapTextureAtlasMoExample = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
-
-		//popup
-		mBitmapTextureAtlasBookIcon = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
-		 
-		mBitmapTextureAtlasHandWirtingBook = new BitmapTextureAtlas(this.getTextureManager(), 1600, 800, TextureOptions.BILINEAR);
-		 
-		mBitmapTextureAtlasBoard = new BitmapTextureAtlas(this.getTextureManager(), 600, 600, TextureOptions.BILINEAR);
-		 
-		mBitmapTextureAtlasHandCross = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("iWriteGFX/FilledLetters/");
 		
-		mBitmapTextureAtlasDuster = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasMoFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mMoFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasMoFilled, this,
+				"moFilled.png", 0, 0,  1, 1);
 		
-		mBitmapTextureAtlasMonkeyBrush = new BitmapTextureAtlas(this.getTextureManager(), 1300, 600, TextureOptions.BILINEAR);
-
-		mBitmapTextureAtlasHandTutorial = new BitmapTextureAtlas(this.getTextureManager(), 100, 100, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasAaFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mAaFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAaFilled, this,
+				"aaFilled.png", 0, 0,  1, 1);
 		
-		mBitmapTextureAtlasDuster = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasEFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mEFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAaFilled, this,
+				"eFilled.png", 0, 0,  1, 1);
 		
-		mBitmapTextureAtlasMonkeyBrush = new BitmapTextureAtlas(this.getTextureManager(), 1300, 600, TextureOptions.BILINEAR);
+		mBitmapTextureAtlasHoFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mHoFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHoFilled, this,
+				"hoFilled.png", 0, 0,  1, 1);
+		
+		mBitmapTextureAtlasRawFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mRawFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasRawFilled, this,
+				"rawFilled.png", 0, 0,  1, 1);
+		
+		
+		
+		
+		
+		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("iWriteGFX/LetterOutLine/");
+		
 		
 		mBitmapTextureAtlasAaOutLine= new BitmapTextureAtlas(this.getTextureManager(), 700, 600, TextureOptions.BILINEAR);
 		
@@ -191,33 +202,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mBitmapTextureAtlasGoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
-		//popup
-		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
-				"bookIcon.png", 0, 0,  1, 1);
-				
-		mCreatePopUpRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHandWirtingBook, this,
-				"handwritingbook.png", 0, 0,  1, 1);
-				
-		mCrossRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHandCross, this,
-				"cross.png", 0, 0,  1, 1);
+		mBitmapTextureAtlasHoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
-		mDusterTextureRegion =  BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasDuster, this,
-				"duster.png", 0, 0,  1, 1);
-				
-		mHandTutorialTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHandTutorial, this,
-				"hand.png", 0, 0,  1, 1);
-		
-		mPopUpBlackBoardTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBoard, this,
-				"board.png", 0, 0,  1, 1); 
-		
-		mDusterTextureRegion =  BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasDuster, this,
-				"duster.png", 0, 0,  1, 1);
-		
-		mSlidingScreenTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasMonkeyBrush, this,
-				"monkeyBrush3.png", 0, 0,  1, 1);
-
-		mMoExampleTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasMoExample, this,
-				"moExample.png", 0, 0,  1, 1);
 		
 		mAaOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAaOutLine, this,
 				"aaExample.png", 0, 0,  1, 1);
@@ -245,6 +231,68 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mGoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasGoOutLine, this,
 				"goExample.png", 0, 0,  1, 1);
+		
+		mHoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHoOutLine, this,
+				"hoExample.png", 0, 0,  1, 1);
+		
+		
+		
+		
+		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("iWriteGFX/");
+
+		mBitmapTextureAtlasBackGround = new BitmapTextureAtlas(this.getTextureManager(), 1600, 864, TextureOptions.BILINEAR);
+
+		mBitmapTextureAtlasBlackBoard = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+
+		mBitmapTextureAtlasMoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 254, 262, TextureOptions.BILINEAR);
+
+		mBitmapTextureAtlasWhiteChalk = new BitmapTextureAtlas(this.getTextureManager(), 50, 50, TextureOptions.BILINEAR);
+
+		//popup
+		mBitmapTextureAtlasBookIcon = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		 
+		mBitmapTextureAtlasHandWirtingBook = new BitmapTextureAtlas(this.getTextureManager(), 1600, 800, TextureOptions.BILINEAR);
+		 
+		mBitmapTextureAtlasBoard = new BitmapTextureAtlas(this.getTextureManager(), 600, 600, TextureOptions.BILINEAR);
+		 
+		mBitmapTextureAtlasHandCross = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasDuster = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasMonkeyBrush = new BitmapTextureAtlas(this.getTextureManager(), 1300, 600, TextureOptions.BILINEAR);
+
+		mBitmapTextureAtlasHandTutorial = new BitmapTextureAtlas(this.getTextureManager(), 100, 100, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasDuster = new BitmapTextureAtlas(this.getTextureManager(), 200, 200, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasMonkeyBrush = new BitmapTextureAtlas(this.getTextureManager(), 1300, 600, TextureOptions.BILINEAR);
+
+		//popup
+		mBookIconRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBookIcon, this,
+				"bookIcon.png", 0, 0,  1, 1);
+				
+		mCreatePopUpRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHandWirtingBook, this,
+				"handwritingbook.png", 0, 0,  1, 1);
+				
+		mCrossRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHandCross, this,
+				"cross.png", 0, 0,  1, 1);
+		
+		mDusterTextureRegion =  BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasDuster, this,
+				"duster.png", 0, 0,  1, 1);
+				
+		mHandTutorialTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHandTutorial, this,
+				"hand.png", 0, 0,  1, 1);
+		
+		mPopUpBlackBoardTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasBoard, this,
+				"board.png", 0, 0,  1, 1); 
+		
+		mDusterTextureRegion =  BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasDuster, this,
+				"duster.png", 0, 0,  1, 1);
+		
+		mSlidingScreenTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasMonkeyBrush, this,
+				"monkeyBrush3.png", 0, 0,  1, 1);
+
+		
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -326,7 +374,12 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasMonkeyBrush.load();
 		mBitmapTextureAtlasHandTutorial.load();
 		
-		mBitmapTextureAtlasMoExample.load();
+		mBitmapTextureAtlasMoFilled.load();
+		mBitmapTextureAtlasAaFilled.load();
+		mBitmapTextureAtlasEFilled.load();
+		mBitmapTextureAtlasHoFilled.load();
+		mBitmapTextureAtlasRawFilled.load();
+		
 		mBitmapTextureAtlasAaOutLine.load();
 		mBitmapTextureAtlasEOutLine.load();
 		mBitmapTextureAtlasRawOutLine.load();
@@ -336,6 +389,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasLoOutLine.load();
 		mBitmapTextureAtlasPoOutLine.load();
 		mBitmapTextureAtlasGoOutLine.load();
+		mBitmapTextureAtlasHoOutLine.load();
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -417,9 +471,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		AnimationDrawTutorial.animationDrawTimer();
 		mScene.registerUpdateHandler(timer1);
 				
-		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha 8.Lo 9.Po 10.Go
+		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha 8.Lo 9.Po 10.Go 11.Ho
 		//choose the letter with number
-		MainActivity.letter = 10;  
+		MainActivity.letter = 11;  
 		//create objects
 		createObjects.createObject();
 		
