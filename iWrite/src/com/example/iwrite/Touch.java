@@ -2,14 +2,20 @@ package com.example.iwrite;
 
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.debug.Debug;
+
+import Letters.LetterStructureA;
 import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
+import Letters.LetterStructureCho;
+import Letters.LetterStructureDo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureGo;
 import Letters.LetterStructureHo;
+import Letters.LetterStructureKho;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
+import Letters.LetterStructureNo;
 import Letters.LetterStructurePo;
 import Letters.LetterStructureRaw;
 import Letters.LetterStructureTalibaSha;
@@ -135,6 +141,41 @@ public class Touch
 				{
 					//building the structure for the letter with number sprite
 					LetterStructureHo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Kho
+				else if(MainActivity.letter == 12)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureKho.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Cho
+				else if(MainActivity.letter == 13)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureCho.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter No
+				else if(MainActivity.letter == 14)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureNo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter No
+				else if(MainActivity.letter == 15)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureA.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Do
+				else if(MainActivity.letter == 16)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureDo.getStructure(pSceneTouchEvent.getX(),
 							pSceneTouchEvent.getY());
 				}
 				

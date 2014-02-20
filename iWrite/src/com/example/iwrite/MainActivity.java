@@ -44,30 +44,50 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	public static VertexBufferObjectManager vertexBufferObjectManager;
 	public static MainActivity MainActivityInstace;
 
-	public static BitmapTextureAtlas mBitmapTextureAtlasBlackBoard,
-			mBitmapTextureAtlasMoOutLine, mBitmapTextureAtlasBackGround,
-			mBitmapTextureAtlasWhiteChalk, mBitmapTextureAtlasCursor;
+	
 	
 	public static ITextureRegion mMoFilledTextureRegion, mAaFilledTextureRegion,
 								mEFilledTextureRegion, mHoFilledTextureRegion,
 								mRawFilledTextureRegion, mKoFilledTextureRegion,
 								mBoFilledTextureRegion, mTalibashaFilledTextureRegion,
 								mLoFilledTextureRegion, mPoFilledTextureRegion,
-								mGoFilledTextureRegion;
+								mGoFilledTextureRegion, mKhoFilledTextureRegion,
+								mChoFilledTextureRegion, mNoFilledTextureRegion,
+								mAFilledTextureRegion, mDoFilledTextureRegion;
 	
 	public static BitmapTextureAtlas mBitmapTextureAtlasMoFilled, mBitmapTextureAtlasAaFilled,
 									mBitmapTextureAtlasEFilled, mBitmapTextureAtlasHoFilled,
 									mBitmapTextureAtlasRawFilled, mBitmapTextureAtlasKoFilled,
 									mBitmapTextureAtlasBoFilled, mBitmapTextureAtlasTalibashaFilled,
 									mBitmapTextureAtlasLoFilled, mBitmapTextureAtlasPoFilled,
-									mBitmapTextureAtlasGoFilled;
+									mBitmapTextureAtlasGoFilled, mBitmapTextureAtlasKhoFilled,
+									mBitmapTextureAtlasChoFilled, mBitmapTextureAtlasNoFilled,
+									mBitmapTextureAtlasAFilled, mBitmapTextureAtlasDoFilled;
+	
+	
+	
+	public static BitmapTextureAtlas 
+	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine,
+	 mBitmapTextureAtlasRawOutLine, mBitmapTextureAtlasKoOutLine,
+	 mBitmapTextureAtlasBoOutLine, mBitmapTextureAtlasTalibaShaOutLine,
+	 mBitmapTextureAtlasLoOutLine, mBitmapTextureAtlasPoOutLine,
+	 mBitmapTextureAtlasGoOutLine, mBitmapTextureAtlasHoOutLine,
+	 mBitmapTextureAtlasKhoOutLine, mBitmapTextureAtlasChoOutLine,
+	 mBitmapTextureAtlasNoOutLine, mBitmapTextureAtlasAOutLine,
+	 mBitmapTextureAtlasDoOutLine;
 	
 	public static ITextureRegion mAaOutLineTextureRegion, 
 	mEOutLineTextureRegion, mRawOutLineTextureRegion,
 	mKoOutLineTextureRegion, mBoOutLineTextureRegion,
 	mTalibaShaOutLineTextureRegion, mLoOutLineTextureRegion,
 	mPoOutLineTextureRegion, mGoOutLineTextureRegion,
-	mHoOutLineTextureRegion, mMoOutLineTextureRegion;
+	mHoOutLineTextureRegion, mMoOutLineTextureRegion,
+	mKhoOutLineTextureRegion, mChoOutLineTextureRegion,
+	mNoOutLineTextureRegion, mAOutLineTextureRegion,
+	mDoOutLineTextureRegion;
+	
+	
+	
 	
 	public static ITextureRegion mbackGroundTextureRegion,
 			mBlackBoardTextureRegion, mSlidingScreenTextureRegion,
@@ -77,18 +97,16 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 			mHandTutorialTextureRegion,	mCrossRegion,
 			mDusterTextureRegion; 
 	
-	
-	public static BitmapTextureAtlas 
-	 mBitmapTextureAtlasAaOutLine, mBitmapTextureAtlasEOutLine,
-	 mBitmapTextureAtlasRawOutLine, mBitmapTextureAtlasKoOutLine,
-	 mBitmapTextureAtlasBoOutLine, mBitmapTextureAtlasTalibaShaOutLine,
-	 mBitmapTextureAtlasLoOutLine, mBitmapTextureAtlasPoOutLine,
-	 mBitmapTextureAtlasGoOutLine, mBitmapTextureAtlasHoOutLine;
-			
+
 	private BuildableBitmapTextureAtlas mAnimatedBitmapTextureAtlas,
 							mAnimatedMonkeyBitmapTextureAtlas;
 	public static TiledTextureRegion mFishTextureRegion,
 							mMonkeyTextureRegion;
+	
+	public static BitmapTextureAtlas mBitmapTextureAtlasBlackBoard,
+	mBitmapTextureAtlasMoOutLine, mBitmapTextureAtlasBackGround,
+	mBitmapTextureAtlasWhiteChalk, mBitmapTextureAtlasCursor;
+	
 	
 	public static BitmapTextureAtlas mBitmapTextureAtlasPieceChalk,
 	 mBitmapTextureAtlasBookIcon, mBitmapTextureAtlasHandWirtingBook,
@@ -207,6 +225,28 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mGoFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasGoFilled, this,
 				"goFilled.png", 0, 0,  1, 1);
 		
+		mBitmapTextureAtlasKhoFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mKhoFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasKhoFilled, this,
+				"khoFilled.png", 0, 0,  1, 1);
+		
+		mBitmapTextureAtlasChoFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mChoFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasChoFilled, this,
+				"choFilled.png", 0, 0,  1, 1);
+		
+		mBitmapTextureAtlasNoFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mNoFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasNoFilled, this,
+				"noFilled.png", 0, 0,  1, 1);
+		
+		mBitmapTextureAtlasAFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mAFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAFilled, this,
+				"aFilled.png", 0, 0,  1, 1);
+		
+		mBitmapTextureAtlasDoFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mDoFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasDoFilled, this,
+				"doFilled.png", 0, 0,  1, 1);
+		
+		
+		
 		
 		
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("iWriteGFX/LetterOutLine/");
@@ -231,6 +271,18 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasGoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
 		mBitmapTextureAtlasHoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasKhoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasChoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasNoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasAOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasDoOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		
 		
 		
 		mAaOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAaOutLine, this,
@@ -262,6 +314,21 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mHoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasHoOutLine, this,
 				"hoExample.png", 0, 0,  1, 1);
+		
+		mKhoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasKhoOutLine, this,
+				"khoExample.png", 0, 0,  1, 1);
+		
+		mChoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasChoOutLine, this,
+				"choExample.png", 0, 0,  1, 1);
+		
+		mNoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasNoOutLine, this,
+				"noExample.png", 0, 0,  1, 1);
+		
+		mAOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAOutLine, this,
+				"aExample.png", 0, 0,  1, 1);
+		
+		mDoOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasDoOutLine, this,
+				"doExample.png", 0, 0,  1, 1);
 		
 		
 		
@@ -390,9 +457,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mBitmapTextureAtlasBackGround.load();
 		mBitmapTextureAtlasBlackBoard.load();
-		mBitmapTextureAtlasMoOutLine.load();
 		mBitmapTextureAtlasWhiteChalk.load();
-		//mBitmapTextureAtlasWhiteChalk.load();
 		
 		mBitmapTextureAtlasBookIcon.load();
 		mBitmapTextureAtlasHandWirtingBook.load();
@@ -413,8 +478,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasLoFilled.load();
 		mBitmapTextureAtlasPoFilled.load();
 		mBitmapTextureAtlasGoFilled.load();
+		mBitmapTextureAtlasKhoFilled.load();
+		mBitmapTextureAtlasChoFilled.load();
+		mBitmapTextureAtlasNoFilled.load();
+		mBitmapTextureAtlasAFilled.load();
+		mBitmapTextureAtlasDoFilled.load();
 		
 		
+		mBitmapTextureAtlasMoOutLine.load();
 		mBitmapTextureAtlasAaOutLine.load();
 		mBitmapTextureAtlasEOutLine.load();
 		mBitmapTextureAtlasRawOutLine.load();
@@ -426,6 +497,12 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasGoOutLine.load();
 		mBitmapTextureAtlasHoOutLine.load();
 		mBitmapTextureAtlasKoOutLine.load();
+		mBitmapTextureAtlasKhoOutLine.load();
+		mBitmapTextureAtlasChoOutLine.load();
+		mBitmapTextureAtlasNoOutLine.load();
+		mBitmapTextureAtlasAOutLine.load();
+		mBitmapTextureAtlasDoOutLine.load();
+		
 		
 		// All the numbers
 		for (int i = 1; i <= totalLoadNumberPic; i++) 
@@ -508,8 +585,10 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mScene.registerUpdateHandler(timer1);
 				
 		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha 8.Lo 9.Po 10.Go 11.Ho
+		//12.Kho 13.Cho 14.No 15.A 16.Do
+		
 		//choose the letter with number
-		MainActivity.letter = 10;  
+		MainActivity.letter = 16;  
 		//create objects
 		createObjects.createObject();
 		

@@ -147,6 +147,36 @@ public class PopUp
 			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mHoFilledTextureRegion,
 					MainActivity.vertexBufferObjectManager);
 		}
+		//Kho
+		else if(MainActivity.letter == 12)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mKhoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Kho
+		else if(MainActivity.letter == 13)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mChoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//No
+		else if(MainActivity.letter == 14)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mNoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//A
+		else if(MainActivity.letter == 15)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mAFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
+		//Do
+		else if(MainActivity.letter == 16)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mDoFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
 		
 		MainActivity.correctLetter.setScale((float) 0.4);
 		popUpArea.attachChild(MainActivity.correctLetter);

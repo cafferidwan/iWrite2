@@ -10,14 +10,20 @@ import org.andengine.entity.modifier.SequenceEntityModifier;
 import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.modifier.IModifier;
+
+import Letters.LetterStructureA;
 import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
+import Letters.LetterStructureCho;
+import Letters.LetterStructureDo;
 import Letters.LetterStructureE;
 import Letters.LetterStructureGo;
 import Letters.LetterStructureHo;
+import Letters.LetterStructureKho;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
+import Letters.LetterStructureNo;
 import Letters.LetterStructurePo;
 import Letters.LetterStructureRaw;
 import Letters.LetterStructureTalibaSha;
@@ -112,6 +118,31 @@ public class StructureDrawAnimation
 							else if(MainActivity.letter == 11)
 							{
 								LetterStructureHo.Structure();
+							}
+							//For letter Kho
+							else if(MainActivity.letter == 12)
+							{
+								LetterStructureKho.Structure();
+							}
+							//For letter Cho
+							else if(MainActivity.letter == 13)
+							{
+								LetterStructureCho.Structure();
+							}
+							//For letter No
+							else if(MainActivity.letter == 14)
+							{
+								LetterStructureNo.Structure();
+							}
+							//For letter A
+							else if(MainActivity.letter == 15)
+							{
+								LetterStructureA.Structure();
+							}
+							//For letter Do
+							else if(MainActivity.letter == 16)
+							{
+								LetterStructureDo.Structure();
 							}
 							
 						}

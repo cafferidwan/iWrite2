@@ -8,14 +8,18 @@ import org.andengine.entity.modifier.PathModifier.IPathModifierListener;
 import org.andengine.entity.modifier.PathModifier.Path;
 import org.andengine.entity.sprite.AnimatedSprite;
 
+import Letters.LetterStructureA;
 import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
+import Letters.LetterStructureCho;
 import Letters.LetterStructureE;
 import Letters.LetterStructureGo;
 import Letters.LetterStructureHo;
+import Letters.LetterStructureKho;
 import Letters.LetterStructureKo;
 import Letters.LetterStructureLo;
 import Letters.LetterStructureMo;
+import Letters.LetterStructureNo;
 import Letters.LetterStructurePo;
 import Letters.LetterStructureRaw;
 import Letters.LetterStructureTalibaSha;
@@ -215,6 +219,26 @@ public class AnimationDrawTutorial
 			{
 				//create number with cursor
 				LetterStructureHo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 12)
+			{
+				//create number with cursor
+				LetterStructureKho.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 13)
+			{
+				//create number with cursor
+				LetterStructureCho.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 14)
+			{
+				//create number with cursor
+				LetterStructureNo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 15)
+			{
+				//create number with cursor
+				LetterStructureA.createNumberSpriteAndCursor();
 			}
 		}
 	}
