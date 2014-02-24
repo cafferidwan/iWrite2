@@ -8,7 +8,7 @@ import com.example.iwrite.NumberSprites;
 import com.example.iwrite.R;
 import com.example.iwrite.StructureDrawAnimation;
 
-public class LetterStructureDo
+public class LetterStructureTo
 {
 
 	//create numberSprite and cursor
@@ -161,8 +161,8 @@ public class LetterStructureDo
 				MainActivity.mScene.detachChild(MainActivity.numberSprites[4]);
 				//creating new line of numbers
 				MainActivity.spriteCounterLimit=7;
-				StructureDrawAnimation.scale(MainActivity.moOutLineX +50,
-						MainActivity.moOutLineY-50, MainActivity.spriteCounter); 
+				StructureDrawAnimation.scale(MainActivity.moOutLineX +70,
+						MainActivity.moOutLineY+70, MainActivity.spriteCounter); 
 				MainActivity.state=5;
 			}
 			else if(MainActivity.state==5)
@@ -211,7 +211,7 @@ public class LetterStructureDo
 				
 				if(
 						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>30 
+						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
 							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
 							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 						)
@@ -243,8 +243,8 @@ public class LetterStructureDo
 			else if(MainActivity.state==7)
 			{
 				MainActivity.spriteCounterLimit=9;
-				StructureDrawAnimation.scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +530 ,
-						MainActivity.moOutLineY-30*MainActivity.spriteCounter + 280, MainActivity.spriteCounter); 
+				StructureDrawAnimation.scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +520 ,
+						MainActivity.moOutLineY-30*MainActivity.spriteCounter + 380, MainActivity.spriteCounter); 
 				MainActivity.state=8;
 			}
 			else if(MainActivity.state==8)
@@ -462,14 +462,14 @@ public class LetterStructureDo
 		else if(MainActivity.spriteCounterLimit == 7)
 		{
 			MainActivity.spriteCounter++;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX+50 ,
-					MainActivity.moOutLineY+60*MainActivity.spriteCounter - 350,
+			StructureDrawAnimation.scale(MainActivity.moOutLineX+60*MainActivity.spriteCounter-260 ,
+					MainActivity.moOutLineY+60*MainActivity.spriteCounter - 360,
 					MainActivity.spriteCounter);
 		}
 		else if(MainActivity.spriteCounterLimit == 9) 
 		{
 			MainActivity.spriteCounter++;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +580 ,
+			StructureDrawAnimation.scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +480 ,
 					MainActivity.moOutLineY-30*MainActivity.spriteCounter + 400,
 					MainActivity.spriteCounter);
 		}

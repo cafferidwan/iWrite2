@@ -12,7 +12,10 @@ import Letters.LetterStructureA;
 import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureCho;
+import Letters.LetterStructureDo;
+import Letters.LetterStructureDoh;
 import Letters.LetterStructureE;
+import Letters.LetterStructureEkar;
 import Letters.LetterStructureGo;
 import Letters.LetterStructureHo;
 import Letters.LetterStructureKho;
@@ -23,6 +26,10 @@ import Letters.LetterStructureNo;
 import Letters.LetterStructurePo;
 import Letters.LetterStructureRaw;
 import Letters.LetterStructureTalibaSha;
+import Letters.LetterStructureTo;
+import Letters.LetterStructureToh;
+import Letters.LetterStructureU;
+import Letters.LetterStructureUkar;
 
 import com.example.iwrite.MainActivity;
 import com.example.iwrite.NumberSprites;
@@ -239,6 +246,41 @@ public class AnimationDrawTutorial
 			{
 				//create number with cursor
 				LetterStructureA.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 16)
+			{
+				//create number with cursor
+				LetterStructureDo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 17)
+			{
+				//create number with cursor
+				LetterStructureU.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 18)
+			{
+				//create number with cursor
+				LetterStructureTo.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 19)
+			{
+				//create number with cursor
+				LetterStructureToh.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 20)
+			{
+				//create number with cursor
+				LetterStructureDoh.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 21)
+			{
+				//create number with cursor
+				LetterStructureUkar.createNumberSpriteAndCursor();
+			}
+			else if(MainActivity.letter == 22)
+			{
+				//create number with cursor
+				LetterStructureEkar.createNumberSpriteAndCursor();
 			}
 		}
 	}

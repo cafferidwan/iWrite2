@@ -16,7 +16,9 @@ import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureCho;
 import Letters.LetterStructureDo;
+import Letters.LetterStructureDoh;
 import Letters.LetterStructureE;
+import Letters.LetterStructureEkar;
 import Letters.LetterStructureGo;
 import Letters.LetterStructureHo;
 import Letters.LetterStructureKho;
@@ -27,6 +29,10 @@ import Letters.LetterStructureNo;
 import Letters.LetterStructurePo;
 import Letters.LetterStructureRaw;
 import Letters.LetterStructureTalibaSha;
+import Letters.LetterStructureTo;
+import Letters.LetterStructureToh;
+import Letters.LetterStructureU;
+import Letters.LetterStructureUkar;
 
 import com.example.iwrite.MainActivity;
 
@@ -143,6 +149,36 @@ public class StructureDrawAnimation
 							else if(MainActivity.letter == 16)
 							{
 								LetterStructureDo.Structure();
+							}
+							//For letter U
+							else if(MainActivity.letter == 17)
+							{
+								LetterStructureU.Structure();
+							}
+							//For letter To
+							else if(MainActivity.letter == 18)
+							{
+								LetterStructureTo.Structure();
+							}
+							//For letter Toh
+							else if(MainActivity.letter == 19)
+							{
+								LetterStructureToh.Structure();
+							}
+							//For letter Doh
+							else if(MainActivity.letter == 20)
+							{
+								LetterStructureDoh.Structure();
+							}
+							//For letter Ukar
+							else if(MainActivity.letter == 21)
+							{
+								LetterStructureUkar.Structure();
+							}
+							//For letter Ekar
+							else if(MainActivity.letter == 22)
+							{
+								LetterStructureEkar.Structure();
 							}
 							
 						}

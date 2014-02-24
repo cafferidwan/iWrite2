@@ -1,11 +1,8 @@
 package Letters;
 
 import org.andengine.entity.sprite.AnimatedSprite;
-
-import Animation.HandTutorial;
 import Duster.Duster;
 import Popup.PopUp;
-
 import com.example.iwrite.MainActivity;
 import com.example.iwrite.NumberSprites;
 import com.example.iwrite.R;

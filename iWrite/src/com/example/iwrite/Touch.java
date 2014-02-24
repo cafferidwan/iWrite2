@@ -8,7 +8,9 @@ import Letters.LetterStructureAa;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureCho;
 import Letters.LetterStructureDo;
+import Letters.LetterStructureDoh;
 import Letters.LetterStructureE;
+import Letters.LetterStructureEkar;
 import Letters.LetterStructureGo;
 import Letters.LetterStructureHo;
 import Letters.LetterStructureKho;
@@ -19,6 +21,10 @@ import Letters.LetterStructureNo;
 import Letters.LetterStructurePo;
 import Letters.LetterStructureRaw;
 import Letters.LetterStructureTalibaSha;
+import Letters.LetterStructureTo;
+import Letters.LetterStructureToh;
+import Letters.LetterStructureU;
+import Letters.LetterStructureUkar;
 import ScreenShoot.ScreenShot;
 
 public class Touch
@@ -176,6 +182,48 @@ public class Touch
 				{
 					//building the structure for the letter with number sprite
 					LetterStructureDo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter U
+				else if(MainActivity.letter == 17)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureU.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter To
+				else if(MainActivity.letter == 18)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureTo.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Toh
+				else if(MainActivity.letter == 19)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureToh.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Doh
+				else if(MainActivity.letter == 20)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureDoh.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Ukar
+				else if(MainActivity.letter == 21)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureUkar.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Ekar
+				else if(MainActivity.letter == 22)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureEkar.getStructure(pSceneTouchEvent.getX(),
 							pSceneTouchEvent.getY());
 				}
 				

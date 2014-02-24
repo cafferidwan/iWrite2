@@ -8,7 +8,7 @@ import com.example.iwrite.NumberSprites;
 import com.example.iwrite.R;
 import com.example.iwrite.StructureDrawAnimation;
 
-public class LetterStructureDo
+public class LetterStructureToh
 {
 
 	//create numberSprite and cursor
@@ -17,7 +17,7 @@ public class LetterStructureDo
 			 
 		//creating the first line of numbers
 		MainActivity.spriteCounterLimit = 4;
-		StructureDrawAnimation.scale(MainActivity.moOutLineX + 70 - 100, MainActivity.moOutLineY - 50, 1);
+		StructureDrawAnimation.scale(MainActivity.moOutLineX + 70 - 100, MainActivity.moOutLineY -30, 1);
 					
 		//creating the fish cursor
 		MainActivity.cursor = new AnimatedSprite(MainActivity.moOutLineX, MainActivity.moOutLineY, 
@@ -28,7 +28,19 @@ public class LetterStructureDo
 					
 		//setting the cursor to top of first number sprite
 		NumberSprites.setCursorPosition(MainActivity.numberSprites[1]);
-				
+					
+//		if(a==1)
+//		{
+//				//go to the next step or move the animated fish 
+//				animatedCursor(MainActivity.moOutLineX-10, 
+//						MainActivity.moOutLineY-20, 
+//						MainActivity.moOutLineX+180, 
+//						MainActivity.moOutLineY-20);
+//		}
+//		else if(a==2)
+//		{
+//						
+//		}
 	}
 		
 	//Creating the structure for the Letter by positioning co-ordinates and also drawing with chalk
@@ -161,8 +173,8 @@ public class LetterStructureDo
 				MainActivity.mScene.detachChild(MainActivity.numberSprites[4]);
 				//creating new line of numbers
 				MainActivity.spriteCounterLimit=7;
-				StructureDrawAnimation.scale(MainActivity.moOutLineX +50,
-						MainActivity.moOutLineY-50, MainActivity.spriteCounter); 
+				StructureDrawAnimation.scale(MainActivity.moOutLineX+10 ,
+						MainActivity.moOutLineY-20, MainActivity.spriteCounter); 
 				MainActivity.state=5;
 			}
 			else if(MainActivity.state==5)
@@ -174,8 +186,8 @@ public class LetterStructureDo
 				
 				if(
 						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>30 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
+						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
+							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>60 
 							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 						)
 				{
@@ -211,8 +223,8 @@ public class LetterStructureDo
 				
 				if(
 						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>30 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
+						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
+							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>60 
 							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 						)
 				{
@@ -243,8 +255,8 @@ public class LetterStructureDo
 			else if(MainActivity.state==7)
 			{
 				MainActivity.spriteCounterLimit=9;
-				StructureDrawAnimation.scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +530 ,
-						MainActivity.moOutLineY-30*MainActivity.spriteCounter + 280, MainActivity.spriteCounter); 
+				StructureDrawAnimation.scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +500 ,
+						MainActivity.moOutLineY-30*MainActivity.spriteCounter + 390, MainActivity.spriteCounter); 
 				MainActivity.state=8;
 			}
 			else if(MainActivity.state==8)
@@ -255,10 +267,10 @@ public class LetterStructureDo
 				MainActivity.posY = MainActivity.numberSprites[7].getY()+MainActivity.numberSprites[7].getHeight()/2-20;
 				
 				if(
-						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
+						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -65 
+						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>60 
 							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55  
+							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35  
 						)
 				{
 					
@@ -295,8 +307,8 @@ public class LetterStructureDo
 				if(
 						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
 						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>70 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-65 
+							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>60 
+							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-85 
 						)
 				{
 					
@@ -325,10 +337,13 @@ public class LetterStructureDo
 			}
 			else if(MainActivity.state==10)
 			{
+				MainActivity.mScene.detachChild(MainActivity.numberSprites[9]);
 				MainActivity.spriteCounterLimit=12;
-				StructureDrawAnimation.scale(MainActivity.moOutLineX+40*MainActivity.spriteCounter -355 ,
-						MainActivity.moOutLineY+50*MainActivity.spriteCounter-360, MainActivity.spriteCounter); 
-				MainActivity.state=11;
+				StructureDrawAnimation.scale(MainActivity.moOutLineX+40*MainActivity.spriteCounter -270 ,
+						MainActivity.moOutLineY+50*MainActivity.spriteCounter-530, MainActivity.spriteCounter); 
+				
+//				NumberSprites.setCursorPosition(MainActivity.numberSprites[9]);
+				MainActivity.state=12;
 			} 
 			
 			else if(MainActivity.state==11)
@@ -415,9 +430,9 @@ public class LetterStructureDo
 				MainActivity.posY = MainActivity.numberSprites[11].getY()+MainActivity.numberSprites[11].getHeight()/2-20;
 				
 				if(
-						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
+						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -65 
+						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>60 
+							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>60 
 							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-65 
 						)
 				{
@@ -442,11 +457,11 @@ public class LetterStructureDo
 					//Move the cursor with touch
 					NumberSprites.setCursorRotation(x, y);
 		                
-					remove(12,11,24);
+					remove(12,11,54);
 				}
 			}
 			
-		}
+	}
 		
 		
 		
@@ -457,29 +472,30 @@ public class LetterStructureDo
 		{
 			MainActivity.spriteCounter++;
 			StructureDrawAnimation.scale(MainActivity.moOutLineX+70*MainActivity.spriteCounter - 100, 
-					MainActivity.moOutLineY -50, MainActivity.spriteCounter);
+					MainActivity.moOutLineY -30, MainActivity.spriteCounter);
 		}
 		else if(MainActivity.spriteCounterLimit == 7)
 		{
 			MainActivity.spriteCounter++;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX+50 ,
-					MainActivity.moOutLineY+60*MainActivity.spriteCounter - 350,
+			StructureDrawAnimation.scale(MainActivity.moOutLineX+10 ,
+					MainActivity.moOutLineY+90*MainActivity.spriteCounter - 460,
 					MainActivity.spriteCounter);
 		}
-		else if(MainActivity.spriteCounterLimit == 9) 
+		else if(MainActivity.spriteCounterLimit == 9)
 		{
 			MainActivity.spriteCounter++;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +580 ,
-					MainActivity.moOutLineY-30*MainActivity.spriteCounter + 400,
+			StructureDrawAnimation.scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +540 ,
+					MainActivity.moOutLineY-30*MainActivity.spriteCounter + 320,
 					MainActivity.spriteCounter);
 		}
 		else if(MainActivity.spriteCounterLimit == 12)
 		{
 			MainActivity.spriteCounter++;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX-40*MainActivity.spriteCounter +430 ,
-					MainActivity.moOutLineY-80*MainActivity.spriteCounter+950,
+			StructureDrawAnimation.scale(MainActivity.moOutLineX-70*MainActivity.spriteCounter +820 ,
+					MainActivity.moOutLineY-50*MainActivity.spriteCounter+460,
 					MainActivity.spriteCounter);
 		}
+		
 	}
 	
 	//when a sprite collides a number sprite then it is called;
@@ -498,11 +514,10 @@ public class LetterStructureDo
 				MainActivity.screenShotCounter = 1;
 				//create book icon
 				PopUp.createBookIcon();
-				
-				MainActivity.isActionMoving = false;
-				
 				//start duster
 				Duster.startDuster();
+				
+				MainActivity.isActionMoving = false;
 				
 				//start the hand tutorial 
 //				MainActivity.tutorialCounter++;
