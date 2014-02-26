@@ -5,6 +5,7 @@ import org.andengine.util.debug.Debug;
 
 import Letters.LetterStructureA;
 import Letters.LetterStructureAa;
+import Letters.LetterStructureAkar;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureCho;
 import Letters.LetterStructureDo;
@@ -224,6 +225,13 @@ public class Touch
 				{
 					//building the structure for the letter with number sprite
 					LetterStructureEkar.getStructure(pSceneTouchEvent.getX(),
+							pSceneTouchEvent.getY());
+				}
+				//For letter Akar
+				else if(MainActivity.letter == 23)
+				{
+					//building the structure for the letter with number sprite
+					LetterStructureAkar.getStructure(pSceneTouchEvent.getX(),
 							pSceneTouchEvent.getY());
 				}
 				

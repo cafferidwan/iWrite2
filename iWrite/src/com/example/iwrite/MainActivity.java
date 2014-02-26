@@ -54,7 +54,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 								mAFilledTextureRegion, mDoFilledTextureRegion,
 								mUFilledTextureRegion, mToFilledTextureRegion,
 								mTohFilledTextureRegion, mDohFilledTextureRegion,
-								mUkarFilledTextureRegion, mEkarFilledTextureRegion;
+								mUkarFilledTextureRegion, mEkarFilledTextureRegion,
+								mAkarFilledTextureRegion;
 	
 	public static BitmapTextureAtlas mBitmapTextureAtlasMoFilled, mBitmapTextureAtlasAaFilled,
 									mBitmapTextureAtlasEFilled, mBitmapTextureAtlasHoFilled,
@@ -66,7 +67,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 									mBitmapTextureAtlasAFilled, mBitmapTextureAtlasDoFilled,
 									mBitmapTextureAtlasUFilled, mBitmapTextureAtlasToFilled,
 									mBitmapTextureAtlasTohFilled, mBitmapTextureAtlasDohFilled,
-									mBitmapTextureAtlasUkarFilled, mBitmapTextureAtlasEkarFilled;
+									mBitmapTextureAtlasUkarFilled, mBitmapTextureAtlasEkarFilled,
+									mBitmapTextureAtlasAkarFilled;
 	
 	
 	
@@ -81,7 +83,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	 mBitmapTextureAtlasDoOutLine, mBitmapTextureAtlasUOutLine,
 	 mBitmapTextureAtlasToOutLine, mBitmapTextureAtlasTohOutLine,
 	 mBitmapTextureAtlasDohOutLine, mBitmapTextureAtlasUkarOutLine,
-	 mBitmapTextureAtlasEkarOutLine;
+	 mBitmapTextureAtlasEkarOutLine, mBitmapTextureAtlasAkarOutLine;
 	
 	public static ITextureRegion mAaOutLineTextureRegion, 
 	mEOutLineTextureRegion, mRawOutLineTextureRegion,
@@ -94,7 +96,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	mDoOutLineTextureRegion, mUOutLineTextureRegion,
 	mToOutLineTextureRegion, mTohOutLineTextureRegion,
 	mDohOutLineTextureRegion, mUkarOutLineTextureRegion,
-	mEkarOutLineTextureRegion;
+	mEkarOutLineTextureRegion, mAkarOutLineTextureRegion;
 	
 	
 	
@@ -279,6 +281,11 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mEkarFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasEkarFilled, this,
 				"ekarFilled.png", 0, 0,  1, 1);
 		
+		mBitmapTextureAtlasAkarFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		mAkarFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAkarFilled, this,
+				"akarFilled.png", 0, 0,  1, 1);
+		
+		
 		
 		
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("iWriteGFX/LetterOutLine/");
@@ -325,6 +332,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasUkarOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
 		mBitmapTextureAtlasEkarOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
+		
+		mBitmapTextureAtlasAkarOutLine = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
 		
 		
 		
@@ -392,6 +401,9 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		mEkarOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasEkarOutLine, this,
 				"ekarExample.png", 0, 0,  1, 1);
+		
+		mAkarOutLineTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAkarOutLine, this,
+				"akarExample.png", 0, 0,  1, 1);
 		
 		
 		
@@ -555,6 +567,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasDohFilled.load();
 		mBitmapTextureAtlasUkarFilled.load();
 		mBitmapTextureAtlasEkarFilled.load();
+		mBitmapTextureAtlasAkarFilled.load();
 		
 		
 		mBitmapTextureAtlasMoOutLine.load();
@@ -580,6 +593,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		mBitmapTextureAtlasDohOutLine.load();
 		mBitmapTextureAtlasUkarOutLine.load();
 		mBitmapTextureAtlasEkarOutLine.load();
+		mBitmapTextureAtlasAkarOutLine.load();
 		
 		
 		// All the numbers
@@ -664,10 +678,10 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				
 		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha 8.Lo 9.Po 10.Go 11.Ho
 		//12.Kho 13.Cho 14.No 15.A 16.Do 17.U 18.To 19.Toh 20.Doh 21.Ukar
-		//22.Ekar
+		//22.Ekar 23.Akar
 		
 		//choose the letter with number
-		MainActivity.letter = 22;  
+		MainActivity.letter = 1;  
 		//create objects
 		createObjects.createObject();
 		

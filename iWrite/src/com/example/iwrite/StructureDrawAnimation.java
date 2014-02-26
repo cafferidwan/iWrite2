@@ -13,6 +13,7 @@ import org.andengine.util.modifier.IModifier;
 
 import Letters.LetterStructureA;
 import Letters.LetterStructureAa;
+import Letters.LetterStructureAkar;
 import Letters.LetterStructureBo;
 import Letters.LetterStructureCho;
 import Letters.LetterStructureDo;
@@ -179,6 +180,11 @@ public class StructureDrawAnimation
 							else if(MainActivity.letter == 22)
 							{
 								LetterStructureEkar.Structure();
+							}
+							//For letter Akar
+							else if(MainActivity.letter == 23)
+							{
+								LetterStructureAkar.Structure();
 							}
 							
 						}

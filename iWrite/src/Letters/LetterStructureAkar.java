@@ -8,7 +8,7 @@ import com.example.iwrite.NumberSprites;
 import com.example.iwrite.R;
 import com.example.iwrite.StructureDrawAnimation;
 
-public class LetterStructureEkar
+public class LetterStructureAkar
 {
 
 	//create numberSprite and cursor
@@ -17,7 +17,7 @@ public class LetterStructureEkar
 			 
 		//creating the first line of numbers
 		MainActivity.spriteCounterLimit = 2;
-		StructureDrawAnimation.scale(MainActivity.moOutLineX-50, MainActivity.moOutLineY , 1);
+		StructureDrawAnimation.scale(MainActivity.moOutLineX, MainActivity.moOutLineY -40, 1);
 					
 		//creating the fish cursor
 		MainActivity.cursor = new AnimatedSprite(MainActivity.moOutLineX, MainActivity.moOutLineY, 
@@ -47,7 +47,7 @@ public class LetterStructureEkar
 
 			if( 
 				   MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -65 
-				||MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>60 
+				||MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>80 
 				|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
 				|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
@@ -78,30 +78,29 @@ public class LetterStructureEkar
 		}  
 		else if(MainActivity.state==2)
 		{
-			MainActivity.mScene.detachChild(MainActivity.numberSprites[2]);
 			//creating new line of numbers
 			MainActivity.spriteCounterLimit=5;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX ,
-					MainActivity.moOutLineY, MainActivity.spriteCounter); 
+			StructureDrawAnimation.scale(MainActivity.moOutLineX +40,
+					MainActivity.moOutLineY+30, MainActivity.spriteCounter); 
 			MainActivity.state=3;
 		}
 		else if(MainActivity.state==3)
 		{
 			StructureDrawAnimation.Draw(x, y);
 				
-			MainActivity.posX = MainActivity.numberSprites[3].getX()+MainActivity.numberSprites[3].getWidth()/2-20;
-			MainActivity.posY = MainActivity.numberSprites[3].getY()+MainActivity.numberSprites[3].getHeight()/2-20;
+			MainActivity.posX = MainActivity.numberSprites[2].getX()+MainActivity.numberSprites[2].getWidth()/2-20;
+			MainActivity.posY = MainActivity.numberSprites[2].getY()+MainActivity.numberSprites[2].getHeight()/2-20;
 
 			if(
-					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-					 ||MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
+					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -65 
+					 ||MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>60 
 				|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>60 
 				|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 						)
 				{
 					
 					//set the cursor to the last collided number sprite
-					NumberSprites.setCursorPosition(MainActivity.numberSprites[3]);
+					NumberSprites.setCursorPosition(MainActivity.numberSprites[2]);
 					
 					//if out of the area the remove white chalks
 					for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
@@ -120,19 +119,19 @@ public class LetterStructureEkar
 					//Move the cursor with touch
 					NumberSprites.setCursorRotation(x, y);
 					
-					remove(4,3,4);
+					remove(3,2,4);
 				}
 			}
 			else if(MainActivity.state==4)
 			{
 				StructureDrawAnimation.Draw(x, y);
 				
-				MainActivity.posX = MainActivity.numberSprites[4].getX()+MainActivity.numberSprites[4].getWidth()/2-20;
-				MainActivity.posY = MainActivity.numberSprites[4].getY()+MainActivity.numberSprites[4].getHeight()/2-20;
+				MainActivity.posX = MainActivity.numberSprites[3].getX()+MainActivity.numberSprites[3].getWidth()/2-20;
+				MainActivity.posY = MainActivity.numberSprites[3].getY()+MainActivity.numberSprites[3].getHeight()/2-20;
 				
 				if(
 						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-						 ||MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>30 
+						 ||MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>50 
 					|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>60 
 					|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-55 
 					)
@@ -163,34 +162,25 @@ public class LetterStructureEkar
 					//Move the cursor with touch
 					NumberSprites.setCursorRotation(x, y);
 					
-					remove(5,4,5);
+					remove(4,3,5);
 				} 
 			}
 			else if(MainActivity.state==5)
 			{
-				MainActivity.mScene.detachChild(MainActivity.numberSprites[5]);
-				//creating new line of numbers
-				MainActivity.spriteCounterLimit=8;
-				StructureDrawAnimation.scale(MainActivity.moOutLineX -20,
-						MainActivity.moOutLineY, MainActivity.spriteCounter); 
-				MainActivity.state=6;
-			}
-			else if(MainActivity.state==6)
-			{
 				StructureDrawAnimation.Draw(x, y);
 				
-				MainActivity.posX = MainActivity.numberSprites[6].getX()+MainActivity.numberSprites[6].getWidth()/2-20; 
-				MainActivity.posY = MainActivity.numberSprites[6].getY()+MainActivity.numberSprites[6].getHeight()/2-20;
+				MainActivity.posX = MainActivity.numberSprites[4].getX()+MainActivity.numberSprites[4].getWidth()/2-20; 
+				MainActivity.posY = MainActivity.numberSprites[4].getY()+MainActivity.numberSprites[4].getHeight()/2-20;
 				
 				if(
-						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -60 
-						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>100 
+						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -160 
+						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>60 
 							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>60 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-100 
+							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-120 
 						)
 				{
 					//set the cursor to the last collided number sprite
-					NumberSprites.setCursorPosition(MainActivity.numberSprites[6]);
+					NumberSprites.setCursorPosition(MainActivity.numberSprites[4]);
 					
 					//if out of the area the remove white chalks
 					for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
@@ -209,94 +199,10 @@ public class LetterStructureEkar
 					//Move the cursor with touch
 					NumberSprites.setCursorRotation(x, y);
 					
-					remove(7,6,7);
+					remove(5,4,36);
 				}
 			}
-			else if(MainActivity.state==7)
-			{
-				StructureDrawAnimation.Draw(x, y);
-				
-				MainActivity.posX = MainActivity.numberSprites[7].getX()+MainActivity.numberSprites[7].getWidth()/2-20; 
-				MainActivity.posY = MainActivity.numberSprites[7].getY()+MainActivity.numberSprites[7].getHeight()/2-20;
-				
-				if(
-						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -65 
-						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>60 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>60 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-65 
-						)
-				{
-					
-					//set the cursor to the last collided number sprite
-					NumberSprites.setCursorPosition(MainActivity.numberSprites[7]);
-					
-					//if out of the area the remove white chalks
-					for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
-					{
-						MainActivity.mScene.detachChild(MainActivity.whiteChalk[a]);
-						//if wrong and not shaking the shake as wrong signal
-						if(MainActivity.isShaking == false)
-						{
-							StructureDrawAnimation.shake(1, MainActivity.OutLine, 10);
-						}
-					}
-					
-				}
-				else 
-				{
-					//Move the cursor with touch
-					NumberSprites.setCursorRotation(x, y);
-					
-					remove(8,7,8);
-				}
-			}  
-//			else if(MainActivity.state==7)
-//			{
-//				MainActivity.spriteCounterLimit=9;
-//				StructureDrawAnimation.scale(MainActivity.moOutLineX-50*MainActivity.spriteCounter +410 ,
-//						MainActivity.moOutLineY-30*MainActivity.spriteCounter + 340, MainActivity.spriteCounter); 
-//				MainActivity.state=8;
-//			}
-			else if(MainActivity.state==8)
-			{
-				StructureDrawAnimation.Draw(x, y);
-				
-				MainActivity.posX = MainActivity.numberSprites[8].getX()+MainActivity.numberSprites[8].getWidth()/2-20; 
-				MainActivity.posY = MainActivity.numberSprites[8].getY()+MainActivity.numberSprites[8].getHeight()/2-20;
-				
-				if(
-						 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -55 
-						 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>30 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>50 
-							|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-35  
-						)
-				{
-					
-					//set the cursor to the last collided number sprite
-					NumberSprites.setCursorPosition(MainActivity.numberSprites[8]);
-					
-					
-					//if out of the area the remove white chalks
-					for(int a=MainActivity.wCounter; a<=MainActivity.aCounter; a++)
-					{
-						MainActivity.mScene.detachChild(MainActivity.whiteChalk[a]);
-						//if wrong and not shaking the shake as wrong signal
-						if(MainActivity.isShaking == false)
-						{
-							StructureDrawAnimation.shake(1, MainActivity.OutLine, 10);
-						}
-					} 
-				}
-				else
-				{
-					//Move the cursor with touch
-					NumberSprites.setCursorRotation(x, y);
-					
-					remove(8,8,89);
-				}
-			}
-		
-		
+
 	}
 		
 		
@@ -307,23 +213,17 @@ public class LetterStructureEkar
 		if(MainActivity.spriteCounterLimit == 2)
 		{
 			MainActivity.spriteCounter++;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX+70*MainActivity.spriteCounter - 90, 
-					MainActivity.moOutLineY , MainActivity.spriteCounter);
+			StructureDrawAnimation.scale(MainActivity.moOutLineX+70*MainActivity.spriteCounter - 20, 
+					MainActivity.moOutLineY -40, MainActivity.spriteCounter);
 		}
 		else if(MainActivity.spriteCounterLimit == 5)
 		{
 			MainActivity.spriteCounter++;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX, 
-					MainActivity.moOutLineY +90*MainActivity.spriteCounter - 260,
+			StructureDrawAnimation.scale(MainActivity.moOutLineX+90*MainActivity.spriteCounter - 310,
+					MainActivity.moOutLineY +40*MainActivity.spriteCounter - 60,
 					MainActivity.spriteCounter);
 		}
-		else if(MainActivity.spriteCounterLimit == 8)
-		{
-			MainActivity.spriteCounter++;
-			StructureDrawAnimation.scale(MainActivity.moOutLineX+90*MainActivity.spriteCounter - 540 ,
-					MainActivity.moOutLineY+50*MainActivity.spriteCounter - 420,
-					MainActivity.spriteCounter);
-		}
+		
 		
 	}
 	
@@ -335,9 +235,9 @@ public class LetterStructureEkar
 		if(MainActivity.whiteChalk[MainActivity.aCounter].collidesWith(MainActivity.numberSprites[collisionSprite]))
 		{
 			//removing when it is in the last state
-			if(collisionSprite == 8)
+			if(collisionSprite == 5)
 			{ 
-				MainActivity.mScene.detachChild(MainActivity.numberSprites[8]);
+				MainActivity.mScene.detachChild(MainActivity.numberSprites[5]);
 				
 				//trigger for taking screen shot
 				MainActivity.screenShotCounter = 1;

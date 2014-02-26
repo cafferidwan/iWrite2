@@ -213,6 +213,12 @@ public class PopUp
 			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mEkarFilledTextureRegion,
 					MainActivity.vertexBufferObjectManager);
 		}
+		//Akar
+		else if(MainActivity.letter == 23)
+		{
+			MainActivity.correctLetter = new Sprite(270, -130, MainActivity.mAkarFilledTextureRegion,
+					MainActivity.vertexBufferObjectManager);
+		}
 			
 		
 		MainActivity.correctLetter.setScale((float) 0.4);
