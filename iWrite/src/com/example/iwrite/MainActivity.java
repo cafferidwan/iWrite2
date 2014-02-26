@@ -681,7 +681,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		//22.Ekar 23.Akar
 		
 		//choose the letter with number
-		MainActivity.letter = 1;  
+		MainActivity.letter = 2;  
 		//create objects
 		createObjects.createObject();
 		

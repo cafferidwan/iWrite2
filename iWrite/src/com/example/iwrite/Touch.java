@@ -36,15 +36,19 @@ public class Touch
 		if (pSceneTouchEvent.isActionDown()) 
 		{
 			MainActivity.touch = 1;
-			Debug.d("Touch.x:"+(pSceneTouchEvent.getX()-50));
-			Debug.d("Touch.y:"+(pSceneTouchEvent.getY()-50));
+//			Debug.d("Touch.x:"+(pSceneTouchEvent.getX()-50));
+//			Debug.d("Touch.y:"+(pSceneTouchEvent.getY()-50));
 			
+		
 			return true;
 		}
 		else if (pSceneTouchEvent.isActionMove() && MainActivity.isPopupActive == false
 				&& MainActivity.isHandTutorialActive == false && MainActivity.isActionMoving == true)
 		{
 			MainActivity.touch++;
+			
+			Debug.d("Touch.x:"+((pSceneTouchEvent.getX()-50)-MainActivity.moOutLineX));
+			Debug.d("Touch.y:"+((pSceneTouchEvent.getY()-50)-MainActivity.moOutLineY));
 			
 			//sorting the scene child
 			MainActivity.mScene.sortChildren();
@@ -57,8 +61,8 @@ public class Touch
 						pSceneTouchEvent.getY() - MainActivity.rect.getHeight() / 2);
 				
 				
-				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
-				Debug.d("State:" + MainActivity.state);
+//				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
+//				Debug.d("State:" + MainActivity.state);
 
 				//enabling drawing from the first number sprite
 				if (MainActivity.rect.collidesWith(MainActivity.numberSprites[1])) 

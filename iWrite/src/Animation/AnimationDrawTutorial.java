@@ -40,15 +40,21 @@ import com.example.iwrite.StructureDrawAnimation;
 public class AnimationDrawTutorial 
 {
 	//animation for drawing with chalk during monkey tutorial
-	public static void animatedChalk1(float xA1, float yA1, float xA2, float yA2, 
-			final float x1, final float y1, final float x2, final float y2,final float x3, final float y3,
-			final float x4, final float y4, final float x5,final float y5, final float x6, final float y6,
-			final float x7, final float y7, final float x8, final float y8, final float x9, final float y9)
+	public static void animatedChalk1(float x1, float y1, float x2, float y2, 
+			
+			final float xA1, final float yA1, final float xA2, final float yA2,final float xA3, final float yA3,
+			final float xA4, final float yA4, final float xA5,final float yA5, final float xA6, final float yA6,
+			final float xA7, final float yA7, final float xA8, final float yA8, final float xA9, final float yA9,
+			
+			final float xB1, final float yB1, final float xB2, final float yB2, final float xB3, final float yB3,
+			final float xB4, final float yB4, final float xB5, final float yB5, final float xB6, final float yB6,
+			
+			final float xC1, final float yC1, final float xC2, final float yC2)
 	{
 		Path chalkPath = null;
 		
 		chalkPath = new Path(2)
-		.to(xA1, yA1).to(xA2, yA2);
+		.to(x1, y1).to(x2, y2);
 		
 		
 		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)2.5, chalkPath, null, new IPathModifierListener()
@@ -82,21 +88,120 @@ public class AnimationDrawTutorial
 				
 				//move to the next step of drawing with chalk
 				AnimationDrawTutorial.animatedChalk2(
-					x1, y1, x2, y2, x3, y3, x4, y4,
-					x5, y5, x6, y6, x7, y7, x8, y8,
-					x9, y9);
+					xA1, yA1, xA2, yA2, xA3, yA3, xA4, yA4,
+					xA5, yA5, xA6, yA6, xA7, yA7, xA8, yA8,
+					xA9, yA9, 
+					
+					xB1, yB1, xB2, yB2, xB3, yB3,
+					xB4, yB4, xB5, yB5, xB6, yB6, 
+					
+					xC1, yC1, xC2, yC2);
 			}
 		}));
 	}
 	
 	//animation for drawing with chalk during monkey tutorial
-	public static void animatedChalk2(float x1, float y1, float x2, float y2, float x3, float y3
-			, float x4, float y4, float x5, float y5, float x6, float y6, float x7, float y7
-			, float x8, float y8, float x9, float y9)
+	public static void animatedChalk2(final float x1, final float y1, final float x2, final float y2
+			, final float x3, final float y3, final float x4, final float y4, final float x5, final float y5
+			, final float x6, final float y6, final float x7, final float y7, float x8, float y8, float x9,float y9,
+			
+			  final float xB1, final float yB1, final float xB2, final float yB2, final float xB3
+			, final float yB3, final float xB4, final float yB4, final float xB5, final float yB5
+			, final float xB6, final float yB6
+			
+			, final float xC1, final float yC1, final float xC2, final float yC2)
 	{
 		Path chalkPath2 = new Path(9)
 		.to(x1 , y1 ).to(x2, y2).to(x3, y3).to(x4, y4)
 		.to(x5, y5).to(x6, y6).to(x7, y7).to(x8, y8).to(x9, y9)
+		;
+		
+		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)5.0, chalkPath2, null, new IPathModifierListener()
+		{
+			@Override
+			public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity) 
+			{
+				MainActivity.monkeyTutorialStart = 1;
+			}
+
+			@Override
+			public void onPathWaypointStarted(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex)
+			{
+
+			}
+
+			@Override
+			public void onPathWaypointFinished(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex) 
+			{
+
+			}
+
+			@Override
+			public void onPathFinished(final PathModifier pPathModifier, final IEntity pEntity) 
+			{ 
+				MainActivity.monkeyTutorialStart = 0;
+				//move to the next step of drawing with chalk
+				AnimationDrawTutorial.animatedChalk3(
+						
+					xB1, yB1, xB2, yB2, xB3, yB3, xB4, yB4,
+					xB5, yB5, xB6, yB6,
+					
+					xC1, yC1, xC2, yC2);
+
+			}
+		}));
+	}
+	
+	//animation for drawing with chalk during monkey tutorial
+	public static void animatedChalk3(float x1, float y1, float x2, float y2, float x3, float y3
+			, float x4, float y4, float x5, float y5, float x6, float y6
+			
+			, final float xC1, final float yC1, final float xC2, final float yC2)
+	{
+		Path chalkPath2 = new Path(6)
+		.to(x1 , y1 ).to(x2, y2).to(x3, y3).to(x4, y4)
+		.to(x5, y5).to(x6, y6)
+		;
+		
+		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)5.0, chalkPath2, null, new IPathModifierListener()
+		{
+			@Override
+			public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity) 
+			{
+				MainActivity.monkeyTutorialStart = 1;
+			}
+
+			@Override
+			public void onPathWaypointStarted(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex)
+			{
+
+			}
+
+			@Override
+			public void onPathWaypointFinished(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex) 
+			{
+
+			}
+
+			@Override
+			public void onPathFinished(final PathModifier pPathModifier, final IEntity pEntity) 
+			{ 
+				MainActivity.monkeyTutorialStart = 0;
+				
+				//after finishing the tutorial remove the chalk draw
+				//move to the next step of drawing with chalk
+				AnimationDrawTutorial.animatedChalk4(
+					xC1, yC1, xC2, yC2);
+
+			}
+		}));
+	}
+	
+	//animation for drawing with chalk during monkey tutorial
+	public static void animatedChalk4(float x1, float y1, float x2, float y2)
+	{
+		Path chalkPath2 = new Path(2)
+		.to(x1 , y1 ).to(x2, y2)
 		;
 		
 		MainActivity.rectangle.registerEntityModifier(new PathModifier((float)5.0, chalkPath2, null, new IPathModifierListener()
