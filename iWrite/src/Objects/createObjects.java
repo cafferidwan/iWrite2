@@ -72,20 +72,30 @@ public class createObjects
 			MainActivity.mScene.attachChild(MainActivity.OutLine);
 			
 //			MonkeyTutorial start 
-//			MonkeyTutorial.monkeyTutorialstart(
-//					MainActivity.moOutLineX - 10,
-//					MainActivity.moOutLineY - 20,
-//					MainActivity.moOutLineX + 180,
-//					MainActivity.moOutLineY - 20,
-//					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15, 
-//					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
-//					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
-//					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
-//					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
-//					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
-//					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY);
+			MonkeyTutorial.monkeyTutorialstart(2,
+					MainActivity.moOutLineX - 10,
+					MainActivity.moOutLineY - 20,
+					MainActivity.moOutLineX + 180,
+					MainActivity.moOutLineY - 20,
+					
+					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15, 
+					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
+					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
+					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
+					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
+					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
+					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
+					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
+					MainActivity.moOutLineX+150, MainActivity.moOutLineY,
+					
+					MainActivity.moOutLineX+150, MainActivity.moOutLineY,
+					MainActivity.moOutLineX+150, MainActivity.moOutLineY,
+					MainActivity.moOutLineX+150, MainActivity.moOutLineY,
+					MainActivity.moOutLineX+150, MainActivity.moOutLineY,
+					
+					MainActivity.moOutLineX+150, MainActivity.moOutLineY,
+					MainActivity.moOutLineX+150, MainActivity.moOutLineY
+					);
 			
 //			LetterStructureMo.createNumberSpriteAndCursor(); 
 		}
@@ -98,7 +108,7 @@ public class createObjects
 			MainActivity.mScene.attachChild(MainActivity.OutLine);
 			
 			//MonkeyTutorial start 
-			MonkeyTutorial.monkeyTutorialstart( 
+			MonkeyTutorial.monkeyTutorialstart(4,
 					MainActivity.moOutLineX - 20,
 					MainActivity.moOutLineY - 20,
 					MainActivity.moOutLineX + 220,
@@ -119,12 +129,9 @@ public class createObjects
 					MainActivity.moOutLineX+159, MainActivity.moOutLineY+183,
 					MainActivity.moOutLineX+159, MainActivity.moOutLineY-12,
 					MainActivity.moOutLineX+163, MainActivity.moOutLineY-12,
-					MainActivity.moOutLineX+163, MainActivity.moOutLineY-12,
-					MainActivity.moOutLineX+163, MainActivity.moOutLineY-12,
 					
 					MainActivity.moOutLineX+224, MainActivity.moOutLineY-8, 
 					MainActivity.moOutLineX+224, MainActivity.moOutLineY+185
-					
 					);
 		}
 		//Outline of letter e
@@ -135,26 +142,31 @@ public class createObjects
 			MainActivity.OutLine.setScale((float)0.8);
 			MainActivity.mScene.attachChild(MainActivity.OutLine);
 			
-			//create number with cursor
-//			LetterStructureE.createNumberSpriteAndCursor();
-			
 			//MonkeyTutorial start 
-//			MonkeyTutorial.monkeyTutorialstart(
-//					MainActivity.moOutLineX - 10,
-//					MainActivity.moOutLineY - 20,
-//					MainActivity.moOutLineX + 180,
-//					MainActivity.moOutLineY - 20,
-//				
-//					//Edit From Here
-//					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15, 
-//					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
-//					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
-//					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
-//					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
-//					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
-//					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY); 
+			MonkeyTutorial.monkeyTutorialstart(3,
+					MainActivity.moOutLineX - 9,
+					MainActivity.moOutLineY + 3,
+					MainActivity.moOutLineX + 165,
+					MainActivity.moOutLineY + 3,
+					
+					MainActivity.moOutLineX+50, MainActivity.moOutLineY+65, 
+					MainActivity.moOutLineX+91, MainActivity.moOutLineY+40,
+					MainActivity.moOutLineX+118, MainActivity.moOutLineY+54,
+					MainActivity.moOutLineX+123, MainActivity.moOutLineY+105,
+					MainActivity.moOutLineX+54, MainActivity.moOutLineY+134,
+					MainActivity.moOutLineX+45, MainActivity.moOutLineY+140,
+					MainActivity.moOutLineX+107, MainActivity.moOutLineY+167,
+					MainActivity.moOutLineX+155, MainActivity.moOutLineY+205,
+					MainActivity.moOutLineX+155, MainActivity.moOutLineY+205,
+					
+					MainActivity.moOutLineX+134, MainActivity.moOutLineY-3, 
+					MainActivity.moOutLineX+104, MainActivity.moOutLineY-40,
+					MainActivity.moOutLineX+19, MainActivity.moOutLineY-39,
+					MainActivity.moOutLineX+1, MainActivity.moOutLineY-70,
+					
+					MainActivity.moOutLineX+1, MainActivity.moOutLineY-70,
+					MainActivity.moOutLineX+1, MainActivity.moOutLineY-70
+					); 
 			 
 		}
 		//Outline of letter raw
@@ -166,24 +178,32 @@ public class createObjects
 			MainActivity.mScene.attachChild(MainActivity.OutLine);
 			
 			//MonkeyTutorial start 
-//			MonkeyTutorial.monkeyTutorialstart( 
-//					MainActivity.moOutLineX - 10,
-//					MainActivity.moOutLineY - 20,
-//					MainActivity.moOutLineX + 180,
-//					MainActivity.moOutLineY - 10,
-//			
-//					//Edit From Here
-//					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15,
-//					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
-//					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
-//					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
-//					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
-//					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
-//					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY);
+			MonkeyTutorial.monkeyTutorialstart(3,
+					MainActivity.moOutLineX - 23,
+					MainActivity.moOutLineY - 48,
+					MainActivity.moOutLineX + 186,
+					MainActivity.moOutLineY -48,
+					
+					MainActivity.moOutLineX+138, MainActivity.moOutLineY-10, 
+					MainActivity.moOutLineX+15, MainActivity.moOutLineY+53,
+					MainActivity.moOutLineX+41, MainActivity.moOutLineY+81,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY+158,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					
+					MainActivity.moOutLineX+58, MainActivity.moOutLineY+159, 
+					MainActivity.moOutLineX+58, MainActivity.moOutLineY+159, 
+					MainActivity.moOutLineX+63, MainActivity.moOutLineY+159, 
+					MainActivity.moOutLineX+63, MainActivity.moOutLineY+159, 
+					
+					MainActivity.moOutLineX+1, MainActivity.moOutLineY-70,
+					MainActivity.moOutLineX+1, MainActivity.moOutLineY-70
+					); 
 			
-			LetterStructureRaw.createNumberSpriteAndCursor(); 
+//			LetterStructureRaw.createNumberSpriteAndCursor(); 
 		}
 		//Outline of letter Ko
 		else if(MainActivity.letter == 5)
@@ -194,24 +214,32 @@ public class createObjects
 			MainActivity.mScene.attachChild(MainActivity.OutLine);
 			
 			//MonkeyTutorial start 
-//			MonkeyTutorial.monkeyTutorialstart( 
-//					MainActivity.moOutLineX - 10,
-//					MainActivity.moOutLineY - 20,
-//					MainActivity.moOutLineX + 180,
-//					MainActivity.moOutLineY - 10,
-//
-//					//Edit From Here
-//					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15,
-//					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
-//					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
-//					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
-//					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
-//					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
-//					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY);
+			MonkeyTutorial.monkeyTutorialstart(3,
+					MainActivity.moOutLineX - 23,
+					MainActivity.moOutLineY - 48,
+					MainActivity.moOutLineX + 190,
+					MainActivity.moOutLineY -48,
+					
+					MainActivity.moOutLineX+138, MainActivity.moOutLineY-10, 
+					MainActivity.moOutLineX+15, MainActivity.moOutLineY+53,
+					MainActivity.moOutLineX+41, MainActivity.moOutLineY+81,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY+158,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					
+					MainActivity.moOutLineX+159, MainActivity.moOutLineY-8, 
+					MainActivity.moOutLineX+220, MainActivity.moOutLineY+21, 
+					MainActivity.moOutLineX+238, MainActivity.moOutLineY+88, 
+					MainActivity.moOutLineX+190, MainActivity.moOutLineY+98, 
+					
+					MainActivity.moOutLineX+1, MainActivity.moOutLineY-70,
+					MainActivity.moOutLineX+1, MainActivity.moOutLineY-70
+					); 
 			
-			LetterStructureRaw.createNumberSpriteAndCursor(); 
+//			LetterStructureRaw.createNumberSpriteAndCursor(); 
 		}
 		//Outline of letter Bo
 		else if(MainActivity.letter == 6)
@@ -222,24 +250,32 @@ public class createObjects
 			MainActivity.mScene.attachChild(MainActivity.OutLine);
 			
 			//MonkeyTutorial start 
-//			MonkeyTutorial.monkeyTutorialstart( 
-//					MainActivity.moOutLineX - 10,
-//					MainActivity.moOutLineY - 20,
-//					MainActivity.moOutLineX + 180,
-//					MainActivity.moOutLineY - 10,
-//			
-//					//Edit From Here
-//					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15,
-//					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
-//					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
-//					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
-//					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
-//					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
-//					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY);
+			MonkeyTutorial.monkeyTutorialstart(2,
+					MainActivity.moOutLineX - 23,
+					MainActivity.moOutLineY - 48,
+					MainActivity.moOutLineX + 190,
+					MainActivity.moOutLineY -48,
+					
+					MainActivity.moOutLineX+138, MainActivity.moOutLineY-10, 
+					MainActivity.moOutLineX+15, MainActivity.moOutLineY+53,
+					MainActivity.moOutLineX+41, MainActivity.moOutLineY+81,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY+158,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					MainActivity.moOutLineX+145, MainActivity.moOutLineY-25,
+					
+					MainActivity.moOutLineX+159, MainActivity.moOutLineY-8, 
+					MainActivity.moOutLineX+220, MainActivity.moOutLineY+21, 
+					MainActivity.moOutLineX+238, MainActivity.moOutLineY+88, 
+					MainActivity.moOutLineX+190, MainActivity.moOutLineY+98, 
+					
+					MainActivity.moOutLineX+1, MainActivity.moOutLineY-70,
+					MainActivity.moOutLineX+1, MainActivity.moOutLineY-70
+					); 
 			
-			LetterStructureBo.createNumberSpriteAndCursor();
+//			LetterStructureBo.createNumberSpriteAndCursor();
 		}
 		//Outline of letter TalibaSha
 		else if(MainActivity.letter == 7)
@@ -250,24 +286,32 @@ public class createObjects
 				MainActivity.mScene.attachChild(MainActivity.OutLine);
 					
 				//MonkeyTutorial start 
-//				MonkeyTutorial.monkeyTutorialstart( 
-//					MainActivity.moOutLineX - 10,
-//					MainActivity.moOutLineY - 20,
-//					MainActivity.moOutLineX + 180,
-//					MainActivity.moOutLineY - 10,
-//
-//					//Edit From Here
-//					MainActivity.moOutLineX+10, MainActivity.moOutLineY-15,
-//					MainActivity.moOutLineX+80, MainActivity.moOutLineY+70,
-//					MainActivity.moOutLineX+70, MainActivity.moOutLineY+120,
-//					MainActivity.moOutLineX+30, MainActivity.moOutLineY+140,
-//					MainActivity.moOutLineX, 	MainActivity.moOutLineY+110,
-//					MainActivity.moOutLineX+20, MainActivity.moOutLineY+80,
-//					MainActivity.moOutLineX+90, MainActivity.moOutLineY+90,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY+160,
-//					MainActivity.moOutLineX+150, MainActivity.moOutLineY);
+				MonkeyTutorial.monkeyTutorialstart(3,
+						MainActivity.moOutLineX - 33,
+						MainActivity.moOutLineY - 25,
+						MainActivity.moOutLineX + 50,
+						MainActivity.moOutLineY -19,
+						
+						MainActivity.moOutLineX + 50,MainActivity.moOutLineY -19,
+						MainActivity.moOutLineX+13, MainActivity.moOutLineY+74, 
+						MainActivity.moOutLineX+57, MainActivity.moOutLineY+21,
+						MainActivity.moOutLineX+90, MainActivity.moOutLineY+78,
+						MainActivity.moOutLineX+65, MainActivity.moOutLineY+1,
+						MainActivity.moOutLineX+114, MainActivity.moOutLineY-22,
+						MainActivity.moOutLineX+163, MainActivity.moOutLineY+26,
+						MainActivity.moOutLineX+163, MainActivity.moOutLineY-25,
+						MainActivity.moOutLineX+163, MainActivity.moOutLineY+200, 
+						
+						MainActivity.moOutLineX+163, MainActivity.moOutLineY-25, 
+						MainActivity.moOutLineX+180, MainActivity.moOutLineY-25, 
+						MainActivity.moOutLineX+180, MainActivity.moOutLineY-25,
+						MainActivity.moOutLineX+180, MainActivity.moOutLineY-25,
+						
+						MainActivity.moOutLineX+1, MainActivity.moOutLineY-70,
+						MainActivity.moOutLineX+1, MainActivity.moOutLineY-70
+						); 
 					
-				LetterStructureTalibaSha.createNumberSpriteAndCursor(); 
+//				LetterStructureTalibaSha.createNumberSpriteAndCursor(); 
 		}
 		//Outline of letter Lo
 		else if(MainActivity.letter == 8)

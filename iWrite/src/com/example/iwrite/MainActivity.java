@@ -202,7 +202,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 				"aaFilled.png", 0, 0,  1, 1);
 		
 		mBitmapTextureAtlasEFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
-		mEFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasAaFilled, this,
+		mEFilledTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlasEFilled, this,
 				"eFilled.png", 0, 0,  1, 1);
 		
 		mBitmapTextureAtlasHoFilled = new BitmapTextureAtlas(this.getTextureManager(), 400, 400, TextureOptions.BILINEAR);
@@ -681,7 +681,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		//22.Ekar 23.Akar
 		
 		//choose the letter with number
-		MainActivity.letter = 2;  
+		MainActivity.letter = 7;  
 		//create objects
 		createObjects.createObject();
 		
