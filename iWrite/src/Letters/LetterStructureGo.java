@@ -169,10 +169,10 @@ public class LetterStructureGo
 			MainActivity.posY = MainActivity.numberSprites[3].getY()+MainActivity.numberSprites[3].getHeight()/2-20;
 
 			if(
-					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -65
-					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>60 
-						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>60 
-						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-65 
+					 MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX< -70
+					 	|| MainActivity.whiteChalk[MainActivity.aCounter].getX() - MainActivity.posX>70 
+						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY>70 
+						|| MainActivity.whiteChalk[MainActivity.aCounter].getY() - MainActivity.posY<-90 
 				)
 			{
 				//set the cursor to the last collided number sprite

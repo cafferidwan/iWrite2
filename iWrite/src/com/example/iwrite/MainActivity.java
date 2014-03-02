@@ -679,14 +679,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		//1.Mo 2.Aa 3.e 4.Raw 5.Ko 6.Bo 7.TalibaSha 8.Lo 9.Po 10.Go 11.Ho
 		//12.Kho 13.Cho 14.No 15.A 16.Do 17.U 18.To 19.Toh 20.Doh 21.Ukar
 		//22.Ekar 23.Akar
-		
+		 
 		//choose the letter with number
-		MainActivity.letter = 7;  
+		MainActivity.letter = 18; 
 		//create objects
 		createObjects.createObject();
 		
 		//create book icon
-//		PopUp.createBookIcon(); 
+//		PopUp.createBookIcon();
 //		HandTutorial.handTutorialCreate();
 
 		//create number with cursor

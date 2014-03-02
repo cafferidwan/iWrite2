@@ -54,7 +54,7 @@ public class StructureDrawAnimation
 				MainActivity.mScene.attachChild(MainActivity.numberSprites[MainActivity.spriteCounter]);
 				MainActivity.mScene.registerTouchArea(MainActivity.numberSprites[MainActivity.spriteCounter]);
 		
-				ScaleModifier scaleModifier = new ScaleModifier((float) 0.1, 0.1f, 0.3f);
+				ScaleModifier scaleModifier = new ScaleModifier((float) 0.05, 0.1f, 0.3f);
 				LoopEntityModifier loopRotateMod = new LoopEntityModifier( new RotationModifier(4, 0, 360));
 				DelayModifier delayMod = new DelayModifier((float) 0.01, new IEntityModifierListener()
 				{ 

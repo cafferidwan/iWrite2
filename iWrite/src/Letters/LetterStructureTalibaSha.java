@@ -70,21 +70,6 @@ public class LetterStructureTalibaSha
 					70+MainActivity.moOutLineY+90*MainActivity.spriteCounter-1070,
 					MainActivity.spriteCounter);
 		}
-//		else if(MainActivity.spriteCounterLimit == 17)
-//		{
-//			MainActivity.spriteCounter++;
-//			StructureDrawAnimation.scale(MainActivity.moOutLineX+200 , 
-//					70+MainActivity.moOutLineY+80*MainActivity.spriteCounter-1250,
-//					MainActivity.spriteCounter);
-//		}
-//		
-//		else if(MainActivity.spriteCounterLimit == 19)
-//		{
-//			MainActivity.spriteCounter++;
-//			StructureDrawAnimation.scale(MainActivity.moOutLineX+240 , 
-//					MainActivity.moOutLineY-30,
-//					MainActivity.spriteCounter);
-//		}
 	
 	}
 
@@ -430,13 +415,14 @@ public class LetterStructureTalibaSha
 		}
 		else if(MainActivity.state==12)
 		{
-			//MainActivity.mScene.detachChild(MainActivity.numberSprites[8]); 
+			MainActivity.mScene.detachChild(MainActivity.numberSprites[10]); 
 			
 			MainActivity.spriteCounterLimit=13;
 			StructureDrawAnimation.scale(MainActivity.moOutLineX+40*MainActivity.spriteCounter -300 ,
-					MainActivity.moOutLineY+50*MainActivity.spriteCounter-600, MainActivity.spriteCounter); 
-//			NumberSprites.setCursorPosition(MainActivity.numberSprites[10]);
-			MainActivity.mScene.detachChild(MainActivity.numberSprites[10]); 
+					MainActivity.moOutLineY+50*MainActivity.spriteCounter-600, MainActivity.spriteCounter);
+			
+			NumberSprites.setCursorPosition(MainActivity.numberSprites[11]);
+			
 			MainActivity.state=13; 
 			
 		} 

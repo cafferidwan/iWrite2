@@ -206,6 +206,7 @@ public class LetterStructurePo
 			MainActivity.spriteCounterLimit=7;
 			StructureDrawAnimation.scale(MainActivity.moOutLineX-20,
 					MainActivity.moOutLineY+10, MainActivity.spriteCounter); 
+			
 			NumberSprites.setCursorPosition(MainActivity.numberSprites[5]);
 
 			MainActivity.state=6;
