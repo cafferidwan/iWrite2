@@ -62,7 +62,7 @@ public class Touch
 				
 				
 //				Debug.d("spriteCounter:" + MainActivity.spriteCounter); 
-//				Debug.d("State:" + MainActivity.state);
+				Debug.d("State:" + MainActivity.state);
 
 				//enabling drawing from the first number sprite
 				if (MainActivity.rect.collidesWith(MainActivity.numberSprites[1])) 
